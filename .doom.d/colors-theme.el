@@ -1,0 +1,1 @@
+/home/gabe/.cache/wal/colors-theme.el
