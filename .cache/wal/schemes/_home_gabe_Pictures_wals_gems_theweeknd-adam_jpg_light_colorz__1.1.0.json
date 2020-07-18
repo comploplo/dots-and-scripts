@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/gems/theweeknd-adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#faf5f5",
+        "foreground": "#3e3d3d",
+        "cursor": "#3e3d3d"
+    },
+    "colors": {
+        "color0": "#faf5f5",
+        "color1": "#aa3d38",
+        "color2": "#aa7457",
+        "color3": "#af8c77",
+        "color4": "#b6c4c5",
+        "color5": "#93a2a7",
+        "color6": "#476fa9",
+        "color7": "#3e3d3d",
+        "color8": "#bbb7b7",
+        "color9": "#aa3d38",
+        "color10": "#aa7457",
+        "color11": "#af8c77",
+        "color12": "#b6c4c5",
+        "color13": "#93a2a7",
+        "color14": "#476fa9",
+        "color15": "#3e3d3d"
+    }
+}

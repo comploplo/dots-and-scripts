@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/gems/furby-adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0A0A0F",
+        "foreground": "#d5d2db",
+        "cursor": "#d5d2db"
+    },
+    "colors": {
+        "color0": "#0A0A0F",
+        "color1": "#8E7270",
+        "color2": "#A48A6C",
+        "color3": "#566F96",
+        "color4": "#8F7987",
+        "color5": "#6B8EB7",
+        "color6": "#A5929C",
+        "color7": "#d5d2db",
+        "color8": "#959399",
+        "color9": "#8E7270",
+        "color10": "#A48A6C",
+        "color11": "#566F96",
+        "color12": "#8F7987",
+        "color13": "#6B8EB7",
+        "color14": "#A5929C",
+        "color15": "#d5d2db"
+    }
+}

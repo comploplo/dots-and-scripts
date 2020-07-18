@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/furby-adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#211e1e",
+        "foreground": "#c7c6c6",
+        "cursor": "#c7c6c6"
+    },
+    "colors": {
+        "color0": "#211e1e",
+        "color1": "#a79998",
+        "color2": "#aa896d",
+        "color3": "#5476aa",
+        "color4": "#838bac",
+        "color5": "#3345aa",
+        "color6": "#bab4c2",
+        "color7": "#c7c6c6",
+        "color8": "#585656",
+        "color9": "#a79998",
+        "color10": "#aa896d",
+        "color11": "#5476aa",
+        "color12": "#838bac",
+        "color13": "#3345aa",
+        "color14": "#bab4c2",
+        "color15": "#c7c6c6"
+    }
+}

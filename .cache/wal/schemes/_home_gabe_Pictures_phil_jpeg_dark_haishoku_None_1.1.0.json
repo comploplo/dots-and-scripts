@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/phil.jpeg",
+    "alpha": "100",
+    "special": {
+        "background": "#181919",
+        "foreground": "#c5c5c5",
+        "cursor": "#c5c5c5"
+    },
+    "colors": {
+        "color0": "#181919",
+        "color1": "#6c2a28",
+        "color2": "#487169",
+        "color3": "#70654d",
+        "color4": "#6d8b81",
+        "color5": "#6dc59d",
+        "color6": "#80e6c2",
+        "color7": "#c5c5c5",
+        "color8": "#515252",
+        "color9": "#6c2a28",
+        "color10": "#487169",
+        "color11": "#70654d",
+        "color12": "#6d8b81",
+        "color13": "#6dc59d",
+        "color14": "#80e6c2",
+        "color15": "#c5c5c5"
+    }
+}

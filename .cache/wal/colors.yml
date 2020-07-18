@@ -1,0 +1,24 @@
+wallpaper: "/home/gabe/Pictures/wals/gems/phil.jpg"
+
+special:
+    background: "#211e18"
+    foreground: "#c7c6c5"
+    cursor: "#c7c6c5"
+
+colors:
+    color0: "#211e18"
+    color1: "#a6977b"
+    color2: "#61ba96"
+    color3: "#a1c2bb"
+    color4: "#7fa7a2"
+    color5: "#5875ab"
+    color6: "#ab393d"
+    color7: "#c7c6c5"
+    color8: "#585651"
+    color9: "#a6977b"
+    color10: "#61ba96"
+    color11: "#a1c2bb"
+    color12: "#7fa7a2"
+    color13: "#5875ab"
+    color14: "#ab393d"
+    color15: "#c7c6c5"

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/kevin-adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#09090B",
+        "foreground": "#eee8e0",
+        "cursor": "#eee8e0"
+    },
+    "colors": {
+        "color0": "#09090B",
+        "color1": "#837C75",
+        "color2": "#8C847C",
+        "color3": "#5B9795",
+        "color4": "#A79E95",
+        "color5": "#C6BAAD",
+        "color6": "#D5C8B9",
+        "color7": "#eee8e0",
+        "color8": "#a6a29c",
+        "color9": "#837C75",
+        "color10": "#8C847C",
+        "color11": "#5B9795",
+        "color12": "#A79E95",
+        "color13": "#C6BAAD",
+        "color14": "#D5C8B9",
+        "color15": "#eee8e0"
+    }
+}

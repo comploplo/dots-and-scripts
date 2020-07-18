@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/gems/arno.png",
+    "alpha": "100",
+    "special": {
+        "background": "#202112",
+        "foreground": "#c7c7c3",
+        "cursor": "#c7c7c3"
+    },
+    "colors": {
+        "color0": "#202112",
+        "color1": "#a5a85b",
+        "color2": "#9aa78c",
+        "color3": "#9da6a2",
+        "color4": "#76a798",
+        "color5": "#88c7ba",
+        "color6": "#4389a8",
+        "color7": "#c7c7c3",
+        "color8": "#57584d",
+        "color9": "#a5a85b",
+        "color10": "#9aa78c",
+        "color11": "#9da6a2",
+        "color12": "#76a798",
+        "color13": "#88c7ba",
+        "color14": "#4389a8",
+        "color15": "#c7c7c3"
+    }
+}

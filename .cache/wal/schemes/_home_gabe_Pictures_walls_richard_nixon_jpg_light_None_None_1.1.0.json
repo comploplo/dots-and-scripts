@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/richard_nixon.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#fdfbfa",
+        "foreground": "#291D1C",
+        "cursor": "#291D1C"
+    },
+    "colors": {
+        "color0": "#fdfbfa",
+        "color1": "#AF5F4E",
+        "color2": "#A46457",
+        "color3": "#D18A77",
+        "color4": "#757E90",
+        "color5": "#AB999A",
+        "color6": "#E4AB97",
+        "color7": "#291D1C",
+        "color8": "#938b86",
+        "color9": "#AF5F4E",
+        "color10": "#A46457",
+        "color11": "#D18A77",
+        "color12": "#757E90",
+        "color13": "#AB999A",
+        "color14": "#E4AB97",
+        "color15": "#291D1C"
+    }
+}

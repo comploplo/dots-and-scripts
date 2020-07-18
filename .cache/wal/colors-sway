@@ -1,0 +1,21 @@
+set $wallpaper /home/gabe/Pictures/wals/gems/phil.jpg
+
+set $background #211e18
+set $foreground #c7c6c5
+
+set $color0 #211e18
+set $color1 #a6977b
+set $color2 #61ba96
+set $color3 #a1c2bb
+set $color4 #7fa7a2
+set $color5 #5875ab
+set $color6 #ab393d
+set $color7 #c7c6c5
+set $color8 #585651
+set $color9 #a6977b
+set $color10 #61ba96
+set $color11 #a1c2bb
+set $color12 #7fa7a2
+set $color13 #5875ab
+set $color14 #ab393d
+set $color15 #c7c6c5

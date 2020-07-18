@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/gems/act-natural.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0c0b0f",
+        "foreground": "#e1e2e1",
+        "cursor": "#e1e2e1"
+    },
+    "colors": {
+        "color0": "#0c0b0f",
+        "color1": "#A00431",
+        "color2": "#D80647",
+        "color3": "#A5415A",
+        "color4": "#957F87",
+        "color5": "#A5A19F",
+        "color6": "#C4BCB9",
+        "color7": "#e1e2e1",
+        "color8": "#9d9e9d",
+        "color9": "#A00431",
+        "color10": "#D80647",
+        "color11": "#A5415A",
+        "color12": "#957F87",
+        "color13": "#A5A19F",
+        "color14": "#C4BCB9",
+        "color15": "#e1e2e1"
+    }
+}

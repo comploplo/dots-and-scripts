@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/gems/adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#211f1f",
+        "foreground": "#c7c7c7",
+        "cursor": "#c7c7c7"
+    },
+    "colors": {
+        "color0": "#211f1f",
+        "color1": "#a69d9c",
+        "color2": "#aa7e75",
+        "color3": "#8cc2c2",
+        "color4": "#65a2a7",
+        "color5": "#408faa",
+        "color6": "#6463aa",
+        "color7": "#c7c7c7",
+        "color8": "#585757",
+        "color9": "#a69d9c",
+        "color10": "#aa7e75",
+        "color11": "#8cc2c2",
+        "color12": "#65a2a7",
+        "color13": "#408faa",
+        "color14": "#6463aa",
+        "color15": "#c7c7c7"
+    }
+}

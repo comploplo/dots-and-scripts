@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/dont-break-the-glass.jpeg",
+    "alpha": "100",
+    "special": {
+        "background": "#211f1f",
+        "foreground": "#c7c7c7",
+        "cursor": "#c7c7c7"
+    },
+    "colors": {
+        "color0": "#211f1f",
+        "color1": "#a69e9d",
+        "color2": "#ac7356",
+        "color3": "#ad8d79",
+        "color4": "#3681a9",
+        "color5": "#7897aa",
+        "color6": "#beb5bc",
+        "color7": "#c7c7c7",
+        "color8": "#585757",
+        "color9": "#a69e9d",
+        "color10": "#ac7356",
+        "color11": "#ad8d79",
+        "color12": "#3681a9",
+        "color13": "#7897aa",
+        "color14": "#beb5bc",
+        "color15": "#c7c7c7"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/gems/dont-break-the-glass.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#fafafa",
+        "foreground": "#3e3e3e",
+        "cursor": "#3e3e3e"
+    },
+    "colors": {
+        "color0": "#fafafa",
+        "color1": "#a69e9d",
+        "color2": "#ac7256",
+        "color3": "#ad8d79",
+        "color4": "#3581a9",
+        "color5": "#7897aa",
+        "color6": "#beb5bc",
+        "color7": "#3e3e3e",
+        "color8": "#bbbbbb",
+        "color9": "#a69e9d",
+        "color10": "#ac7256",
+        "color11": "#ad8d79",
+        "color12": "#3581a9",
+        "color13": "#7897aa",
+        "color14": "#beb5bc",
+        "color15": "#3e3e3e"
+    }
+}

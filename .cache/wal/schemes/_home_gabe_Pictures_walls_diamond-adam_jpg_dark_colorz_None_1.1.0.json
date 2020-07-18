@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/diamond-adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#141321",
+        "foreground": "#c4c4c7",
+        "cursor": "#c4c4c7"
+    },
+    "colors": {
+        "color0": "#141321",
+        "color1": "#6762a9",
+        "color2": "#adaab2",
+        "color3": "#ad7591",
+        "color4": "#aa2c57",
+        "color5": "#aa1036",
+        "color6": "#ab5c6e",
+        "color7": "#c4c4c7",
+        "color8": "#4e4e58",
+        "color9": "#6762a9",
+        "color10": "#adaab2",
+        "color11": "#ad7591",
+        "color12": "#aa2c57",
+        "color13": "#aa1036",
+        "color14": "#ab5c6e",
+        "color15": "#c4c4c7"
+    }
+}

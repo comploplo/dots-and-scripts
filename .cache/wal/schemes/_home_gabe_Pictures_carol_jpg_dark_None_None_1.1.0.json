@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/carol.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0c0c0c",
+        "foreground": "#f1dff5",
+        "cursor": "#f1dff5"
+    },
+    "colors": {
+        "color0": "#0c0c0c",
+        "color1": "#936D59",
+        "color2": "#B0635D",
+        "color3": "#A98C6E",
+        "color4": "#847BA7",
+        "color5": "#BBABCD",
+        "color6": "#A9D1FE",
+        "color7": "#f1dff5",
+        "color8": "#a89cab",
+        "color9": "#936D59",
+        "color10": "#B0635D",
+        "color11": "#A98C6E",
+        "color12": "#847BA7",
+        "color13": "#BBABCD",
+        "color14": "#A9D1FE",
+        "color15": "#f1dff5"
+    }
+}

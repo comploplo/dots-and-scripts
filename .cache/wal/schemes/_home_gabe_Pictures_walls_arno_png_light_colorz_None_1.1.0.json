@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/arno.png",
+    "alpha": "100",
+    "special": {
+        "background": "#fafaf6",
+        "foreground": "#3e3e3d",
+        "cursor": "#3e3e3d"
+    },
+    "colors": {
+        "color0": "#fafaf6",
+        "color1": "#a5a75b",
+        "color2": "#a1a59a",
+        "color3": "#8daa8c",
+        "color4": "#89c7ba",
+        "color5": "#73a59d",
+        "color6": "#4188a8",
+        "color7": "#3e3e3d",
+        "color8": "#bbbbb8",
+        "color9": "#a5a75b",
+        "color10": "#a1a59a",
+        "color11": "#8daa8c",
+        "color12": "#89c7ba",
+        "color13": "#73a59d",
+        "color14": "#4188a8",
+        "color15": "#3e3e3d"
+    }
+}

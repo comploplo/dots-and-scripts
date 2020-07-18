@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/landscapes-dark/umass-at-night.jpeg",
+    "alpha": "100",
+    "special": {
+        "background": "#faf5f4",
+        "foreground": "#3e3d3d",
+        "cursor": "#3e3d3d"
+    },
+    "colors": {
+        "color0": "#faf5f4",
+        "color1": "#aa3e2c",
+        "color2": "#aa6343",
+        "color3": "#aa8875",
+        "color4": "#a3a69e",
+        "color5": "#8698a9",
+        "color6": "#7081aa",
+        "color7": "#3e3d3d",
+        "color8": "#bbb7b7",
+        "color9": "#aa3e2c",
+        "color10": "#aa6343",
+        "color11": "#aa8875",
+        "color12": "#a3a69e",
+        "color13": "#8698a9",
+        "color14": "#7081aa",
+        "color15": "#3e3d3d"
+    }
+}

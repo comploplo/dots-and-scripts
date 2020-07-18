@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/umass-at-night.jpeg",
+    "alpha": "100",
+    "special": {
+        "background": "#210c08",
+        "foreground": "#c7c2c1",
+        "cursor": "#c7c2c1"
+    },
+    "colors": {
+        "color0": "#210c08",
+        "color1": "#aa3e2c",
+        "color2": "#aa6343",
+        "color3": "#aa8976",
+        "color4": "#a4a69e",
+        "color5": "#8699a9",
+        "color6": "#7182aa",
+        "color7": "#c7c2c1",
+        "color8": "#584845",
+        "color9": "#aa3e2c",
+        "color10": "#aa6343",
+        "color11": "#aa8976",
+        "color12": "#a4a69e",
+        "color13": "#8699a9",
+        "color14": "#7182aa",
+        "color15": "#c7c2c1"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/wals/portraits/bank_robbers.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#221713",
+        "foreground": "#c7c5c4",
+        "cursor": "#c7c5c4"
+    },
+    "colors": {
+        "color0": "#221713",
+        "color1": "#ab7660",
+        "color2": "#c2a187",
+        "color3": "#af9075",
+        "color4": "#bb6f28",
+        "color5": "#c5baa3",
+        "color6": "#98a2a3",
+        "color7": "#c7c5c4",
+        "color8": "#59514e",
+        "color9": "#ab7660",
+        "color10": "#c2a187",
+        "color11": "#af9075",
+        "color12": "#bb6f28",
+        "color13": "#c5baa3",
+        "color14": "#98a2a3",
+        "color15": "#c7c5c4"
+    }
+}

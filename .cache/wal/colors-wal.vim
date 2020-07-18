@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/gabe/Pictures/wals/gems/phil.jpg"
+let background = "#211e18"
+let foreground = "#c7c6c5"
+let cursor     = "#c7c6c5"
+
+" Colors
+let color0  = "#211e18"
+let color1  = "#a6977b"
+let color2  = "#61ba96"
+let color3  = "#a1c2bb"
+let color4  = "#7fa7a2"
+let color5  = "#5875ab"
+let color6  = "#ab393d"
+let color7  = "#c7c6c5"
+let color8  = "#585651"
+let color9  = "#a6977b"
+let color10 = "#61ba96"
+let color11 = "#a1c2bb"
+let color12 = "#7fa7a2"
+let color13 = "#5875ab"
+let color14 = "#ab393d"
+let color15 = "#c7c6c5"

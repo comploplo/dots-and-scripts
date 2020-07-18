@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/Pictures/walls/adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#211615",
+        "foreground": "#c7c4c4",
+        "cursor": "#c7c4c4"
+    },
+    "colors": {
+        "color0": "#211615",
+        "color1": "#aa736b",
+        "color2": "#aa918a",
+        "color3": "#66a4a8",
+        "color4": "#a0a9aa",
+        "color5": "#418faa",
+        "color6": "#6463aa",
+        "color7": "#c7c4c4",
+        "color8": "#58504f",
+        "color9": "#aa736b",
+        "color10": "#aa918a",
+        "color11": "#66a4a8",
+        "color12": "#a0a9aa",
+        "color13": "#418faa",
+        "color14": "#6463aa",
+        "color15": "#c7c4c4"
+    }
+}
