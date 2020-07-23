@@ -1,0 +1,7 @@
+#!/bin/bash
+
+setxkbmap -option caps:escape
+xrandr --output DP-0 --primary --mode 1920x1080 --rate 60.00 --output DVI-I-1 --left-of DP-0 --mode 1920x1080 --rate 60.00
+/home/gabe/.scripts/theme set dark
+emacs --daemon
+picom -b --config /home/gabe/.config/picom/picom.conf
