@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: texheader
+# uuid: texheader
+# key: texheader
+# condition: t
+# --
+#+LATEX_HEADER: \topmargin=-0.45in \evensidemargin=0in \oddsidemargin=0in \textwidth=6.5in \textheight=9.0in \headsep=0.25in \linespread{1} \pagestyle{fancy} \cfoot{\lastxmark} \rhead{LING510 F20 \bf{A1}} \cfoot{\thepage} \renewcommand \headrulewidth{0.4pt} \renewcommand \footrulewidth{0.4pt} \setlength \parindent{0pt}

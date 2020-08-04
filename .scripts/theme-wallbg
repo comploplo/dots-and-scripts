@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source ~/.cache/wal/colors.sh
+color="$(echo $color8 | colordarken)"
+swaymsg "output * bg $color solid_color"

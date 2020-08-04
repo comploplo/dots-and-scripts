@@ -1,0 +1,5 @@
+#!/bin/bash
+
+filename=~/pics/scrots/"$(date -Iminutes).png"
+scrot $filename
+xclip -selection clipboard -t image/png -i $filename 

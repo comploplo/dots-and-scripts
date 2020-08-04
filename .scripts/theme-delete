@@ -1,0 +1,7 @@
+#!/bin/bash
+
+themepath=$(cat /home/mimi/.cache/wal/colors-path)
+notify-send -t 3000 "deleting $themepath"
+sleep 30
+rm $themepath
+notify-send -t 3000 "$themepath deleted"
