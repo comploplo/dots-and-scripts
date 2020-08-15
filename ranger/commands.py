@@ -1,0 +1,1 @@
+../../.dotfiles/dots-and-scripts/.config/ranger/commands.py

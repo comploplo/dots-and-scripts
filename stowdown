@@ -1,4 +1,3 @@
 #!/bin/bash
 
-sudo stow --target=/etc/lightdm --dir=/home/gabe/dotfiles/dots-and-scripts --verbose=2 -D lightdm
 stow --target=/home/gabe --dir=/home/gabe/dotfiles --ignore=stowup --ignore=lightdm --verbose=2 -D dots-and-scripts

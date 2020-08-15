@@ -3,5 +3,4 @@
 echo "Checking if stow is installed"
 yay -S --needed stow
 
-sudo stow --target=/etc/lightdm --dir=/home/gabe/dotfiles/dots-and-scripts --verbose=2 -S lightdm
 stow --target=/home/gabe --dir=/home/gabe/dotfiles --ignore=stowup --ignore=lightdm --verbose=2 -S dots-and-scripts

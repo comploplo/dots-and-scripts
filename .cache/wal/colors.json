@@ -1,28 +1,28 @@
 {
-    "wallpaper": "/home/gabe/Pictures/wals/gems/phil.jpg",
+    "wallpaper": "None",
     "alpha": "100",
 
     "special": {
-        "background": "#211e18",
-        "foreground": "#c7c6c5",
-        "cursor": "#c7c6c5"
+        "background": "#262626",
+        "foreground": "#dab997",
+        "cursor": "#dab997"
     },
     "colors": {
-        "color0": "#211e18",
-        "color1": "#a6977b",
-        "color2": "#61ba96",
-        "color3": "#a1c2bb",
-        "color4": "#7fa7a2",
-        "color5": "#5875ab",
-        "color6": "#ab393d",
-        "color7": "#c7c6c5",
-        "color8": "#585651",
-        "color9": "#a6977b",
-        "color10": "#61ba96",
-        "color11": "#a1c2bb",
-        "color12": "#7fa7a2",
-        "color13": "#5875ab",
-        "color14": "#ab393d",
-        "color15": "#c7c6c5"
+        "color0": "#262626",
+        "color1": "#d75f5f",
+        "color2": "#afaf00",
+        "color3": "#ffaf00",
+        "color4": "#83adad",
+        "color5": "#d485ad",
+        "color6": "#85ad85",
+        "color7": "#dab997",
+        "color8": "#8a8a8a",
+        "color9": "#d75f5f",
+        "color10": "#afaf00",
+        "color11": "#ffaf00",
+        "color12": "#83adad",
+        "color13": "#d485ad",
+        "color14": "#85ad85",
+        "color15": "#ebdbb2"
     }
 }

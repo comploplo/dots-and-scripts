@@ -14,7 +14,7 @@ def path(relative_path_string):
 
 walcache = path('~/.cache/wal/')
 themepath = path('~/.config/wal/colorschemes/')
-wallpath = path('~/pics/')
+wallpath = path('~/pics/wals/')
 
 def log(text):
     print(text)

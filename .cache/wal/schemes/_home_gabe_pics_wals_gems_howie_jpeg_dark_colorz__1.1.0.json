@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/pics/wals/gems/howie.jpeg",
+    "alpha": "100",
+    "special": {
+        "background": "#221b19",
+        "foreground": "#c7c6c5",
+        "cursor": "#c7c6c5"
+    },
+    "colors": {
+        "color0": "#221b19",
+        "color1": "#ad897e",
+        "color2": "#c6a99e",
+        "color3": "#8bc4c4",
+        "color4": "#599aab",
+        "color5": "#818aa9",
+        "color6": "#a59b9f",
+        "color7": "#c7c6c5",
+        "color8": "#595452",
+        "color9": "#ad897e",
+        "color10": "#c6a99e",
+        "color11": "#8bc4c4",
+        "color12": "#599aab",
+        "color13": "#818aa9",
+        "color14": "#a59b9f",
+        "color15": "#c7c6c5"
+    }
+}

@@ -97,7 +97,7 @@ for i in groups:
 groups.append(
     ScratchPad("scratchpad",
         [
-            DropDown("signal", "signal-desktop",
+            DropDown("signal", "signal-desktop-beta",
                      x=0.5, y=0.1, width=0.35, height=0.6,
                      on_focus_lost_hide=True),
             DropDown("term", "kitty",
@@ -126,6 +126,7 @@ keys.extend([
 
 
 # os.system("/home/gabe/.scripts/startup")
+
     
 with open('/home/gabe/.cache/wal/colors.json') as f:
     colorscheme = json.load(f)
@@ -183,27 +184,9 @@ screens = [
                 widget.WindowName(),
                 # widget.TextBox("default config", name="default"),
                 widget.Systray(),
+                widget.ThermalSensor(foreground=foregr, foreground_alert=color2, metric=False, threshold=120, update_interval=10),
                 widget.Clock(format='%a %m-%d %H:%M'),
-                widget.QuickExit(),
-            ],
-            24,
-            background=backgr[1:]
-        ),
-    ),
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.Clipboard(width=30),
-                widget.Spacer(),
-                widget.GroupBox(
-                    this_current_screen_border=color1,
-                    other_screen_border=color3,
-                    highlight_method='block',
-                    urgent_alert_method='block',
-                    active=foregr,
-                    inactive=color2
-                ),
-                widget.CurrentLayout(),
+                widget.Battery(update_interval=5, low_foreground=color2, low_percentage=.15, format='{percent:2.0%} {watt:.2f}W'),
             ],
             24,
             background=backgr[1:]
