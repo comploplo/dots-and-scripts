@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/pics/wals/landscapes-dark/cliff.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#272120",
+        "foreground": "#c9c7c7",
+        "cursor": "#c9c7c7"
+    },
+    "colors": {
+        "color0": "#272120",
+        "color1": "#c5a9a4",
+        "color2": "#c69581",
+        "color3": "#a98d9f",
+        "color4": "#aa717c",
+        "color5": "#aa6067",
+        "color6": "#aa4b4e",
+        "color7": "#c9c7c7",
+        "color8": "#5d5857",
+        "color9": "#c5a9a4",
+        "color10": "#c69581",
+        "color11": "#a98d9f",
+        "color12": "#aa717c",
+        "color13": "#aa6067",
+        "color14": "#aa4b4e",
+        "color15": "#c9c7c7"
+    }
+}

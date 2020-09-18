@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/pics/wals/landscapes-light/pasture.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#fafafa",
+        "foreground": "#3e3e3e",
+        "cursor": "#3e3e3e"
+    },
+    "colors": {
+        "color0": "#fafafa",
+        "color1": "#a8a6a6",
+        "color2": "#a99e87",
+        "color3": "#a89a4a",
+        "color4": "#92a922",
+        "color5": "#929ca9",
+        "color6": "#c0bdbd",
+        "color7": "#3e3e3e",
+        "color8": "#bbbbbb",
+        "color9": "#a8a6a6",
+        "color10": "#a99e87",
+        "color11": "#a89a4a",
+        "color12": "#92a922",
+        "color13": "#929ca9",
+        "color14": "#c0bdbd",
+        "color15": "#3e3e3e"
+    }
+}

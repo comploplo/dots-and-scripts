@@ -1,3 +1,0 @@
-#!/bin/bash
-
-stow --target=/home/gabe --dir=/home/gabe/.dotfiles --ignore=stowup --ignore=lightdm --verbose=2 -R dots-and-scripts

@@ -156,7 +156,7 @@ def print_help():
         "",
         "wall <name>",
         "    sets colorscheme based on wallpaper in",
-        "    ~/pics/walls, file extension not needed",
+        "    ~/pics/wals, file extension not needed",
         "",
         "delete",
         "   this moves the current theme to the trash",

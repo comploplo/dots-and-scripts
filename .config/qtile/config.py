@@ -66,19 +66,23 @@ keys = [
     Key([mod, ctrl], "r", lazy.restart()),
     Key([mod, ctrl, shift], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
-    
+    Key([mod], "m", lazy.hide_show_bar()),
+
     Key([mod, ctrl], "period", lazy.spawn("/home/gabe/.scripts/screens")),
     Key([mod], "period", lazy.spawn("/home/gabe/.scripts/startup-walls")),
     Key([mod, shift], "period", lazy.spawn("/home/gabe/.scripts/startup-walls-light")),
     Key([mod], "comma", lazy.spawn("/home/gabe/.scripts/startup-dark")),
     Key([mod, shift], "comma", lazy.spawn("/home/gabe/.scripts/startup-light")),
+
     Key([mod], "Return", lazy.spawn("kitty -e ranger")),
     Key([mod], "semicolon", lazy.spawn("kitty")),
-    Key([alt], "space", lazy.spawn("/home/gabe/.scripts/rofidrun.sh")),
     Key([mod, "shift"], "e", lazy.spawn('emacsclient -a "emacs" -c')),
     Key([mod], "q", lazy.spawn("qutebrowser")),
-]
 
+    Key([mod], "0", lazy.spawn('/home/gabe/.scripts/powermenu.sh')),
+    Key([alt], "space", lazy.spawn("/home/gabe/.scripts/rofidrun.sh"))
+]
+    
 groups = [Group(i) for i in "zxcvasdf"]
 
 for i in groups:
@@ -124,10 +128,6 @@ keys.extend([
     # Key([mod], '2', lazy.group['scratchpad'].dropdown_toggle('music')),
 ])
 
-
-# os.system("/home/gabe/.scripts/startup")
-
-    
 with open('/home/gabe/.cache/wal/colors.json') as f:
     colorscheme = json.load(f)
 

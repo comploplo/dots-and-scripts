@@ -1,1 +1,0 @@
-../../.dotfiles/dots-and-scripts/.config/ranger/devicons.py

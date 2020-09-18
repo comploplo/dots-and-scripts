@@ -1,6 +1,0 @@
-#!/bin/bash
-
-echo "Checking if stow is installed"
-yay -S --needed stow
-
-stow --target=/home/gabe --dir=/home/gabe/dotfiles --ignore=stowup --ignore=lightdm --verbose=2 -S dots-and-scripts

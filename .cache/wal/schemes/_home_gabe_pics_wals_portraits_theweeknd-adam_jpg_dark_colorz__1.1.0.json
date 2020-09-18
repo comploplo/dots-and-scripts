@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/gabe/pics/wals/portraits/theweeknd-adam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#210b0a",
+        "foreground": "#c7c2c1",
+        "cursor": "#c7c2c1"
+    },
+    "colors": {
+        "color0": "#210b0a",
+        "color1": "#aa3c37",
+        "color2": "#aa7457",
+        "color3": "#af8c76",
+        "color4": "#b5c3c4",
+        "color5": "#93a2a7",
+        "color6": "#466ea9",
+        "color7": "#c7c2c1",
+        "color8": "#584847",
+        "color9": "#aa3c37",
+        "color10": "#aa7457",
+        "color11": "#af8c76",
+        "color12": "#b5c3c4",
+        "color13": "#93a2a7",
+        "color14": "#466ea9",
+        "color15": "#c7c2c1"
+    }
+}
