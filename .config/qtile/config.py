@@ -80,7 +80,8 @@ keys = [
     Key([mod], "q", lazy.spawn("qutebrowser")),
 
     Key([mod], "0", lazy.spawn('/home/gabe/.scripts/powermenu.sh')),
-    Key([alt], "space", lazy.spawn("/home/gabe/.scripts/rofidrun.sh"))
+    Key([alt], "space", lazy.spawn("/home/gabe/.scripts/rofidrun.sh")),
+    Key([], "Print", lazy.spawn('/home/gabe/.scripts/scrotmenu.sh'))
 ]
     
 groups = [Group(i) for i in "zxcvasdf"]
@@ -105,15 +106,15 @@ groups.append(
                      x=0.5, y=0.1, width=0.35, height=0.6,
                      on_focus_lost_hide=True),
             DropDown("term", "kitty",
-                     x=0.3, y=0.6, width=0.4, height=0.2,
+                     x=0.2, y=0.2, width=0.5, height=0.3,
                      on_focus_lost_hide=True),
             DropDown("music", "kitty -e tuijam",
                      x=0.2, y=0.1, width=0.3, height=0.7,
                      on_focus_lost_hide=True),
-            DropDown("pavu", "pavucontol-qt",
+            DropDown("pavu", 'pavucontol --name="pavucontrol"',
                      x=0.3, y=0.1, width=0.4, height=0.4,
                      on_focus_lost_hide=True),
-            DropDown("emacsclient", "emacsclient -a '' -c",
+            DropDown("emacs", "emacsclient -a '' -c",
                      x=0.15, y=0.1, width=0.7, height=0.8,
                      on_focus_lost_hide=True),
         ])
@@ -222,6 +223,8 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'confirmreset'},  # gitk
     {'wmclass': 'makebranch'},  # gitk
     {'wmclass': 'maketag'},  # gitk
+    {'wmclass': 'zoom'}, # zoom windows
+    {'wmclass': 'praat'}, # praat windows
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass

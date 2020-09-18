@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: 510
+# uuid: 510
+# key: trigger-key
+# condition: t
+# --
+
+#+latex_class; 510
+#+latex_header: \assig{n}
+\large

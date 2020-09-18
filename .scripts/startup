@@ -1,6 +1,6 @@
 #!/bin/bash
 
-setxkbmap -option caps:swapescape
+# setxkbmap -option caps:swapescape
 /home/gabe/.scripts/theme set dark
-emacs --daemon
+emacs --daemon &
 picom -b --config /home/gabe/.config/picom/picom.conf

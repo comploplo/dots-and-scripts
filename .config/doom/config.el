@@ -149,7 +149,7 @@
       \\usepackage{tikz}\n
       \\usepackage{tikz-qtree}\n
       \\usepackage{linguex}\n
-      \\linespread{1.6}\n
+      \\linespread{1.1}\n
       \\geometry{a4paper, textwidth=5.5in, marginparsep=7pt, marginparwidth=.6in}\n
       \\setlength\\parindent{0in}\n
       \\defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode\n
@@ -187,7 +187,6 @@
       \\usepackage{tikz}\n
       \\usepackage{tikz-qtree}\n
       \\usepackage{linguex}\n
-      \\linespread{1.1}\n
       \\geometry{a4paper, textwidth=5.5in, marginparsep=7pt, marginparwidth=.6in}\n
       \\setmainfont[Ligatures=TeX,Scale=1.1]{Times New Roman}\n
       \\setlength\\parindent{0in}\n
@@ -197,8 +196,7 @@
      ("\\subsection{\\textsf{%s}}" . "\\subsection*{\\textsf{%s}}")
      ("\\subsubsection{\\textsf{%s}}" . "\\subsubsection*{\\textsf{%s}}")
      ("\\paragraph{%s}" . "\\paragraph*{%s}")
-     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-)
+     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 ;; Takes a color string like #ffe0e0 and returns a light
 ;; or dark foreground color to make sure text is readable.
 (defun fg-from-bg (bg)

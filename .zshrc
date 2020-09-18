@@ -241,6 +241,7 @@ ex ()
  export PATH=$PATH:~/.scripts
 
 PS1=$'%(?.%F{green}√.%F{red}?%?)%f %B%F{245}%1~%f%b %F{blue}\u03BB '
+BROWSER="qutebrowser"
 clear
 
 PATH="/home/gabe/perl5/bin${PATH:+:${PATH}}"; export PATH;
