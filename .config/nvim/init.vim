@@ -1,75 +1,195 @@
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if &compatible
+  " `:set nocp` has many side effects. Therefore this should be done
+  " only when 'compatible' is set.
+  set nocompatible
 endif
+packadd minpac
+call minpac#init()
+call minpac#add('junegunn/goyo.vim')
+call minpac#add('rhysd/clever-f.vim')
+call minpac#add('tpope/vim-surround')
+call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('ap/vim-css-color')
+call minpac#add('ericjuma/wal.vim')
+call minpac#add('nvim-lua/completion-nvim')
+call minpac#add('nvim-lua/diagnostic-nvim')
+call minpac#add('sheerun/vim-polyglot')
+call minpac#add('Th3Whit3Wolf/spacebuddy')
+call minpac#add('sheerun/vim-polyglot')
+call minpac#add('tomtom/tcomment_vim')
+call minpac#add('hrsh7th/vim-vsnip')
+call minpac#add('hrsh7th/vim-vsnip-integ')
+call minpac#add('godlygeek/tabular')
+call minpac#add('plasticboy/vim-markdown')
+call minpac#add('vim-pandoc/vim-pandoc-syntax')
+call minpac#add('tjdevries/colorbuddy.nvim')
+call minpac#add('ericjuma/neowal')
+call minpac#add('kevinhwang91/rnvimr')
 
-call plug#begin()
-" Plug 'vim-python/python-syntax'
-Plug 'kien/ctrlp.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'takac/vim-hardtime'
-Plug 'tpope/vim-surround'
-Plug 'ap/vim-css-color'
-Plug 'justinmk/vim-sneak'
-Plug 'jceb/vim-orgmode'
-Plug 'dylanaraps/wal.vim'
-call plug#end()
+packloadall
+set termguicolors
+lua require('colorbuddy').colorscheme('neowal')
 
-set tabstop=4
+" colorscheme wal
+" mods to wal in fork:
+" hi StatusLineNC ctermbg=0 ctermfg=8
+" hi StatusLine ctermbg=7 ctermfg=8
+" hi VertSplit ctermbg=8 ctermfg=8
+"
+set termguicolors
+
+set autoindent
+set smartindent
+set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
-set autoindent
-set wildmenu
+" set wildmenu
+set incsearch
 set sidescrolloff=1
 set nowrap
+set inccommand=nosplit
 set scrolloff=4
-syntax on
-filetype plugin indent on
-let mapleader="\<Space>"
-let maplocalleader="//"
+set smartcase
 set mouse=a
-colorscheme wal
-" let g:zenmode_colorscheme = "wal"
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_root_markers = ['.config']
-" let g:ctrlp_show_hidden = 1
-let g:ctrlp_prompt_mappings = {
-\ 'PrtSelectMove("j")':   ['<down>'],
-\ 'AcceptSelection("r")': ['<c-j>'],
-\ }
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('rg')
-  let g:ctrlp_user_command = 'rg %s --hidden --files --color=never --glob "!.git"'
-  let g:ctrlp_use_caching = 0
-endif
-nnoremap <c-p> :CtrlPMRU<CR>
-let g:ctrlp_map = '<c-n>'
-let g:ctrlp_cmd = 'CtrlP'
 
-nnoremap <C-_> :Goyo <CR>i<ESC>
-nnoremap <c-s> :w<CR>
-nnoremap <leader>ev :edit $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-if has ('autocmd') " Remain compatible with earlier versions
- augroup vimrc     " Source vim configuration upon save
+filetype plugin indent on
+syntax on
+
+nnoremap <Space> :
+vnoremap <Space> :
+" nnoremap h <c-w>
+" vnoremap h <c-w>
+
+augroup vimrc     " Source vim configuration upon save
     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-  augroup END
-endif " has autocmd
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-set foldnestmax=2
-set foldmethod=indent
-set foldlevel=2
-set smartcase
+augroup END
 
-inoremap jk <ESC>
-inoremap kj <ESC>
-tnoremap <esc>m <C-\><C-n><c-o>
-nnoremap <esc>m :term<cr>
+" lsp
+" I did pip install 'python-language-server[all]'
+" LspInstall html
+" LspInstall jdtls
+" " LspInstall pyls -- not implemented
+" LspInstall tsserver
+" LspInstall vimls
+" LspInstall texlab
+" " LspInstall ghcide -- TODO install
+" " LspInstall clangd TODO
+" LspInstall bashls
+" LspInstall vimls
+"
+lua << EOF
 
-" let g:python_highlight_all = 1
-set clipboard=unnamedplus
-nnoremap <leader><Space> :nohlsearch<CR>
+local on_attach_vim = function(client)
+    require'completion'.on_attach(client)
+    require'diagnostic'.on_attach(client)
+end
+require'nvim_lsp'.pyls.setup{ on_attach=on_attach_vim }
+require'nvim_lsp'.html.setup{
+    on_attach=on_attach_vim,
+    init_options = {
+        configurationSection = { "html", "css", "javascript" },
+        embeddedLanguages = {
+            css = true,
+            javascript = true
+        }
+    }
+}
+require'nvim_lsp'.html.setup{ on_attach=on_attach_vim }
+require'nvim_lsp'.texlab.setup{ on_attach=on_attach_vim }
+require'nvim_lsp'.bashls.setup{ on_attach=on_attach_vim }
+require'nvim_lsp'.vimls.setup{ on_attach=on_attach_vim }
+require'nvim_lsp'.jdtls.setup{ on_attach=on_attach_vim }
+require'nvim_lsp'.sumneko_lua.setup{ 
+    on_attach=on_attach_vim,
+    cmd = { "/home/me/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/me/.cache/nvim/nvim_lsp/sumneko_lua/lua-language-server/main.lua" },
+}
+require'nvim_lsp'.jsonls.setup{ on_attach=on_attach_vim }
+
+EOF
+
+" --- vim go (polyglot) settings.
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_auto_sameids = 1
+
+" --- markdown
+let g:vim_markdown_folding_disabled = 1
+
+" --- snippets
+let g:completion_enable_snippet = 'vim-vsnip'
+let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip')
+
+fun! ThePrimeagen_LspHighlighter()
+    lua print("Testing")
+    lua package.loaded["my_lspconfig"] = nil
+    lua require("my_lspconfig")
+endfun
+
+com! SetLspVirtualText call ThePrimeagen_LspHighlighter()
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+augroup END
+" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_virtual_text_prefix = ' '
+" let g:diagnostic_trimmed_virtual_text = '20'
+let g:space_before_virtual_text = 5
+let g:diagnostic_show_sign = 0
+" call sign_define("LspDiagnosticsErrorSign", {"text" : "E", "texthl" : "LspDiagnosticsError"})
+" call sign_define("LspDiagnosticsWarningSign", {"text" : "W", "texthl" : "LspDiagnosticsWarning"})
+" call sign_define("LspDiagnosticsInformationSign", {"text" : "I", "texthl" : "LspDiagnosticsInformation"})
+" call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
+let g:diagnostic_insert_delay = 1
+
+set completeopt-=preview
+autocmd BufEnter * lua require'completion'.on_attach()
+autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+" set shortmess+=c
+"
+
+nnoremap <CR>ld :lua vim.lsp.buf.definition()<CR>
+nnoremap <CR>li :lua vim.lsp.buf.implementation()<CR>
+nnoremap <CR>ls :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <CR>lr :lua vim.lsp.buf.references()<CR>
+nnoremap <CR>ln :lua vim.lsp.buf.rename()<CR>
+nnoremap <CR>lh :lua vim.lsp.buf.hover()<CR>
+nnoremap <CR>lc :lua vim.lsp.buf.code_action()<CR>"
+nnoremap <CR>lf :lua vim.lsp.buf.formatting()<CR>"
+nnoremap <CR>li :lua vim.lsp.buf.formatting()<CR>"
+nnoremap <CR>w :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
+
+" --- markdown highlight
+autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
+autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
+
+" --- rnvimr, ranger in nvim
+tnoremap <silent> <M-e> <C-\><C-n>:RnvimrResize<CR>
+nnoremap <silent> <M-r> :RnvimrToggle<CR>
+tnoremap <silent> <M-r> <C-\><C-n>:RnvimrToggle<CR>
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_enable_ex = 1
+" Disable a border for floating window
+" let g:rnvimr_draw_border = 0
 

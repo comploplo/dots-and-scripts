@@ -62,6 +62,7 @@ alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 alias vim='nvim'
+alias ra='ranger'
 alias sup='sudo pacman -S'
 
 # Theming section  
@@ -235,10 +236,10 @@ ex ()
 }
 
 # emacs as default editor
- export VISUAL=emacs;
- export EDITOR=emacs;
+ export VISUAL=zathura;
+ export EDITOR=nvim;
  export PAGER=more
- export PATH=$PATH:~/.scripts
+ export PATH=$PATH:/home/gabe/.scripts
 
 PS1=$'%(?.%F{green}√.%F{red}?%?)%f %B%F{245}%1~%f%b %F{blue}\u03BB '
 BROWSER="qutebrowser"

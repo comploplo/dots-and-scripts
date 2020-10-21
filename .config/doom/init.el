@@ -181,4 +181,4 @@
 
 ;; (load-file "colors.el")
 
-(load-file "~/.doom.d/colors-theme.el")
+(load-file "~/.config/doom/colors-theme.el")

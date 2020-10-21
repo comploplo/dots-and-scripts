@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/gabe/eric'
 let g:netrw_dirhist_3='/home/gabe/qmk_firmware/keyboards/handwired/dactyl_manuform/4x5/keymaps/default'
 let g:netrw_dirhist_2='/home/gabe/.config'
 let g:netrw_dirhist_1='/home/gabe/Documents/Shell/scripts'
