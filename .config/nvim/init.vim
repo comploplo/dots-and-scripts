@@ -24,7 +24,10 @@ call minpac#add('plasticboy/vim-markdown')
 call minpac#add('vim-pandoc/vim-pandoc-syntax')
 call minpac#add('tjdevries/colorbuddy.nvim')
 call minpac#add('ericjuma/neowal')
-call minpac#add('kevinhwang91/rnvimr')
+call minpac#add('nvim-lua/popup.nvim')
+call minpac#add('nvim-lua/plenary.nvim')
+call minpac#add('nvim-lua/telescope.nvim')
+" call minpac#add('kevinhwang91/rnvimr')
 
 packloadall
 set termguicolors
@@ -168,28 +171,60 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 " set shortmess+=c
 "
-
-nnoremap <CR>ld :lua vim.lsp.buf.definition()<CR>
-nnoremap <CR>li :lua vim.lsp.buf.implementation()<CR>
-nnoremap <CR>ls :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <CR>lr :lua vim.lsp.buf.references()<CR>
-nnoremap <CR>ln :lua vim.lsp.buf.rename()<CR>
-nnoremap <CR>lh :lua vim.lsp.buf.hover()<CR>
-nnoremap <CR>lc :lua vim.lsp.buf.code_action()<CR>"
-nnoremap <CR>lf :lua vim.lsp.buf.formatting()<CR>"
-nnoremap <CR>li :lua vim.lsp.buf.formatting()<CR>"
-nnoremap <CR>w :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
-
 " --- markdown highlight
 autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
 autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 
-" --- rnvimr, ranger in nvim
-tnoremap <silent> <M-e> <C-\><C-n>:RnvimrResize<CR>
-nnoremap <silent> <M-r> :RnvimrToggle<CR>
-tnoremap <silent> <M-r> <C-\><C-n>:RnvimrToggle<CR>
-" Make Ranger replace Netrw and be the file explorer
-let g:rnvimr_enable_ex = 1
-" Disable a border for floating window
+nnoremap <M-l>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <M-l>i :lua vim.lsp.buf.implementation()<CR>
+nnoremap <M-l>s :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <M-l>r :lua vim.lsp.buf.references()<CR>
+nnoremap <M-l>n :lua vim.lsp.buf.rename()<CR>
+nnoremap <M-l>h :lua vim.lsp.buf.hover()<CR>
+nnoremap <M-l>c :lua vim.lsp.buf.code_action()<CR>"
+nnoremap <M-l>f :lua vim.lsp.buf.formatting()<CR>"
+nnoremap <M-l>i :lua vim.lsp.buf.formatting()<CR>"
+nnoremap <Return>w :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
+
+" " --- rnvimr, ranger in nvimnnoremap <Return>e  :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>g  :lua require'telescope.builtin'.git_files(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>r  :lua require'telescope.builtin'.oldfiles(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return><Space>  :lua require'telescope.builtin'.command_history(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return><Tab>  :lua require'telescope.builtin'.commands(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>f  :lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>lr :lua require'telescope.builtin'.lsp_references(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>ls :lua require'telescope.builtin'.lsp_document_symbols(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>t  :lua require'telescope.builtin'.treesitter(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>lw :lua require'telescope.builtin'.lsp_workspace_symbols(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Return>h :lua require'telescope.builtin'.help_tags{}<cr>
+" tnoremap <silent> <M-e> <C-\><C-n>:RnvimrResize<CR>
+" nnoremap <silent> <M-r> :RnvimrToggle<CR>
+" tnoremap <silent> <M-r> <C-\><C-n>:RnvimrToggle<CR>
+" " Make Ranger replace Netrw and be the file explorer
+" let g:rnvimr_enable_ex = 1
+" " Disable a border for floating window
 " let g:rnvimr_draw_border = 0
+
+imap <expr> <M-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<M-j>'
+smap <expr> <M-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<M-j>'
+
+
+" --- attempt at pandoc export automatic settings
+fun! g:PandocSmartExport()
+  if expand('%:e') == 'md'
+    let l:path = expand('%:p:h:t')
+    let l:templates = ['510', '601']
+    let l:matched = index(l:templates, l:path)
+    if l:matched == -1
+      echo system('pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --from markdown')
+    else 
+      echo 'pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --from markdown --pdf-engine=xelatex --template=' . l:path . '.tex'
+      echo system('pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --from markdown --pdf-engine=xelatex --template=' . l:path . '.tex')
+    endif
+  else 
+    echo 'invalid file type'
+  endif
+endfun
+
+nnoremap <M-b> :call g:PandocSmartExport()<cr>
 
