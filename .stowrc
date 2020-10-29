@@ -1,3 +1,4 @@
 --ignore=.stowrc
 --ignore=lightdm
 --ignore=.git
+--ignore=Colors.hs

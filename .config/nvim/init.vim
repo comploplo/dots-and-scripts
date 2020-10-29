@@ -129,6 +129,7 @@ let g:go_auto_sameids = 1
 
 " --- markdown
 let g:vim_markdown_folding_disabled = 1
+let g:markdown_enable_spell_checking = 1
 
 " --- snippets
 let g:completion_enable_snippet = 'vim-vsnip'
@@ -171,9 +172,10 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 " set shortmess+=c
 "
+
 " --- markdown highlight
-autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
-autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
+" autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
+" autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 
 nnoremap <M-l>d :lua vim.lsp.buf.definition()<CR>
 nnoremap <M-l>i :lua vim.lsp.buf.implementation()<CR>
@@ -212,6 +214,7 @@ smap <expr> <M-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<M-j
 " --- attempt at pandoc export automatic settings
 fun! g:PandocSmartExport()
   if expand('%:e') == 'md'
+    write
     let l:path = expand('%:p:h:t')
     let l:templates = ['510', '601']
     let l:matched = index(l:templates, l:path)

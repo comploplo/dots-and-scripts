@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+curl -s wttr.in/amherst | less -r

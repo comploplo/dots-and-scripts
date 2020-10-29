@@ -105,8 +105,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-          spawnOnce "sshfs 34.86.180.22:/home/gabe/ /home/gabe/eric" 
-          spawnOnce "emacs --daemon &"
+          spawnOnce "/home/gabe/.scripts/startup"
           setWMName "LG3D"
 
 dtXPConfig :: XPConfig
@@ -116,7 +115,7 @@ dtXPConfig                  = def
       , fgColor             = Colors.foreground
       , bgHLight            = Colors.color7
       , fgHLight            = Colors.color2
-      , borderColor         = Colors.color1
+      , borderColor         = Colors.color3
       , promptBorderWidth   = 0
       , promptKeymap        = dtXPKeymap
       , position            = Top
@@ -189,7 +188,9 @@ myScratchPads = [ NS "term" spawnTerm (resource =? "dropdown-terminal") (manageR
                  ,NS "discord" "discord" (resource =? "discord") (manageCenter)
                  ,NS "barpad1" "kitty --name=barpad1 --config=/home/gabe/.config/kitty/sml-kitty.conf /home/gabe/.scripts/less-wtr" (resource =? "barpad1") (manageBar1)
                  ,NS "barpad2" "kitty --name=barpad2 --config=/home/gabe/.config/kitty/sml-kitty.conf tty-clock" (resource =? "barpad2") (manageBar2)
+                 ,NS "barpad3" "kitty --name=barpad3 --config=/home/gabe/.config/kitty/sml-kitty.conf vtop" (resource =? "barpad3") (manageBar3)
                  ,NS "neopad" "kitty --name=neopad nvim" (resource =? "neopad") (manageCenter)
+                 ,NS "ranger" "kitty --name=rangerpad ranger" (resource =? "rangerpad") (manageCenterSml)
                 ]
   where
     spawnTerm = myTerminal ++ " --name=dropdown-terminal"
@@ -197,16 +198,22 @@ myScratchPads = [ NS "term" spawnTerm (resource =? "dropdown-terminal") (manageR
 
 manageBar1   = customFloating $ W.RationalRect l t w h
   where
-    h             = 0.28
-    w             = 0.523
+    h             = 0.29
+    w             = 0.46
     t             = 0.97 -h
     l             = 0.98 -w
 manageBar2   = customFloating $ W.RationalRect l t w h
   where
     h             = 0.14
-    w             = 0.16
+    w             = 0.13
+    t             = 0.03
+    l             = 0.97 -w
+manageBar3   = customFloating $ W.RationalRect l t w h
+  where
+    h             = 0.29
+    w             = 0.46
     t             = 0.97 -h
-    l             = 0.02
+    l             = 0.03
 manageRightHalf   = customFloating $ W.RationalRect l t w h
   where
     h             = 0.94
@@ -237,6 +244,12 @@ manageCenter      = customFloating $ W.RationalRect l t w h
     w             = 0.9
     t             = 0.95 -h
     l             = 0.95 -w
+manageCenterSml   = customFloating $ W.RationalRect l t w h
+  where
+    h             = 0.7
+    w             = 0.7
+    t             = 0.85 -h
+    l             = 0.85 -w
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -355,9 +368,10 @@ myKeys =
         , ("M-m", namedScratchpadAction myScratchPads "term")
         , ("M-g", namedScratchpadAction myScratchPads "browser")
         , ("M-p", namedScratchpadAction myScratchPads "pavu")
-        , ("M-e", namedScratchpadAction myScratchPads "emacsclient")
+        -- , ("M-e", namedScratchpadAction myScratchPads "emacsclient")
         , ("M-d", namedScratchpadAction myScratchPads "discord")
         , ("M-i", namedScratchpadAction myScratchPads "neopad")
+        , ("M-o", namedScratchpadAction myScratchPads "ranger")
         , ("M-C-b", scratchpads)
 
     -- Emacs (CTRL-e followed by a key)
@@ -384,7 +398,9 @@ myKeys =
         -- The following lines are needed for named scratchpads.
           where nonNSP         = WSIs (return (\ws -> W.tag ws /= "nsp"))
                 nonEmptyNonNSP = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "nsp"))
-                scratchpads    = do {namedScratchpadAction myScratchPads "barpad1" ; namedScratchpadAction myScratchPads "barpad2"}
+                scratchpads    = do {namedScratchpadAction myScratchPads "barpad1" ;
+                                     namedScratchpadAction myScratchPads "barpad2" ;
+                                     namedScratchpadAction myScratchPads "barpad3" }
 
 
 

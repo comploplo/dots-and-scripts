@@ -1,5 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/gabe/.config/qutebrowser'
+let g:netrw_dirhist_8='/home'
+let g:netrw_dirhist_7='/home/gabe'
+let g:netrw_dirhist_6='/home/gabe/2020-2021/601'
+let g:netrw_dirhist_5='/home/gabe/.scripts'
 let g:netrw_dirhist_4='/home/gabe/eric'
 let g:netrw_dirhist_3='/home/gabe/qmk_firmware/keyboards/handwired/dactyl_manuform/4x5/keymaps/default'
 let g:netrw_dirhist_2='/home/gabe/.config'
