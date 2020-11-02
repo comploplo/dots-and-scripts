@@ -1,0 +1,121 @@
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+      \usepackage{tipa}
+      \usepackage{fontspec}
+      \usepackage{geometry}
+      \usepackage{xunicode}
+      \usepackage{xltxtra}
+      \usepackage{graphicx}
+      \usepackage{wrapfig}
+      \usepackage{rotating}
+      \usepackage[normalem]{ulem}
+      \usepackage[document]{ragged2e}
+      \usepackage{amsmath}
+      \usepackage{textcomp}
+      \usepackage[hidelinks]{hyperref}
+      \usepackage[linguistics]{forest}
+      \usepackage{fancyhdr}
+      \usepackage{tikz}
+      \usepackage{tikz-qtree}
+      \usepackage{linguex}
+      \usepackage{multicol}
+      \usepackage{amssymb}
+      \linespread{1.1}
+      \geometry{a4paper, textwidth=5.5in, marginparsep=7pt, marginparwidth=.6in}
+      \setlength\parindent{0in}
+      \defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
+      \setsansfont[Scale=1.22]{Fira Sans}
+      \pagestyle{fancy}
+      \setmainfont[Ligatures=TeX,Scale=1.1]{Times New Roman}
+      \newcommand{\assig}[1]{\rhead{\textsf{LING510 F20 \textbf{A#1}}}}
+      \renewcommand{\headrulewidth}{0pt}
+      \renewcommand{\footrulewidth}{0pt}
+      \voffset=1cm
+      \newcommand{\sml}[1]{\textsubscript{#1}}
+      \newcommand{\brc}[1]{$$[\![$$#1$$]\!]$$}
+      \newcommand{\means}[2]{$$[\![$$#1\textsubscript{#2}$$]\!]$$}
+      \newcommand{\la}[0]{$$\lambda$$}
+      \newcommand{\tr}[1]{\textit{t}\textsubscript{\textit{#1}}}
+      \newcommand{\0}{\rlap{\textsuperscript{$$ˆ{\circ}$$}}\xspace}
+      \newcommand{\lam}[2]{$$\lambda$$#1\textsubscript{#2}}
+      \newcommand{\ol}[1]{$$\overline{#1}$$}
+
+      \renewcommand{\section}[1]{\hfill \fbox{\huge{\hspace{1in}\textsf{#1}$$\;$$}}\\}
+
+\pagestyle{fancy}
+
+% for pandoc - marked lists
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% numbered section control, from default template
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+
+$if(date)$
+\newcommand{\pdate}{$date$}
+$else$ 
+\newcommand{\pdate}{\today}
+$endif$
+
+$if(assignment)$
+\newcommand{\passig}{$assignment$}
+$else$ 
+\newcommand{\passig}{hmm}
+$endif$
+
+$if(title)$
+\newcommand{\ptitle}{$title$}
+$else$ 
+\newcommand{\ptitle}{Assignment \passig}
+$endif$
+
+\newcounter{subproofCounter}
+\setcounter{subproofCounter}{1}
+
+\newenvironment{subproof}
+	{\underbar{Subproof \alph{subproofCounter}.\stepcounter{subproofCounter}}
+	\enumerate
+	}
+	{
+    \endenumerate
+	}
+
+%Drawing Syntax Trees
+%This specifies some formatting for the forest trees to make them nicer to look at
+\forestset{
+  nice nodes/.style={
+    for tree={
+      inner sep=0pt,
+      fit=band,
+    },
+  },
+  default preamble=nice nodes,
+}
+
+\lhead{\ptitle} \rhead{Linguistics 510} \lfoot{\pdate} \rfoot{Oppenheimer}
+%% \newcommand{\assignnum}{$assignment$}
+%% \newcommand{\class}{Linguistics 601}
+
+\begin{document}
+\thispagestyle{empty}
+
+% ===========================================================================
+% = Sets up the Title page: Assignment on the left, class info on the right =
+
+  \begin{flushleft}%
+    {\large\sffamily \ptitle}%
+  \end{flushleft} \vspace*{-20pt}
+  \rule{\linewidth}{.5mm} \vspace*{-.32in}
+  \begin{flushright}
+    {\sffamily
+       Linguistics 510 \par %
+	\pdate}%
+    \end{flushright}
+
+$body$
+
+\end{document}

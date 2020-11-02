@@ -230,4 +230,7 @@ fun! g:PandocSmartExport()
 endfun
 
 nnoremap <M-b> :call g:PandocSmartExport()<cr>
-
+imap <M-q> <esc>gqipgi
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap i :nohlsearch<cr>i

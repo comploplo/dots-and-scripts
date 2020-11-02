@@ -108,7 +108,9 @@ def apply_theme(colors, wallpaper=None):
     else:
         wallcolor("bg")
     wal.reload.env()
-    os.system("bash -c 'xmonad --recompile > /dev/null 2>&1 && xmonad --restart' > /dev/null 2>&1")
+    # os.system("bash -c 'xmonad --recompile > /dev/null 2>&1 && xmonad --restart' > /dev/null 2>&1")
+    os.system("pkill dunst; dunst&")
+    # os.system("/home/gabe/.scripts/dunstwal")
     # os.system("pgrep qutebrowser && qutebrowser :config-source &")
 
 

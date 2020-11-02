@@ -3,6 +3,6 @@
 # emacs --daemon &
 # setxkbmap -option caps:swapescape
 /home/gabe/.scripts/theme set dark
-picom -b --config /home/gabe/.config/picom/picom.conf
-sshfs 34.86.180.22:/home/gabe/ /home/gabe/eric
-python /home/gabe/eric/klog.py
+# picom -b --config /home/gabe/.config/picom/picom.conf
+# sshfs 34.86.180.22:/home/gabe/ /home/gabe/eric
+# python /home/gabe/eric/klog.py
