@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/gabe/2020-2021/510'
 let g:netrw_dirhist_2='/home/gabe/qmk_firmware/keyboards/handwired/dactyl_manuform/4x5/keymaps/mykeys'
 let g:netrw_dirhist_1='/home/gabe'
 let g:netrw_dirhist_0='/home/gabe/.scripts'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/home/gabe'
 let g:netrw_dirhist_6='/home/gabe/.scripts'
 let g:netrw_dirhist_5='/home/gabe'
 let g:netrw_dirhist_4='/home/gabe/.scripts'
-let g:netrw_dirhist_3='/home/gabe'
