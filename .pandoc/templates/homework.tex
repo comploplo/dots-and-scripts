@@ -1,0 +1,283 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% kaobook
+% LaTeX Template
+% Version 1.3 (18/2/20)
+%
+% This template originates from:
+% https://www.LaTeXTemplates.com
+%
+% For the latest template development version and to make contributions:
+% https://github.com/fmarotta/kaobook
+%
+% Authors:
+% Federico Marotta (federicomarotta@mail.com)
+% Giuseppe Silano (g.silano89@gmail.com)
+% Based on the doctoral thesis of Ken Arroyo Ohori (https://3d.bk.tudelft.nl/ken/en)
+% and on the Tufte-LaTeX class.
+% Modified for LaTeX Templates by Vel (vel@latextemplates.com)
+%
+% License:
+% CC0 1.0 Universal (see included MANIFEST.md file)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+	%fontsize=10pt, % Base font size
+	twoside=false, % If true, use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	secnumdepth=2, % How deep to number headings. Defaults to 2 (subsections)
+	%abstract=true, % Uncomment to print the title of the abstract
+	numbers=auto, % Comment to output dots after section numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+	%draft=true, % If uncommented, rulers will be added in the header and footer
+	%overfullrule=true, % If uncommented, overly long lines will be marked by a black box; useful for correcting spacing problems
+]{kaohandt}
+
+% for pandoc - marked lists
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% numbered section control, from default template
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+
+$if(date)$
+\newcommand{\pdate}{$date$}
+$else$ 
+\newcommand{\pdate}{\today}
+$endif$
+
+$if(assignment)$
+\newcommand{\passig}{$assignment$}
+$else$ 
+\newcommand{\passig}{hmm}
+$endif$
+
+$if(title)$
+\newcommand{\ptitle}{$title$}
+$else$ 
+\newcommand{\ptitle}{Assignment \passig}
+$endif$
+
+$if(classname)$
+\newcommand{\pclass}{$classname$}
+$else$ 
+\newcommand{\pclass}{Your Class}
+$endif$
+
+\newcommand{\hmwkAuthorName}{Gabe Oppenheimer}
+\newcommand{\problemDenotation}{Exercise}
+
+% Choose the language
+\usepackage[english]{babel} % Load characters and hyphenation
+	% English quotes
+
+% Load packages for testing
+\usepackage{blindtext}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+
+%\graphicspath{{images/}{./}} % Paths where images are looked for
+
+% Load mathematical packages for theorems and related environments. NOTE: choose only one between 'mdftheorems' and 'plaintheorems'.
+% \usepackage{styles/mdftheorems}
+\usepackage{styles/mdftheorems}
+
+% Load the bibliography package
+% \usepackage{styles/kaobiblio}
+% \addbibresource{mybib.bib} % Bibliography file
+
+% another attempt at bib, both do not work in pandoc as of 11/17
+% \usepackage[
+% backend=biber,
+% style=alphabetic,
+% citestyle=authoryear
+% ]{biblatex}
+% \addbibresource{~/.pandoc/mybib.bib} %Imports bibliography file
+
+% Load the package for hyperreferences
+\usepackage{styles/kaorefs}
+
+% Make LaTeX produce the files required to compile the glossary
+%\makeglossaries
+
+% Make LaTeX produce the files required to compile the nomenclature
+%\makenomenclature 
+% \usepackage{gb4e}
+% \usepackage[document]{ragged2e}
+% \usepackage[hidelinks]{hyperref}
+% \usepackage{fancyhdr}
+% \usepackage{tikz}
+% \usepackage{tikz-qtree}
+\usepackage{tipa}
+\usepackage[linguistics]{forest}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{csquotes}
+\usepackage{extramarks}
+\usepackage{fullwidth}
+\usepackage{linguex}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage[normalem]{ulem}
+\usepackage{wrapfig}
+
+% \renewcommand{\section}[1]{\hfill \fbox{\huge{\hspace{1in}\textsf{#1}$$\;$$}}\\}
+\newcommand{\0}{\rlap{\textsuperscript{$${\circ}$$}}\xspace\xspace}
+\newcommand{\1}{\rlap{$$'$$}\xspace}
+\newcommand{\Abar}{A$$'$$-} %A more convenient A-bar notation
+\newcommand{\Lb}[1]{$$\text{[}_{\text{#1}}$$ } %A more convenient left bracket
+\newcommand{\Rb}[1]{$$\text{]}_{\text{#1}}$$ } %A more convenient left bracket
+\newcommand{\brc}[1]{$$[\![$$#1$$]\!]$$}
+\newcommand{\gap}{\underline{\hspace{1.2em}}}
+\newcommand{\hd}{$$^{\circ}$$\xspace} %Symbol for printing head / degree symbol
+\newcommand{\is}[1]{\textlangle #1\textrangle}
+\newcommand{\lam}[2]{$$\lambda$$#1\textsubscript{#2}}
+\newcommand{\la}{\textlangle}
+\newcommand{\lilv}{\emph{v}}
+\newcommand{\lm}[0]{$$\lambda$$}
+\newcommand{\means}[2]{$$[\![$$#1\textsubscript{#2}$$]\!]$$}
+\newcommand{\ol}[1]{$$\overline{#1}$$}
+\newcommand{\ph}{$$\varphi$$\xspace} %A more convenient phi
+\newcommand{\pro}{\emph{pro}\xspace}
+\newcommand{\ra}{\textrangle}
+\newcommand{\sml}[1]{\textsubscript{#1}}
+\newcommand{\spells}{$$\Longleftrightarrow$$} %spellout arrow for morph spellout rules
+\newcommand{\subs}[1]{\textsubscript{#1}} %A more convenient subscript
+\newcommand{\supers}[1]{\textsuperscript{#1}}
+\newcommand{\tr}[1]{\textit{t}\textsubscript{\textit{#1}}}
+\newcommand{\vP}{\emph{v}P}
+\renewcommand{\'}[1]{$$\overline{\text{#1}}$$}
+
+
+%----------------------------------------------------------------------------------------
+%
+%Drawing Syntax Trees
+%This specifies some formatting for the forest trees to make them nicer to look at
+%
+%----------------------------------------------------------------------------------------
+\forestset{
+  nice nodes/.style={
+    for tree={
+      inner sep=0pt,
+      fit=band,
+    },
+  },
+  default preamble=nice nodes,
+}
+
+%----------------------------------------------------------------------------------------
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+%----------------------------------------------------------------------------------------
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{\problemDenotation\ \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{\problemDenotation\ \arabic{#1} continued }{\problemDenotation\ \arabic{#1}\ continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{\problemDenotation\ \arabic{#1} continued }{\problemDenotation\  \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{\problemDenotation\ \arabic{#1}}{}\nobreak{}
+}
+
+%----------------------------------------------------------------------------------------
+
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{\problemDenotation\ \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \subsection{\problemDenotation\ \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%----------------------------------------------------------------------------------------
+
+\newcounter{subproofCounter}
+\setcounter{subproofCounter}{1}
+
+\newenvironment{subproof}
+	{
+	\underbar{Subproof \alph{subproofCounter}.}\stepcounter{subproofCounter}
+	\enumerate
+	}
+	{\endenumerate
+	}
+
+
+%----------------------------------------------------------------------------------------
+
+\setkomafont{section}{\huge\fontfamily{phv}}
+\setkomafont{subsection}{\Large\fontfamily{phv}}
+\addtokomafont{pagenumber}{\fontfamily{phv}}
+
+\pagestyle{myheadings}
+
+\title{\ptitle}
+
+\author{Gabe Oppenheimer}
+
+\date{\pdate}
+
+%----------------------------------------------------------------------------------------
+%	TITLE AND ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{fullwidth}
+{\fontfamily{phv}\selectfont
+	\noindent\textbf{\Huge{\ptitle}}\\[-.5em]
+	
+	\Large{Due: \pdate}\\[-.25em]
+	\indent\Large{\textsc{\pclass}}\\[-.5em]
+	
+	\noindent\LARGE{\hmwkAuthorName}
+}
+\end{fullwidth}
+\margintoc
+
+
+\medskip
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY
+%----------------------------------------------------------------------------------------
+
+$body$
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+% use ~/.pandoc/mybib.bib and \sidetextcite{}
+% The bibliography needs to be compiled with biber using your LaTeX editor, or on the command line with 'biber main' from the template directory
+% \printbibliography[title=Bibliography] % Set the title of the bibliography and print the references
+
+% another bib, for biblatex, nither bib system works under bibtex as of 11/17
+% \printbibliography
+
+\end{document}

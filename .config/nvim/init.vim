@@ -220,27 +220,22 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave() 
 
-
-" --- attempt at pandoc export automatic settings
 fun! g:PandocSmartExport()
   if expand('%:e') == 'md'
     write
-    let l:path = expand('%:p:h:t')
-    let l:templates = ['510', '601']
-    let l:matched = index(l:templates, l:path)
-    if l:matched == -1
-      echo system('pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --from markdown')
-    else 
-      echo 'pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --from markdown --pdf-engine=xelatex --template=' . l:path . '.tex'
-      echo system('pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --from markdown --pdf-engine=xelatex --template=' . l:path . '.tex')
+    let l:pandoccall = 'pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --template homework.tex'
+    if expand('%:p:h:h:t') == '2020'
+      let l:pandoccall = l:pandoccall . ' --metadata classname="Ling ' . expand('%:p:h:t') . '"'
     endif
+    echo l:pandoccall
+    echo system(l:pandoccall)
   else 
     echo 'invalid file type'
   endif
 endfun
 
 " for pandoc
-nnoremap <M-b> :call g:PandocSmartExport()<CR>
+map <M-b> :call g:PandocSmartExport()<CR>
 
 " QOL
 imap <M-q> <esc>gqipgi
