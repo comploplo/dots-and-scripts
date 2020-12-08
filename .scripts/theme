@@ -24,14 +24,17 @@ def theme_dict(theme_path):
         theme_str = theme_file.read()
     return json.loads(theme_str)
 
+
 def create_theme(path, dict):
     with open(path, "w") as new_theme_file:
         json_theme_str = json.dumps(dict, indent=2)
         new_theme_file.write(json_theme_str)
     print(f"wrote to {str(path)}")
 
+
 def overwrite(target, _, new):
     replace(target, None, new, delete=True)
+
 
 def replace(_target, _, _new, delete=False):
     theme = theme_dict(current_theme())
@@ -46,12 +49,11 @@ def replace(_target, _, _new, delete=False):
     else:
         target = ("colors", _target)
 
-    print("changing {} {} to {} {}".format(
-        _target,
-        theme[target[0]][target[1]],
-        _new,
-        theme[new[0]][new[1]]
-    ))
+    print(
+        "changing {} {} to {} {}".format(
+            _target, theme[target[0]][target[1]], _new, theme[new[0]][new[1]]
+        )
+    )
     theme[target[0]][target[1]] = theme[new[0]][new[1]]
 
     theme_name_addition = f".{new[1]}-replaced-{target[1]}.json"
@@ -62,6 +64,7 @@ def replace(_target, _, _new, delete=False):
     if delete:
         delete_current_theme()
     color_theme(new_theme_path.parts[-1])
+
 
 def log(text):
     print(text)
@@ -92,6 +95,11 @@ def tint(color, factor):
 def set_wallcolor(color):
     factor = 0.90 if get_info("mode") == "dark" else 1.15
     tinted = tint(color, factor)
+    # os.system(f"convert -size 100x100 xc:{tinted} jpeg:- | feh --bg-scale -")
+    # os.system(f"gsettings set org.gnome.desktop.background primary-color '{tinted}'")
+    # os.system(f"gsettings set org.gnome.desktop.background secondary-color '{color}'")
+    # os.system("gsettings set org.gnome.desktop.background color-shading-type 'solid'")
+    # os.system("gsettings set org.gnome.desktop.background picture-options 'none'")
     os.system(f"convert -size 100x100 xc:{tinted} jpeg:- | feh --bg-scale -")
 
 
@@ -109,7 +117,7 @@ def apply_theme(colors, wallpaper=None):
         wallcolor("bg")
     wal.reload.env()
     # os.system("bash -c 'xmonad --recompile > /dev/null 2>&1 && xmonad --restart' > /dev/null 2>&1")
-    os.system("pkill dunst; dunst&")
+    # os.system("pkill dunst; dunst&")
     # os.system("/home/gabe/.scripts/dunstwal")
     # os.system("pgrep qutebrowser && qutebrowser :config-source &")
 
@@ -140,6 +148,7 @@ def wallcolor(colortype):
     else:
         colors = list(colors["special"].values()) + list(colors["colors"].values())
         set_wallcolor(random.choice(colors))
+
 
 def color_theme(theme_type):
     all_themes = themepath.rglob(f"*/*.json")

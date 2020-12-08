@@ -70,8 +70,17 @@ $else$
 \newcommand{\pclass}{Your Class}
 $endif$
 
-\newcommand{\hmwkAuthorName}{Gabe Oppenheimer}
+$if(problemtitle)$
+\newcommand{\problemDenotation}{$problemtitle$}
+$else$ 
 \newcommand{\problemDenotation}{Exercise}
+$endif$
+
+$if(author)$
+\newcommand{\pauthor}{$author$}
+$else$ 
+\newcommand{\pauthor}{Gabe Oppenheimer}
+$endif$
 
 % Choose the language
 \usepackage[english]{babel} % Load characters and hyphenation
@@ -134,23 +143,32 @@ $endif$
 \newcommand{\0}{\rlap{\textsuperscript{$${\circ}$$}}\xspace\xspace}
 \newcommand{\1}{\rlap{$$'$$}\xspace}
 \newcommand{\Abar}{A$$'$$-} %A more convenient A-bar notation
+\newcommand{\byFA}{\hfill (by FA)} 
+\newcommand{\byTN}{\hfill (by TN)} 
+\newcommand{\byNN}{\hfill (by NN)} 
+\newcommand{\byPM}{\hfill (by PM)} 
+\newcommand{\byPA}{\hfill (by PA)} 
+\newcommand{\byB}{\hfill (by $$\beta$$ reduction)} 
 \newcommand{\Lb}[1]{$$\text{[}_{\text{#1}}$$ } %A more convenient left bracket
 \newcommand{\Rb}[1]{$$\text{]}_{\text{#1}}$$ } %A more convenient left bracket
-\newcommand{\brc}[1]{$$[\![$$#1$$]\!]$$}
+\newcommand{\brc}[1]{$$\llbracket$$#1$$\rrbracket$$}
 \newcommand{\gap}{\underline{\hspace{1.2em}}}
 \newcommand{\hd}{$$^{\circ}$$\xspace} %Symbol for printing head / degree symbol
+\renewcommand{\iff}{T \textit{iff}}
 \newcommand{\is}[1]{\textlangle #1\textrangle}
 \newcommand{\lam}[2]{$$\lambda$$#1\textsubscript{#2}}
 \newcommand{\la}{\textlangle}
 \newcommand{\lilv}{\emph{v}}
 \newcommand{\lm}[0]{$$\lambda$$}
-\newcommand{\means}[2]{$$[\![$$#1\textsubscript{#2}$$]\!]$$}
+\newcommand{\means}[1]{\sml{\is{#1}}}
 \newcommand{\ol}[1]{$$\overline{#1}$$}
 \newcommand{\ph}{$$\varphi$$\xspace} %A more convenient phi
 \newcommand{\pro}{\emph{pro}\xspace}
 \newcommand{\ra}{\textrangle}
 \newcommand{\sml}[1]{\textsubscript{#1}}
 \newcommand{\spells}{$$\Longleftrightarrow$$} %spellout arrow for morph spellout rules
+\newcommand{\sss}[1]{\subsubsection{#1}}
+\newcommand{\sssr}[1]{\subsubsection{\hfill #1}}
 \newcommand{\subs}[1]{\textsubscript{#1}} %A more convenient subscript
 \newcommand{\supers}[1]{\textsuperscript{#1}}
 \newcommand{\tr}[1]{\textit{t}\textsubscript{\textit{#1}}}
@@ -162,14 +180,17 @@ $endif$
 %
 %Drawing Syntax Trees
 %This specifies some formatting for the forest trees to make them nicer to look at
+% roof terminal phrases
 %
 %----------------------------------------------------------------------------------------
+
+\useforestlibrary{linguistics}
 \forestset{
   nice nodes/.style={
     for tree={
       inner sep=0pt,
       fit=band,
-    },
+    }
   },
   default preamble=nice nodes,
 }
@@ -232,13 +253,14 @@ $endif$
 
 \setkomafont{section}{\huge\fontfamily{phv}}
 \setkomafont{subsection}{\Large\fontfamily{phv}}
+\setkomafont{subsubsection}{\large\fontfamily{phv}}
 \addtokomafont{pagenumber}{\fontfamily{phv}}
 
 \pagestyle{myheadings}
 
 \title{\ptitle}
 
-\author{Gabe Oppenheimer}
+\author{\pauthor}
 
 \date{\pdate}
 
@@ -249,17 +271,19 @@ $endif$
 \begin{document}
 
 \begin{fullwidth}
-{\fontfamily{phv}\selectfont
-	\noindent\textbf{\Huge{\ptitle}}\\[-.5em]
-	
-	\Large{Due: \pdate}\\[-.25em]
-	\indent\Large{\textsc{\pclass}}\\[-.5em]
-	
-	\noindent\LARGE{\hmwkAuthorName}
-}
-\end{fullwidth}
-\margintoc
+	{\fontfamily{phv}\selectfont
+		\noindent\textbf{\Huge{\ptitle}}\\[-.5em]
 
+		\Large{Due: \pdate}\\[-.25em]
+		\indent\Large{\textsc{\pclass}}\\[-.5em]
+
+		\noindent\LARGE{\pauthor}
+	}
+\end{fullwidth}
+
+$if(toc)$
+\margintoc
+$endif$
 
 \medskip
 

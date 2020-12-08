@@ -83,7 +83,7 @@ myTerminal :: String
 myTerminal = "kitty"   -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "qutebrowser "               -- Sets qutebrowser as browser for tree select
+myBrowser = "firefox"               -- Sets qutebrowser as browser for tree select
 
 myEditor :: String
 myEditor = "emacsclient -c -a emacs"  -- Sets emacs as editor for tree select
@@ -181,7 +181,7 @@ dtXPKeymap = M.fromList $
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "term" spawnTerm (resource =? "dropdown-terminal") (manageRightThird)
                  ,NS "pavu" "pavucontrol" (className =? "Pavucontrol") (manageThirdscreen)
-                 ,NS "signal" "signal-desktop-beta" (resource =? "signal beta") (manageFullscreen)
+                 ,NS "signal" "signal-desktop" (resource =? "signal beta") (manageFullscreen)
                  ,NS "py" "kitty --name=dropdown-py python" (resource =? "dropdown-py") (manageRightThird)
                  ,NS "emacsclient" "emacsclient --alternate-editor='' --no-wait --create-frame --frame-parameters='(quote (name . \"note-emacs\"))' ~/docs/Org/notes.org" (title =? "note-emacs") (manageCenter)
                  ,NS "browser" "qutebrowser --basedir ~/.config/scratchbrowser --config-py ~/.config/qutebrowser/config.py --qt-arg name qutepad" (resource =? "qutepad") (manageCenter)
@@ -388,7 +388,7 @@ myKeys =
         --, ("C-e a", spawn "emacsclient -c -a '' --eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")
 
     --- Apps
-        , ("M-/", spawn "qutebrowser")
+        , ("M-/", spawn myBrowser)
         , ("M-<Print>", spawn "~/.scripts/scrotmenu.sh")
         , ("<Print>", spawn "sleep 0.1 && ~/.scripts/scrt-select")
         , ("<XF86AudioMute>",   spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")

@@ -1,0 +1,49 @@
+#!/bin/python
+
+import argparse
+
+parser = argparse.ArgumentParser()
+# parser.add_mutually_exclusive_group()
+# parser.add_argument(
+#     "-v", "--verbose", help="verbose flag, for testing", action="store_true"
+# )
+# parser.add_argument(
+#     "-l", "--light", help="light theme flag, use for a light theme", action="store_true"
+# )
+# parser.add_argument(
+#     "action", help="theme action", choices=("set", "wall", "help", "list", "appreciate")
+# )
+
+
+subparsers = parser.add_subparsers(help="Theme actions group")
+sp = subparsers.add_parser("set", help="set or wall, for setting theme")
+sp.add_argument(
+    "set_option", help="color theme or wallpaper", choices=("theme", "wall")
+)
+sp.add_argument(
+    "-v", "--verbose", help="verbose flag, for testing", action="store_true"
+)
+sp.add_argument(
+    "-l", "--light", help="light theme flag, use for a light theme", action="store_true"
+)
+
+
+print(parser.parse_args())
+
+# if __name__ == "__main__":
+#     main_command = argv[1]
+#     arg_map = {
+#         "set": color_theme,
+#         "wall": wall_theme,
+#         "wallcolor": wallcolor,
+#         "delete": delete_current_theme,
+#         "appreciate": appreciate_current_theme,
+#         "help": print_help,
+#         "get": get_info,
+#         "replace": replace,
+#         "overwrite": overwrite,
+#     }
+#     if len(argv) > 2:
+#         arg_map[main_command](*argv[2:])
+#     else:
+#         arg_map[main_command]()

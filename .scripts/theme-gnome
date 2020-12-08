@@ -1,0 +1,272 @@
+#!/usr/bin/python
+
+import pywal as wal
+import json
+from sys import argv
+import shutil
+import os
+import random
+from pathlib import PosixPath as Path
+from subprocess import call
+
+
+def path(relative_path_string):
+    return Path.expanduser(Path(relative_path_string))
+
+
+walcache = path("~/.cache/wal/")
+themepath = path("~/.config/wal/colorschemes/")
+wallpath = path("~/pics/wals/")
+
+
+def theme_dict(theme_path):
+    with open(theme_path, "r") as theme_file:
+        theme_str = theme_file.read()
+    return json.loads(theme_str)
+
+
+def create_theme(path, dict):
+    with open(path, "w") as new_theme_file:
+        json_theme_str = json.dumps(dict, indent=2)
+        new_theme_file.write(json_theme_str)
+    print(f"wrote to {str(path)}")
+
+
+def overwrite(target, _, new):
+    replace(target, None, new, delete=True)
+
+
+def replace(_target, _, _new, delete=False):
+    theme = theme_dict(current_theme())
+
+    if _new in ["background", "foreground", "cursor"]:
+        new = ("special", _new)
+    else:
+        new = ("colors", _new)
+
+    if _target in ["background", "foreground", "cursor"]:
+        target = ("special", _target)
+    else:
+        target = ("colors", _target)
+
+    print(
+        "changing {} {} to {} {}".format(
+            _target, theme[target[0]][target[1]], _new, theme[new[0]][new[1]]
+        )
+    )
+    theme[target[0]][target[1]] = theme[new[0]][new[1]]
+
+    theme_name_addition = f".{new[1]}-replaced-{target[1]}.json"
+    new_theme_path = current_theme().with_suffix(theme_name_addition)
+    if theme_name_addition in str(current_theme()):
+        return print("REDUNDANT!")
+    create_theme(str(new_theme_path).replace("best-", ""), theme)
+    if delete:
+        delete_current_theme()
+    color_theme(new_theme_path.parts[-1])
+
+
+def log(text):
+    print(text)
+    os.system(f"notify-send -t 10000 '{text}'")
+
+
+def record_theme_path(theme):
+    with open(walcache / "colors.path", "w") as f:
+        f.write(str(theme))
+
+
+def current_theme():
+    return path((walcache / "colors.path").read_text())
+
+
+def rgb2hex(t):
+    return "#" + "".join(tuple(map(lambda n: hex(n)[2:].rjust(2, "0")[-2:], t)))
+
+
+def hex2rgb(s):
+    return tuple(map(lambda n: int(n, 16), [s[1:3], s[3:5], s[5:7]]))
+
+
+def tint(color, factor):
+    return rgb2hex([int(min(n * factor, 255)) for n in hex2rgb(color)])
+
+
+def set_wallcolor(color):
+    factor = 0.90 if get_info("mode") == "dark" else 1.15
+    tinted = tint(color, factor)
+    # os.system(f"convert -size 100x100 xc:{tinted} jpeg:- | feh --bg-scale -")
+    os.system(f"gsettings set org.gnome.desktop.background primary-color '{tinted}'")
+    os.system(f"gsettings set org.gnome.desktop.background secondary-color '{color}'")
+    os.system("gsettings set org.gnome.desktop.background color-shading-type 'solid'")
+    os.system("gsettings set org.gnome.desktop.background picture-options 'none'")
+    # os.system(f"convert -size 100x100 xc:{tinted} jpeg:- | feh --bg-scale -")
+
+
+def set_wallpaper(wall):
+    call(["feh", "--bg-fill", wall])
+
+
+def apply_theme(colors, wallpaper=None):
+    assert type(colors) == dict
+    wal.sequences.send(colors)
+    wal.export.every(colors)
+    if type(wallpaper) is Path:
+        set_wallpaper(wallpaper)
+    else:
+        wallcolor("bg")
+    wal.reload.env()
+    # os.system("bash -c 'xmonad --recompile > /dev/null 2>&1 && xmonad --restart' > /dev/null 2>&1")
+    # os.system("pkill dunst; dunst&")
+    # os.system("/home/gabe/.scripts/dunstwal")
+    # os.system("pgrep qutebrowser && qutebrowser :config-source &")
+
+
+def delete_theme(theme):
+    new_path = theme.parent.parent / "trash" / theme.name
+    shutil.move(theme, new_path)
+
+
+def appreciate_theme(theme):
+    new_path = theme.parent.parent / ("best-" + theme.parent.name) / theme.name
+    shutil.copyfile(theme, new_path)
+
+
+def pickatrandom(l):
+    return random.choice(list(l))
+
+
+################################################################################
+
+
+def wallcolor(colortype):
+    colors = wal.colors.file(str(current_theme()))
+    if colortype == "bg":
+        set_wallcolor(colors["special"]["background"])
+    elif colortype == "gray":
+        set_wallcolor(colors["colors"]["color8"])
+    else:
+        colors = list(colors["special"].values()) + list(colors["colors"].values())
+        set_wallcolor(random.choice(colors))
+
+
+def color_theme(theme_type):
+    all_themes = themepath.rglob(f"*/*.json")
+    possible_themes = []
+    for t in all_themes:
+        relevant_path = t.relative_to(themepath)
+        if theme_type in str(relevant_path) and "trash/" not in str(relevant_path):
+            possible_themes.append(t)
+    theme = random.choice(possible_themes)
+
+    log(f"Theme: {theme}")
+    record_theme_path(theme)
+
+    theme_colors = wal.colors.file(str(theme))
+    apply_theme(theme_colors, wallpaper=theme_colors)
+    log("theme set: {}".format(theme.stem))
+    os.system("wal --preview")
+
+
+def delete_current_theme():
+    t = current_theme()
+    delete_theme(t)
+    log("theme deleted: {}".format(t.stem))
+
+
+def appreciate_current_theme():
+    t = current_theme()
+    appreciate_theme(t)
+    log("theme appreciated: {}".format(t.stem))
+
+
+def get_info(arg):
+    if arg == "mode":
+        print(current_theme().parent.name.split("best-")[-1])
+    elif arg == "name":
+        print(current_theme().stem)
+    elif arg == "path":
+        print(str(current_theme()))
+    elif arg == "colors":
+        print((walcache / "colors.yml").read_text())
+    elif arg == "dirs":
+        os.system("ls --color=auto ~/.config/wal/colorschemes")
+
+    backend = random.choice(["wal", "haishoku", "colorthief", "colorz"])
+
+
+def wall_theme(
+    wall_type="random", wall_name="random", brightness="dark", backend="colorz"
+):
+
+    brightness = brightness in ["light", "l", "bright"]
+
+    if wall_type == "random":
+        possible_types = [
+            p for p in wallpath.iterdir() if p.is_dir() and list(p.iterdir())
+        ]
+        wall_type = pickatrandom(possible_types).name
+    if wall_name == "random":
+        possible_walls = (wallpath / wall_type).iterdir()
+        wall_name = pickatrandom(possible_walls).name
+
+    wall = pickatrandom((wallpath / wall_type).rglob(f"{wall_name}*"))
+
+    wall_colors = wal.colors.get(str(wall), brightness, backend)
+    apply_theme(wall_colors, wallpaper=wall)
+
+    log("theme set: {} from {}".format(wall.stem, wall_type))
+
+
+def print_help():
+    print(
+        "\n".join(
+            [
+                "Commands:",
+                "",
+                "color <dir>",
+                "    this chooses a random colorscheme",
+                "    from the <dir> directory",
+                "",
+                "wallcolor <name>",
+                "    set wallpaper color to bg, gray, or random",
+                "",
+                "wall <name>",
+                "    sets colorscheme based on wallpaper in",
+                "    ~/pics/walls, file extension not needed",
+                "",
+                "delete",
+                "   this moves the current theme to the trash",
+                "   directory in colorschemes",
+                "",
+                "appreciate",
+                "   this moves the current theme, say,",
+                "   '...colorschemes/dark/the.json' to",
+                "   '...colorschemes/best-dark/the.json'",
+                "",
+                "get",
+                "   mode, name, path, colors, dirs",
+            ]
+        )
+    )
+
+
+################################################################################
+
+if __name__ == "__main__":
+    main_command = argv[1]
+    arg_map = {
+        "set": color_theme,
+        "wall": wall_theme,
+        "wallcolor": wallcolor,
+        "delete": delete_current_theme,
+        "appreciate": appreciate_current_theme,
+        "help": print_help,
+        "get": get_info,
+        "replace": replace,
+        "overwrite": overwrite,
+    }
+    if len(argv) > 2:
+        arg_map[main_command](*argv[2:])
+    else:
+        arg_map[main_command]()
