@@ -81,7 +81,7 @@ def current_theme():
 
 
 def rgb2hex(t):
-    return "#" + "".join(tuple(map(lambda n: hex(n)[2:].rjust(2, "0")[-2:], t)))
+    return "#"+"".join(tuple(map(lambda n: hex(n)[2:].rjust(2, "0")[-2:], t)))
 
 
 def hex2rgb(s):
@@ -96,10 +96,6 @@ def set_wallcolor(color):
     factor = 0.90 if get_info("mode") == "dark" else 1.15
     tinted = tint(color, factor)
     # os.system(f"convert -size 100x100 xc:{tinted} jpeg:- | feh --bg-scale -")
-    # os.system(f"gsettings set org.gnome.desktop.background primary-color '{tinted}'")
-    # os.system(f"gsettings set org.gnome.desktop.background secondary-color '{color}'")
-    # os.system("gsettings set org.gnome.desktop.background color-shading-type 'solid'")
-    # os.system("gsettings set org.gnome.desktop.background picture-options 'none'")
     os.system(f"convert -size 100x100 xc:{tinted} jpeg:- | feh --bg-scale -")
 
 
@@ -116,7 +112,8 @@ def apply_theme(colors, wallpaper=None):
     else:
         wallcolor("bg")
     wal.reload.env()
-    # os.system("bash -c 'xmonad --recompile > /dev/null 2>&1 && xmonad --restart' > /dev/null 2>&1")
+    # os.system("bash -c 'xmonad --recompile > /dev/null 2>&1 && xmonad
+    # --restart' > /dev/null 2>&1")
     # os.system("pkill dunst; dunst&")
     # os.system("/home/gabe/.scripts/dunstwal")
     # os.system("pgrep qutebrowser && qutebrowser :config-source &")
@@ -132,11 +129,11 @@ def appreciate_theme(theme):
     shutil.copyfile(theme, new_path)
 
 
-def pickatrandom(l):
-    return random.choice(list(l))
+def pickatrandom(li):
+    return random.choice(list(li))
 
 
-################################################################################
+###############################################################################
 
 
 def wallcolor(colortype):
@@ -251,7 +248,7 @@ def print_help():
     )
 
 
-################################################################################
+###############################################################################
 
 if __name__ == "__main__":
     main_command = argv[1]

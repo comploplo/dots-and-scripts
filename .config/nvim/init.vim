@@ -9,8 +9,9 @@ packadd minpac
 call minpac#init()
 " call minpac#add('ericjuma/wal.vim')
 " call minpac#add('nvim-lua/diagnostic-nvim')
-call minpac#add('ericjuma/neowal')
+" call minpac#add('vim-pandoc/vim-pandoc-syntax')
 " call minpac#add('kevinhwang91/rnvimr')
+call minpac#add('ericjuma/neowal')
 call minpac#add('Th3Whit3Wolf/spacebuddy')
 call minpac#add('gabrielelana/vim-markdown')
 call minpac#add('godlygeek/tabular')
@@ -35,14 +36,6 @@ call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tjdevries/colorbuddy.nvim')
 call minpac#add('tomtom/tcomment_vim')
 call minpac#add('tpope/vim-surround')
-" call minpac#add('vim-pandoc/vim-pandoc-syntax')
-call minpac#add('glacambre/firenvim', { 'type': 'opt', 'do': 'packadd firenvim | call firenvim#install(0)'})
-if exists('g:started_by_firenvim')
-let fc = g:firenvim_config['localSettings']
-let fc['https?://[^/]+[twitch\.tv]/.*'] = { 'takeover': 'never', 'priority': 1 }
-  packadd firenvim
-endif
-
 packloadall
 
 " lsp
@@ -121,19 +114,19 @@ fun! Mynum()
 endfun
 
 if has("persistent_undo")
-    set undodir="~/.config/nvim/.undofile"
+    set undodir="~/.config/nvim/.undodir"
     set undofile
 endif
 
-colorscheme humanoid
+" colorscheme humanoid
 lua require('colorbuddy').colorscheme('neowal')
-colorscheme wal
+colorscheme neowal
+" colorscheme wal
 " mods to wal in fork:
 hi StatusLineNC ctermbg=0 ctermfg=8
 hi StatusLine ctermbg=7 ctermfg=8
 hi VertSplit ctermbg=8 ctermfg=8
 nnoremap <Return>w :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
-
 
 " set cc=80
 set autoindent
@@ -157,7 +150,7 @@ set wildmenu
 filetype plugin indent on
 syntax on
 
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%100v', 100)
 hi ColorColumn ctermbg=gray guibg=gray
 
 let mapleader=","
@@ -179,7 +172,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_variable_declarations = 1
 
 " markdown
-let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding = 0
 
 " snippets
 let g:completion_enable_snippet = 'vim-vsnip'
@@ -208,7 +201,7 @@ let g:space_before_virtual_text = 5
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave() 
 
-" autocmd BufEnter * lua require'completion'.on_attach()
+autocmd BufEnter * lua require'completion'.on_attach()
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
@@ -250,6 +243,7 @@ vnoremap <Space> :
 nnoremap h <C-w>
 vnoremap h <C-w>
 map <silent> <M-n> :call Mynum()<CR>
+map <C-s> :w<CR>
 
 " custom function for going to the middle of text objects, uses mark @z
 nnoremap <silent> gmp :call GoToMiddle("ip")<CR>
@@ -258,7 +252,7 @@ nnoremap <silent> gmm :call GoToMiddle("il")<CR>
 nnoremap <silent> <M-}> :call GoToMiddle("ip")<CR>
 
 "full buff text object
-onoremap gb :<c-u>normal! mzggVG<cr>`z
+onoremap ib :<c-u>normal! mzggVG<cr>`z
 
 " snippet expand
 imap <expr> <M-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<M-j>'

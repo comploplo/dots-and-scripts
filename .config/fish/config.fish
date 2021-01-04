@@ -6,4 +6,5 @@ set VISUAL "nvim"
 alias 'vim=nvim'
 alias 'ra=ranger'
 
-set PATH /home/gabe/.local/bin $PATH
+set PATH /home/gabe/bin/ $PATH
+set PATH /home/gabe/.local/bin/ $PATH

@@ -68,7 +68,7 @@ def replace(_target, _, _new, delete=False):
 
 def log(text):
     print(text)
-    os.system(f"notify-send -t 10000 '{text}'")
+    # os.system(f"notify-send -t 10000 '{text}'")
 
 
 def record_theme_path(theme):
@@ -95,7 +95,6 @@ def tint(color, factor):
 def set_wallcolor(color):
     factor = 0.90 if get_info("mode") == "dark" else 1.15
     tinted = tint(color, factor)
-    # os.system(f"convert -size 100x100 xc:{tinted} jpeg:- | feh --bg-scale -")
     os.system(f"gsettings set org.gnome.desktop.background primary-color '{tinted}'")
     os.system(f"gsettings set org.gnome.desktop.background secondary-color '{color}'")
     os.system("gsettings set org.gnome.desktop.background color-shading-type 'solid'")
