@@ -410,8 +410,9 @@ myKeys = [ ("M-<Return>", spawn myTerminal)
 ----- workspaces                                                                             -----
 --------------------------------------------------------------------------------------------------
 
+-- change screen number her.
 myWorkspaces :: [String]
-myWorkspaces = withScreens 2 ["one", "two", "three", "four", "five"]
+myWorkspaces = withScreens 1 ["one", "two", "three", "four", "five"]
 
 workspaceKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, k), windows $ onCurrentScreen f i)

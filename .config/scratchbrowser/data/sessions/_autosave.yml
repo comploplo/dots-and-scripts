@@ -1,0 +1,17 @@
+windows:
+- active: true
+  geometry: !!binary |
+    AdnQywADAAAAAABgAAAANgAABx8AAAQBAAAAYQAAADcAAAceAAAEAAAAAAAAAAAAB4AAAABhAAAA
+    NwAABx4AAAQA
+  tabs:
+  - active: true
+    history:
+    - active: true
+      last_visited: '2020-12-29T12:18:28'
+      pinned: false
+      scroll-pos:
+        x: 0
+        y: 0
+      title: DuckDuckGo — Privacy, simplified.
+      url: https://start.duckduckgo.com/?kae=#2a1d17&kp=-1&k1=-1&kam=osm&kt=monospace&k7=%232a1d17&kx=%23da1657&kj=%232a1d17&kaa=%23e3d33d
+      zoom: 0.9

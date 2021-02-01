@@ -11,13 +11,15 @@ call minpac#init()
 " call minpac#add('nvim-lua/diagnostic-nvim')
 " call minpac#add('vim-pandoc/vim-pandoc-syntax')
 " call minpac#add('kevinhwang91/rnvimr')
-call minpac#add('Th3Whit3Wolf/spacebuddy')
 call minpac#add('ericjuma/neowal')
+call minpac#add('Th3Whit3Wolf/spacebuddy')
+call minpac#add('gabrielelana/vim-markdown')
 call minpac#add('godlygeek/tabular')
+call minpac#add('hrsh7th/vim-vsnip')
+call minpac#add('hrsh7th/vim-vsnip-integ')
 call minpac#add('humanoid-colors/vim-humanoid-colorscheme')
 call minpac#add('junegunn/goyo.vim')
 call minpac#add('junegunn/limelight.vim')
-call minpac#add('mattn/emmet-vim')
 call minpac#add('mbbill/undotree')
 call minpac#add('mg979/vim-visual-multi')
 call minpac#add('morhetz/gruvbox')
@@ -30,15 +32,32 @@ call minpac#add('preservim/nerdtree')
 call minpac#add('rhysd/clever-f.vim')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('sheerun/vim-polyglot')
+call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tjdevries/colorbuddy.nvim')
 call minpac#add('tomtom/tcomment_vim')
-call minpac#add('tpope/vim-markdown')
 call minpac#add('tpope/vim-surround')
-" for snippets
-call minpac#add('honza/vim-snippets')
-call minpac#add('shougo/deoplete.nvim') "for async
-call minpac#add('shougo/neosnippet')
+call minpac#add('glacambre/firenvim', { 'type': 'opt', 'do': 'packadd firenvim | call firenvim#install(0)'})
+if exists('g:started_by_firenvim')
+let fc = g:firenvim_config['localSettings']
+let fc['https?://[^/]+[twitch\.tv]/.*'] = { 'takeover': 'never', 'priority': 1 }
+  packadd firenvim
+endif
+
 packloadall
+
+" lsp
+" I did pip install 'python-language-server[all]'
+" LspInstall html
+" LspInstall jdtls
+" " LspInstall pyls -- not implemented
+" LspInstall tsserver
+" LspInstall vimls
+" LspInstall texlab
+" " LspInstall ghcide -- TODO install
+" " LspInstall clangd TODO
+" LspInstall bashls
+" LspInstall vimls
+"
 
 augroup vimrc     " Source vim configuration upon save
     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
@@ -50,28 +69,27 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
 augroup END
 
-" fun! ThePrimeagen_LspHighlighter()
-"     lua print("Testing")
-"     lua package.loaded["my_lspconfig"] = nil
-"     lua require("my_lspconfig")
-" endfun
-" com! SetLspVirtualText call ThePrimeagen_LspHighlighter()
+fun! ThePrimeagen_LspHighlighter()
+    lua print("Testing")
+    lua package.loaded["my_lspconfig"] = nil
+    lua require("my_lspconfig")
+endfun
+
+com! SetLspVirtualText call ThePrimeagen_LspHighlighter()
 
 " goyo settings
-" bound to alt-z, removes extra ui elements and highlights only the selected
-" paragraph
 fun! s:goyo_enter()
     set noshowmode
     set noshowcmd
     Limelight
 endfun
+
 fun! s:goyo_leave()
     set showmode
     set showcmd
     Limelight!
 endfun
 
-" this is a mess
 fun! g:PandocSmartExport()
   if expand('%:e') == 'md'
     write
@@ -81,7 +99,7 @@ fun! g:PandocSmartExport()
     endif
     echo l:pandoccall
     echo system(l:pandoccall)
-  else
+  else 
     echo 'invalid file type'
   endif
 endfun
@@ -102,70 +120,44 @@ fun! Mynum()
     set relativenumber!
 endfun
 
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
+if has("persistent_undo")
+    set undodir="~/.config/nvim/.undodir"
+    set undofile
+endif
 
-" colorscheme humanoid
+colorscheme humanoid
 lua require('colorbuddy').colorscheme('neowal')
-colorscheme neowal
 " colorscheme wal
 " mods to wal in fork:
 hi StatusLineNC ctermbg=0 ctermfg=8
 hi StatusLine ctermbg=7 ctermfg=8
 hi VertSplit ctermbg=8 ctermfg=8
-nnoremap <leader>w :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
+nnoremap <Return>w :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
 
-" tab settings
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-
-" undotree
-set noswapfile
-set nobackup
-set undodir="~/.config/nvim/undodir"
-set undofile
-
-"auto source .vimrc in file when 'vim .' in that file
-set exrc
-
-" search settings
-set nohlsearch
-set ignorecase
-set smartcase
-set incsearch
-
-" keeps unsaved files open in background, allows for fast swap without save
-set hidden
 
 " set cc=80
-" set wildmenu
-
-set noshowmode
-set cmdheight=2
-set updatetime=50
-set shortmess+=c
-
-set noerrorbells
 set autoindent
 set completeopt=menuone,noinsert,noselect
 set encoding=UTF-8
+set expandtab
+set ignorecase
 set inccommand=nosplit
 set incsearch
 set mouse=a
 set nowrap
-set scrolloff=8
+set scrolloff=4
+set shiftwidth=4
 set sidescrolloff=1
+set smartcase
+set smartindent
 set tabpagemax=6
+set tabstop=4 softtabstop=4
 set termguicolors
+set wildmenu
 filetype plugin indent on
 syntax on
 
-call matchadd('ColorColumn', '\%100v', 81)
+call matchadd('ColorColumn', '\%81v', 100)
 hi ColorColumn ctermbg=gray guibg=gray
 
 let mapleader=","
@@ -186,15 +178,16 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_highlight_variable_declarations = 1
 
-" tpope markdown
-let g:markdown_syntax_conceal = 0
+" markdown
+let g:vim_markdown_folding_disabled = 1
+
+" snippets
+let g:completion_enable_snippet = 'vim-vsnip'
+let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip')
 
 " limelight lowlight highlight settings, used in goyo
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_guifg = 'DarkGray'
-
-" use deoplete.
-let g:deoplete#enable_at_startup = 1
 
 " completion
 let g:diagnostic_enable_virtual_text = 1
@@ -209,21 +202,16 @@ let g:space_before_virtual_text = 5
 " call sign_define("LspDiagnosticsInformationSign", {"text" : "I", "texthl" : "LspDiagnosticsInformation"})
 " call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
 
-" for emmet, used with html :)
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
 " Avoid showing message extra message when using completion
 " set shortmess+=c
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+autocmd! User GoyoLeave nested call <SID>goyo_leave() 
 
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
-autocmd Filetype md setlocal spell! spelllang=en_us<CR>
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -244,9 +232,9 @@ map <M-b> :call g:PandocSmartExport()<CR>
 
 " unbinding hjkl to get better at vim
 nmap h <nop>
+nmap j <nop>
+nmap k <nop>
 nmap l <nop>
-" nmap j <nop>
-" nmap k <nop>
 nmap <left> <nop>
 nmap <right> <nop>
 " QOL
@@ -255,22 +243,26 @@ imap jk <esc>
 imap jj <C-o>
 nnoremap n nzz
 nnoremap N Nzz
+nnoremap <silent> i :nohlsearch<cr>i
+nnoremap <silent> a :nohlsearch<cr>a
 nnoremap <Space> :
 vnoremap <Space> :
 nnoremap h <C-w>
 vnoremap h <C-w>
 map <silent> <M-n> :call Mynum()<CR>
-map <C-s> :w<CR>
 
 " custom function for going to the middle of text objects, uses mark @z
 nnoremap <silent> gmp :call GoToMiddle("ip")<CR>
 nnoremap <silent> gms :call GoToMiddle("is")<CR>
 nnoremap <silent> gmm :call GoToMiddle("il")<CR>
 nnoremap <silent> <M-}> :call GoToMiddle("ip")<CR>
-nnoremap <silent> <M-)> :call GoToMiddle("is")<CR>
 
 "full buff text object
-onoremap ib :<c-u>normal! mzggVG<cr>`z
+onoremap gb :<c-u>normal! mzggVG<cr>`z
+
+" snippet expand
+imap <expr> <M-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<M-j>'
+smap <expr> <M-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<M-j>'
 
 " goyo, removes visual noise
 map <silent> <M-z> :Goyo<CR>
@@ -285,38 +277,3 @@ map <M-t> :NERDTreeToggle<CR>
 
 " undotree
 map <M-u> :UndotreeToggle<CR>
-
-" Config for neosnippet, for snippets
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
-augroup END
-
-" augroup on_save
-"     autocmd!
-"     autocmd BufWritePre * :call TrimWhitespace()
-" augroup END
