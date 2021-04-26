@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=startx
+Comment=Uses ~/.xinitrc
+Type=Application
+Exec=~/.xinitrc
+
+# goes in /usr/share/xsessions and will show up in gdm, us only if there is an xinitrc lmao
