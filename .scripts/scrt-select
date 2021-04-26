@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filename=~/pics/scrots/"$(date -Iminutes).png"
-scrot -s $filename
+filename=$(xdg-user-dir PICTURES)/scrots/"$(date +'%F-%T').png"
+import $filename
 xclip -selection clipboard -t image/png -i $filename 
 

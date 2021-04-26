@@ -1360,7 +1360,7 @@ c.session.lazy_restore = False
 
 ## Hide the statusbar unless a message is shown.
 ## Type: Bool
-# c.statusbar.hide = False
+c.statusbar.show = "in-mode"
 
 ## Padding (in pixels) for the statusbar.
 ## Type: Padding
@@ -1530,7 +1530,7 @@ c.tabs.padding = {'top': 2, 'bottom': 2, 'left': 7, 'right': 7}
 ##   - never: Always hide the tab bar.
 ##   - multiple: Hide the tab bar if only one tab is open.
 ##   - switching: Show the tab bar when switching tabs.
-# c.tabs.show = 'always'
+c.tabs.show = 'switching'
 
 ## Duration (in milliseconds) to show the tab bar before hiding it when
 ## tabs.show is set to 'switching'.

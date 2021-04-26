@@ -12,6 +12,7 @@ from libqtile.backend.x11 import xcbq
 import gc
 import functools
 
+
 class funcstr(str):
     def func(self, f):
         self.f = f
@@ -28,6 +29,7 @@ def getgetcolor(category, color):
             return colorscheme[category][color]
 
     return getcolor
+
 
 backgr = funcstr("#00ff00").func(getgetcolor("special", "background"))
 foregr = funcstr("#00ff00").func(getgetcolor("special", "foreground"))
@@ -55,22 +57,19 @@ keys = [
     Key([mod, ctrl, shift], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod], "m", lazy.hide_show_bar()),
-
     Key([mod, ctrl], "period", lazy.spawn("/home/gabe/.scripts/screens")),
     Key([mod], "period", lazy.spawn("/home/gabe/.scripts/startup-walls")),
     Key([mod, shift], "period", lazy.spawn("/home/gabe/.scripts/startup-walls-light")),
     Key([mod], "comma", lazy.spawn("/home/gabe/.scripts/startup-dark")),
     Key([mod, shift], "comma", lazy.spawn("/home/gabe/.scripts/startup-light")),
-
     Key([mod], "Return", lazy.spawn("kitty -e ranger")),
     Key([mod], "semicolon", lazy.spawn("kitty")),
     Key([mod], "e", lazy.spawn('emacsclient -ca "emacs --daemon"')),
     Key([mod], "q", lazy.spawn("qutebrowser")),
-
-    Key([mod, ctrl],"0", lazy.spawn('/home/gabe/.scripts/powermenu.sh')),
+    Key([mod, ctrl], "0", lazy.spawn("/home/gabe/.scripts/powermenu.sh")),
     Key([alt], "space", lazy.spawn("/home/gabe/.scripts/rofidrun.sh")),
-    Key([], "Print", lazy.spawn('/home/gabe/.scripts/scrotmenu.sh')),
-    Key([mod], "Print", lazy.spawn('/home/gabe/.scripts/scrt-select'))
+    Key([], "Print", lazy.spawn("/home/gabe/.scripts/scrotmenu.sh")),
+    Key([mod], "Print", lazy.spawn("/home/gabe/.scripts/scrt-select")),
 ]
 _groups = {
     "a": Group("c"),
@@ -95,9 +94,9 @@ for k, g in _groups.items():
     )
 
 
-
 groups.append(
-    ScratchPad("scratchpad",
+    ScratchPad(
+        "scratchpad",
         [
             # mine
             # DropDown("signal", "signal-desktop-beta",
@@ -231,9 +230,8 @@ groups.append(
                 opacity=1,
                 on_focus_lost_hide=True,
             ),
-
-
-        ])
+        ],
+    )
 )
 
 dropdowns = [
@@ -259,7 +257,7 @@ for key_name, dropdown in zip("n m b u i o p".split(), dropdowns):
 # ])
 
 # with open('/home/gabe/.cache/wal/colors.json') as f:
-    # colorscheme = json.load(f)
+# colorscheme = json.load(f)
 
 # backgr = colorscheme['special']['background']
 # foregr = colorscheme['special']['foreground']
@@ -270,14 +268,24 @@ for key_name, dropdown in zip("n m b u i o p".split(), dropdowns):
 
 layouts = [
     # layout.Max(margin=20, border_focus=color1, border_normal=backgr),
-    layout.Stack(num_stacks=2, margin=15, border_focus=color1, border_normal=backgr, border_width=4),
+    layout.Stack(
+        num_stacks=2,
+        margin=15,
+        border_focus=color1,
+        border_normal=backgr,
+        border_width=4,
+    ),
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),
     # layout.Columns(),
     # layout.Matrix(),
-    layout.MonadTall(margin=15, ratio=.56, border_focus=color1, border_normal=backgr, border_width=4),
+    layout.MonadTall(
+        margin=15, ratio=0.56, border_focus=color1, border_normal=backgr, border_width=4
+    ),
     # layout.MonadWide(),
-    layout.RatioTile(margin=15, border_focus=color1, border_normal=backgr, border_width=4),
+    layout.RatioTile(
+        margin=15, border_focus=color1, border_normal=backgr, border_width=4
+    ),
     # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
@@ -305,31 +313,42 @@ screens = [
                 widget.GroupBox(
                     this_current_screen_border=color1,
                     other_screen_border=color3,
-                    highlight_method='block',
-                    urgent_alert_method='block',
+                    highlight_method="block",
+                    urgent_alert_method="block",
                     active=color3,
-                    inactive=foregr
+                    inactive=foregr,
                 ),
                 widget.Prompt(),
                 widget.WindowName(),
                 # widget.TextBox("default config", name="default"),
                 widget.Systray(),
-                widget.ThermalSensor(foreground=foregr, foreground_alert=color2, metric=False, threshold=120, update_interval=10),
-                widget.Clock(format='%a %m-%d %H:%M'),
+                widget.ThermalSensor(
+                    foreground=foregr,
+                    foreground_alert=color2,
+                    metric=False,
+                    threshold=120,
+                    update_interval=10,
+                ),
+                widget.Clock(format="%a %m-%d %H:%M"),
             ],
             24,
-            background=backgr
+            background=backgr,
         ),
     ),
 ]
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.disable_floating())
+    Drag(
+        [mod],
+        "Button1",
+        lazy.window.set_position_floating(),
+        start=lazy.window.get_position(),
+    ),
+    Drag(
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+    ),
+    Click([mod], "Button2", lazy.window.disable_floating()),
 ]
 
 dgroups_key_binder = None
@@ -338,25 +357,29 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': ' download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wmclass': 'zoom'}, # zoom windows
-    {'wmclass': 'praat'}, # praat windows
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
-], border_focus=color1, border_width=4)
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        {"wmclass": "confirm"},
+        {"wmclass": "dialog"},
+        {"wmclass": " download"},
+        {"wmclass": "error"},
+        {"wmclass": "file_progress"},
+        {"wmclass": "notification"},
+        {"wmclass": "splash"},
+        {"wmclass": "toolbar"},
+        {"wmclass": "confirmreset"},  # gitk
+        {"wmclass": "makebranch"},  # gitk
+        {"wmclass": "maketag"},  # gitk
+        {"wmclass": "zoom"},  # zoom windows
+        {"wmclass": "praat"},  # praat windows
+        {"wname": "branchdialog"},  # gitk
+        {"wname": "pinentry"},  # GPG key password entry
+        {"wmclass": "ssh-askpass"},  # ssh-askpass
+    ],
+    border_focus=color1,
+    border_width=4,
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
