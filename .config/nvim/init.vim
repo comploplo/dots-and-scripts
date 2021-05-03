@@ -21,6 +21,7 @@ call minpac#add('humanoid-colors/vim-humanoid-colorscheme')
 call minpac#add('junegunn/goyo.vim')
 call minpac#add('junegunn/limelight.vim')
 " call minpac#add('kovetskiy/sxhkd-vim')
+call minpac#add('kyazdani42/nvim-web-devicons')
 call minpac#add('liuchengxu/vista.vim')
 call minpac#add('mattn/emmet-vim')
 call minpac#add('mbbill/undotree')
@@ -140,8 +141,12 @@ hi StatusLineNC ctermbg=0 ctermfg=8
 hi StatusLine ctermbg=7 ctermfg=8
 hi VertSplit ctermbg=8 ctermfg=8
 hi NonText ctermfg=0
-hi htmlH2 ctermbg=0 ctermfg=7
-hi htmlH3 ctermbg=0 ctermfg=7
+" hi htmlH2 ctermbg=0 ctermfg=7
+" hi htmlH3 ctermbg=0 ctermfg=7
+" hi Title ctermbg=0 ctermfg=7
+" hi TabLine ctermbg=0 ctermfg=7
+" hi TabLineSel ctermbg=0 ctermfg=7
+" hi TabLineFill ctermbg=0 ctermfg=7
 
 
 " tab settings
@@ -349,3 +354,7 @@ nnoremap <silent> <Leader>b :buffers<CR>
 nnoremap <silent> <Leader>bb :buffers<CR>
 nnoremap <silent> <Leader>bn :bnext<CR>
 nnoremap <silent> <Leader>bp :bprev<CR>
+nnoremap <silent> <Leader>be :bprev<CR>
+
+nnoremap <tab> :tabnext<cr>
+nnoremap <S-tab> :tabprev<cr>

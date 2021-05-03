@@ -17,6 +17,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- from https://github.com/streetturtle/awesome-wm-widgets
 local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local lain = require("lain")
 
@@ -102,8 +103,9 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
 
-local myvolume = volume_widget({display_notification=true})
+-- local myvolume = volume_widget({display_notification=true})
 local mybattery = batteryarc_widget()
+local myvolume volume_widget{ widget_type = 'vertical_bar' }
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -212,11 +214,11 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
+            volume_widget{ widget_type = 'vertical_bar' },
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
-            myvolume,
-            mybattery,
             mytextclock,
+            battery_widget(),
             s.mylayoutbox,
         },
     }
@@ -225,7 +227,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 10, awful.tag.viewnext),
     awful.button({ }, 11, awful.tag.viewprev)
 ))
@@ -239,8 +241,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "/", awful.tag.history.restore,                        {description = "go back", group = "tag"}),
     awful.key({ modkey,           }, "j", function () awful.client.focus.byidx( 1) end,     {description = "focus next by index", group = "client"}),
     awful.key({ modkey,           }, "k", function () awful.client.focus.byidx(-1) end,     {description = "focus previous by index", group = "client"}),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+    -- awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+              -- {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,  {description = "swap with next client by index", group = "client"}),
@@ -325,9 +327,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,                               {description = "show the menubar", group = "bar"}),
     awful.key({ modkey, "Shift", "Control"}, "b", function() awful.spawn("kitty --class=kitty-background -e asciiquarium") 
         end,                                                                                {description = "show or hide wibar(s)", group = "bar"}),
-  awful.key({ }, 'XF86AudioRaiseVolume', volume_widget.raise,                               {description = 'volume up', group = 'hotkeys'}),
-  awful.key({ }, 'XF86AudioLowerVolume', volume_widget.lower,                               {description = 'volume down', group = 'hotkeys'}),
-  awful.key({ }, 'XF86AudioMute', volume_widget.toggle,                                     {description = 'toggle mute', group = 'hotkeys'}), 
+  awful.key({ }, 'XF86AudioRaiseVolume', function() volume_widget:inc() end,                     {description = 'volume up', group = 'hotkeys'}),
+  awful.key({ }, 'XF86AudioLowerVolume', function() volume_widget:dec() end,                     {description = 'volume down', group = 'hotkeys'}),
+  awful.key({ }, 'XF86AudioMute', function() volume_widget:toggle() end,                         {description = 'toggle mute', group = 'hotkeys'}), 
   awful.key({  }, "XF86MonBrightnessUp", function() awful.spawn("brightnessctl set +10%") 
       end,                                                                                  {description = "increase brightness", group = "launcher"}),
   awful.key({  }, "XF86MonBrightnessDown", function() awful.spawn("brightnessctl set 10%-")
