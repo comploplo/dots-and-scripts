@@ -1,20 +1,14 @@
-" LSP THINGS
-" Avoid showing message extra message when using completion
-" set shortmess+=c
+let mapleader="\ "
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-nnoremap <Leader>lc :lua vim.lsp.buf.code_action()<CR>"
-nnoremap <Leader>ld :lua vim.lsp.buf.definition()<CR>
-nnoremap <Leader>lf :lua vim.lsp.buf.formatting()<CR>"
-nnoremap <Leader>lh :lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader>li :lua vim.lsp.buf.formatting()<CR>"
-nnoremap <Leader>li :lua vim.lsp.buf.implementation()<CR>
-nnoremap <Leader>ln :lua vim.lsp.buf.rename()<CR>
-nnoremap <Leader>lr :lua vim.lsp.buf.references()<CR>
-nnoremap <Leader>ls :lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <Leader>lc :lua vim.lsp.buf.code_action()<CR>"
+" nnoremap <Leader>ld :lua vim.lsp.buf.definition()<CR>
+" nnoremap <Leader>lf :lua vim.lsp.buf.formatting()<CR>"
+" nnoremap <Leader>lh :lua vim.lsp.buf.hover()<CR>
+" nnoremap <Leader>li :lua vim.lsp.buf.formatting()<CR>"
+" nnoremap <Leader>li :lua vim.lsp.buf.implementation()<CR>
+" nnoremap <Leader>ln :lua vim.lsp.buf.rename()<CR>
+" nnoremap <Leader>lr :lua vim.lsp.buf.references()<CR>
+" nnoremap <Leader>ls :lua vim.lsp.buf.signature_help()<CR>
 
 " custom function for going to the middle of text objects, uses mark @z
 " nnoremap <silent> gmp :call GoToMiddle("ip")<CR>
@@ -23,26 +17,29 @@ nnoremap <Leader>ls :lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <M-}> :call GoToMiddle("ip")<CR>
 " nnoremap <silent> <M-)> :call GoToMiddle("is")<CR>
 
-" git gud debinds
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " unbinding hjkl to get better at vim
 " nmap h <nop>
 " nmap l <nop>
 " nmap j <nop>
 " nmap k <nop>
-nmap <left> <nop>
-nmap <right> <nop>
+" nmap <left> <nop>
+" nmap <right> <nop>
 
 " QOL rebinds
-" imap <M-f> <esc>gqipgi
-imap jk <esc>
-imap hj <esc>
-imap kk <C-o>
-nnoremap n nzz
-nnoremap N Nzz
 " nnoremap <Space> :
 " vnoremap <Space> :
 " nnoremap h <C-w>
 " vnoremap h <C-w>
+" imap <M-f> <esc>gqipgi
+imap jk <esc>
+imap kj <esc>
+imap jj <C-o>
+nnoremap n nzz
+nnoremap N Nzz
 map <C-s> :w<CR>
 "full buff text object
 onoremap ib :<c-u>normal! mzggVG<cr>`z
@@ -62,10 +59,9 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
-" Vmap for maintain Visual Mode after shifting > and <
+" useful visual mode things
 vmap < <gv
 vmap > >gv
-" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
@@ -82,7 +78,9 @@ map <silent> <Leader>t :NERDTreeToggle %:h<CR>
 " undotree
 map <silent> <Leader>u :UndotreeToggle<CR>
 " wall
-nnoremap <Leader>w :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
+nnoremap <Leader><S-w> :luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>
+" save on leader w
+map <silent> <Leader>w :w<CR>
 
 " Buffer list.
 nnoremap <silent> <Leader>b :buffers<CR>

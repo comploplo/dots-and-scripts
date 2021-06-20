@@ -1,6 +1,6 @@
 " colorscheme theme things
 lua require('colorbuddy').colorscheme('neowal')
-colorscheme desert
+colorscheme gruvbox
 " colorscheme default
 " " mods to wal in fork:
 " hi StatusLineNC ctermbg=0 ctermfg=8
@@ -17,8 +17,8 @@ colorscheme desert
 " highlights the 80th character of the line if it exists
 " call matchadd('ColorColumn', '\%100v', 81)
 " hi ColorColumn ctermbg=gray guibg=gray
-
 " tab settings
+
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -27,7 +27,7 @@ set smartindent
 " undotree
 set noswapfile
 set nobackup
-set undodir="~/.config/nvim/undodir"
+set undodir=~/.config/nvim/undo
 set undofile
 
 "auto source .vimrc in file when 'vim .' in that file
@@ -66,8 +66,6 @@ set termguicolors
 set updatetime=50
 filetype plugin indent on
 syntax on
-
-let mapleader=","
 
 " tpope markdown
 let g:markdown_syntax_conceal = 0
