@@ -4,3 +4,6 @@
 [submodule ".config/awesome/awesome-wm-widgets"]
 	path = .config/awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets
+[submodule ".config/qutebrowser/qutewal"]
+	path = .config/qutebrowser/qutewal
+	url = https://github.com/hallonfras/qutewal

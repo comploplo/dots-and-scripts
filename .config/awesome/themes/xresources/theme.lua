@@ -54,8 +54,7 @@ theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(16)
 theme.menu_width  = dpi(100)
 
-theme.lain_icons         = os.getenv("HOME") ..
-                           "/.config/awesome/lain/icons/layout/default/"
+theme.lain_icons         = os.getenv("HOME").. "/.config/awesome/lain/icons/layout/default/"
 theme.layout_termfair    = theme.lain_icons .. "termfair.png"
 theme.layout_centerfair  = theme.lain_icons .. "centerfair.png"  -- termfair.center
 theme.layout_cascade     = theme.lain_icons .. "cascade.png"
@@ -63,13 +62,28 @@ theme.layout_cascadetile = theme.lain_icons .. "cascadetile.png" -- cascade.tile
 theme.layout_centerwork  = theme.lain_icons .. "centerwork.png"
 theme.layout_centerworkh = theme.lain_icons .. "centerworkh.png" -- centerwork.horizontal
 
+-- Define the icon theme for application icons. If not set then the icons
+-- from /usr/share/icons and /usr/share/icons/hicolor will be used.
+
+
+
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
 -- Recolor Layout icons:
+
+theme.icon_theme = "/usr/share/icons/Arc/*.png" ..
+                   "/usr/share/icons/Arc/status/symbolic/*.png" ..
+                   "/home/gabe/.config/awesome/awesome-wm-widgets/volume-widget/icons/*.png" ..
+                   "/home/gabe/.config/awesome/awesome-wm-widgets/battery-widget/*.png" ..
+                   "/home/gabe/.config/awesome/lain/icons/layout/default/*.png" --..
+                   -- theme.layout_centerwork
+
 theme = theme_assets.recolor_layout(theme, theme.fg_normal)
+
+
 
 -- Recolor titlebar icons:
 --
@@ -102,9 +116,6 @@ theme = theme_assets.recolor_titlebar(
     theme, xrdb.color1, "focus", "press"
 )
 
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "/usr/share/icons/Arc"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
