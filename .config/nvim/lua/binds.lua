@@ -3,8 +3,8 @@ local map = vim.api.nvim_set_keymap
 -- local bufmap = vim.api.nvim_buf_set_keymap
 
 -- Use <Tab> and <S-Tab> to navigate through popup menu
-map('i', '<Tab>',   [[pumvisible() ? "\<C-n>-- : "\<Tab>"]], { noremap = true, expr = true })
-map('i', '<S-Tab>', [[pumvisible() ? "\<C-p>-- : "\<S-Tab>"]], { noremap = true, expr = true })
+-- map('i', '<Tab>',   [[pumvisible() ? "<C-n>-- : "<Tab>"]], { noremap = true, expr = true })
+-- map('i', '<S-Tab>', [[pumvisible() ? "<C-p>-- : "<S-Tab>"]], { noremap = true, expr = true })
 
 -- QOL rebinds
 map('i', 'jk', '<esc>', {} )
@@ -42,14 +42,15 @@ map('', '<M-S-s>', [[:setlocal spell! spelllang=es_es<CR>]], {} )
 map('', '<M-t>', [[:Translate! ]], { noremap = true } )
 
 -- goyo, removes visual noise
-map('', '<Leader>z', [[:Goyo<CR>]], { silent = true } )
-map('', '<leader>n', [[:call Mynum()<CR>]], { silent = true } )
-
--- nerd tree
-map('', '<Leader>t', [[:NERDTreeToggle %:h<CR>]], { silent = true } )
-
+map('', '<Leader>tz', [[:Goyo<CR>]], { silent = true } )
+-- numbers
+map('', '<leader>tn', [[:lua ToggleNums()<CR>]], { silent = true } )
 -- undotree
-map('', '<Leader>u', [[:UndotreeToggle<CR>]], { silent = true } )
+map('', '<Leader>tu', [[:UndotreeToggle<CR>]], { silent = true } )
+-- ranger in vim, replacing nerdZree for now
+map('n', '<Leader>tr', ':RnvimrToggle<CR>', {noremap = true, silent = true})
+-- -- nerd tree
+-- map('', '<Leader>tt', [[:NERDTreeToggle %:h<CR>]], { silent = true } )
 
 -- wall
 map('n', '<Leader><S-w>', [[:luafile ~/.config/nvim/pack/minpac/start/neowal/lua/neowal.lua<CR>]], { noremap = true } )
@@ -65,7 +66,7 @@ map('', '<Leader>bp', [[:bprev<CR>]], { silent = true, noremap = true } )
 map('', '<Leader>be', [[:bprev<CR>]], { silent = true, noremap = true } )
 
 -- press tab for tabs
-map('n', '<tab>', [[:tabnext<cr>]], { noremap = true } )
+map('n', '<tab>', [[:tabnext<cr>]], { noremap = true, silent = true } )
 map('n', '<S-tab>', [[:tabprev<cr>]], { noremap = true } )
 
 -- The following list was made with a macro that employed the following:

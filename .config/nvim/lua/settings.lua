@@ -1,4 +1,3 @@
-require('colorbuddy').colorscheme('neowal')
 local opt = vim.opt
 
 opt.tabstop = 4
@@ -10,7 +9,7 @@ opt.smartindent = true
 -- undotree
 opt.swapfile = false
 opt.backup = false
-opt.undodir = '~/.config/nvim/undo'
+opt.undodir = vim.env.HOME .. [[/.config/nvim/undo]]
 opt.undofile = true
 
 -- auto source .vimrc in file when 'vim .' in that file
@@ -48,11 +47,13 @@ opt.tabpagemax = 6
 opt.termguicolors = true
 opt.updatetime = 50
 
-vim.g.colorscheme = 'gruvbox'
+opt.foldmethod = 'syntax'
 
--- tpope markdown
-vim.g.markdown_syntax_conceal = 0
-vim.g.folding = 0
+-- -- tpope markdown
+-- vim.g.markdown_syntax_conceal = 0
+-- vim.g.folding = 0
+
+vim.g.colorscheme = 'gruvbox'
 
 -- limelight lowlight highlight settings, used in goyo
 vim.g.limelight_conceal_ctermfg = 'gray'
@@ -74,3 +75,11 @@ vim.g.translate_popup_window = 0 -- if you want use popup window, set value 1
 vim.g.translate_winsize = 1 -- set buffer window height size if you doesn't use popup window
 
 vim.g.user_emmet_install_global = 0
+
+-- for ranger
+vim.g.rnvimr_ex_enable = 0
+vim.g.rnvimr_draw_border = 1
+vim.g.rnvimr_pick_enable = 0
+vim.g.rnvimr_bw_enable = 0
+
+vim.highlight.create('WhichKeyFloat', { ctermbg = 0, guibg = 'background' }, false)

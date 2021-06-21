@@ -1,33 +1,33 @@
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use 'vim-pandoc/vim-pandoc-syntax'
-  use 'kevinhwang91/rnvimr'
-  use 'Th3Whit3Wolf/spacebuddy'
-  use 'ericjuma/neowal'
-  use 'godlygeek/tabular'
-  use 'humanoid-colors/vim-humanoid-colorscheme'
-  use 'junegunn/goyo.vim'
-  use 'junegunn/limelight.vim'
-  use 'kana/vim-textobj-user'
-  use 'kovetskiy/sxhkd-vim'
-  use 'kyazdani42/nvim-web-devicons'
-  use 'mattn/emmet-vim'
-  use 'mbbill/undotree'
-  use 'morhetz/gruvbox'
-  use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'preservim/nerdtree'
-  use 'rhysd/clever-f.vim'
-  use 'ryanoasis/vim-devicons'
-  use 'saihoooooooo/vim-textobj-space'
-  use 'sheerun/vim-polyglot'
-  use 'tjdevries/colorbuddy.nvim'
-  use 'tomtom/tcomment_vim'
-  use 'tpope/vim-markdown'
-  use 'tpope/vim-surround'
-  use 'skanehira/translate.vim'
-end)
+require 'paq-nvim' {
+  'savq/paq-nvim';
+  'Th3Whit3Wolf/spacebuddy';
+  'ericjuma/neowal';
+  'folke/which-key.nvim';
+  'godlygeek/tabular';
+  'humanoid-colors/vim-humanoid-colorscheme';
+  -- 'junegunn/goyo.vim';
+  'junegunn/limelight.vim';
+  'kana/vim-textobj-user';
+  'kevinhwang91/rnvimr';
+  'kovetskiy/sxhkd-vim';
+  'kyazdani42/nvim-web-devicons';
+  'mattn/emmet-vim';
+  'mbbill/undotree';
+  'morhetz/gruvbox';
+  'neovim/nvim-lspconfig';
+  'nvim-lua/completion-nvim';
+  'nvim-lua/plenary.nvim';
+  'nvim-lua/popup.nvim';
+  'nvim-treesitter/nvim-treesitter';
+  'pope/vim-surround';
+  'preservim/nerdtree';
+  'rhysd/clever-f.vim';
+  'ryanoasis/vim-devicons';
+  'saihoooooooo/vim-textobj-space';
+  'sheerun/vim-polyglot';
+  'skanehira/translate.vim';
+  'tjdevries/colorbuddy.nvim';
+  'tomtom/tcomment_vim';
+  'vim-pandoc/vim-pandoc-syntax';
+  'wbthomason/packer.nvim';
+}
