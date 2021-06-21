@@ -50,7 +50,6 @@ endfun
 "     execute "normal!" . l:middle . " "
 " endfun
 
-
 " augroups and autocmds for QOL
 augroup vimrc     " Source vim configuration upon save
     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw

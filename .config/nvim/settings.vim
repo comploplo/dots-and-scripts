@@ -64,34 +64,38 @@ set sidescrolloff=1
 set tabpagemax=6
 set termguicolors
 set updatetime=50
-filetype plugin indent on
-syntax on
 
-" tpope markdown
-let g:markdown_syntax_conceal = 0
-let g:folding = 0
 
-" limelight lowlight highlight settings, used in goyo
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_guifg = 'DarkGray'
 
-" completion
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_insert_delay = 1
-let g:diagnostic_show_sign = 0
-let g:diagnostic_virtual_text_prefix = ' '
-let g:space_before_virtual_text = 5
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:diagnostic_trimmed_virtual_text = '20'
-call sign_define("LspDiagnosticsErrorSign", {"text" : "E", "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : "W", "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : "I", "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
 
-" translate from english to spanish
-let g:translate_source = "en"
-let g:translate_target = "es"
-let g:translate_popup_window = 0 " if you want use popup window, set value 1
-let g:translate_winsize = 1 " set buffer window height size if you doesn't use popup window
 
-let g:user_emmet_install_global = 0
+" syntax off
+"
+" " tpope markdown
+" let g:markdown_syntax_conceal = 0
+" let g:folding = 0
+"
+" " limelight lowlight highlight settings, used in goyo
+" let g:limelight_conceal_ctermfg = 'gray'
+" let g:limelight_conceal_guifg = 'DarkGray'
+"
+" " completion
+" let g:diagnostic_enable_virtual_text = 1
+" let g:diagnostic_insert_delay = 1
+" let g:diagnostic_show_sign = 0
+" let g:diagnostic_virtual_text_prefix = ' '
+" let g:space_before_virtual_text = 5
+" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" let g:diagnostic_trimmed_virtual_text = '20'
+" call sign_define("LspDiagnosticsErrorSign", {"text" : "E", "texthl" : "LspDiagnosticsError"})
+" call sign_define("LspDiagnosticsWarningSign", {"text" : "W", "texthl" : "LspDiagnosticsWarning"})
+" call sign_define("LspDiagnosticsInformationSign", {"text" : "I", "texthl" : "LspDiagnosticsInformation"})
+" call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
+"
+" " translate from english to spanish
+" let g:translate_source = "en"
+" let g:translate_target = "es"
+" let g:translate_popup_window = 0 " if you want use popup window, set value 1
+" let g:translate_winsize = 1 " set buffer window height size if you doesn't use popup window
+"
+" let g:user_emmet_install_global = 0
