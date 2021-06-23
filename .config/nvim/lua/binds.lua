@@ -19,11 +19,6 @@ map('o', 'ib', [[:<c-u>normal! mzggVG<cr>`z]], { noremap = true } )
 map('n', 'n', 'nzzzv', { noremap = true })
 map('n', 'N', 'Nzzzv', { noremap = true })
 
--- clibpord things
-map('', 'YY', '"+yy', { noremap = true } )
-map('', 'leader>p', '"+gP<CR>', { noremap = true } )
-map('n', 'XX', '"+x<CR>', { noremap = true } )
-
 -- Switching windows
 map('', '<C-j>', [[<C-w>j]], { noremap = true } )
 map('', '<C-k>', [[<C-w>k]], { noremap = true } )
@@ -47,9 +42,9 @@ map('', '<Leader>tz', [[:Goyo<CR>]], { silent = true } )
 map('', '<leader>tn', [[:lua ToggleNums()<CR>]], { silent = true } )
 -- undotree
 map('', '<Leader>tu', [[:UndotreeToggle<CR>]], { silent = true } )
--- ranger in vim, replacing nerdZree for now
-map('n', '<Leader>tr', ':RnvimrToggle<CR>', {noremap = true, silent = true})
--- -- nerd tree
+-- -- ranger in vim, replacing nerdTree for now
+-- map('n', '<Leader>tr', ':RnvimrToggle<CR>', {noremap = true, silent = true})
+-- -- -- nerd tree
 -- map('', '<Leader>tt', [[:NERDTreeToggle %:h<CR>]], { silent = true } )
 
 -- wall
@@ -65,9 +60,34 @@ map('', '<Leader>bn', [[:bnext<CR>]], { silent = true, noremap = true } )
 map('', '<Leader>bp', [[:bprev<CR>]], { silent = true, noremap = true } )
 map('', '<Leader>be', [[:bprev<CR>]], { silent = true, noremap = true } )
 
+-- leader Ex for local explore
+map('n', '<Leader>ex', '', {})
+
 -- press tab for tabs
 map('n', '<tab>', [[:tabnext<cr>]], { noremap = true, silent = true } )
 map('n', '<S-tab>', [[:tabprev<cr>]], { noremap = true } )
+
+-- " Using lua functions
+-- nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+map('n', '<leader>ff', [[:lua require('telescope.builtin').find_files()<CR>]], { noremap = true })
+-- nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+map('n', '<leader>fg', [[:lua require('telescope.builtin').live_grep()<CR>]], { noremap = true })
+-- nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+map('n', '<leader>fb', [[:lua require('telescope.builtin').buffers()<CR>]], { noremap = true })
+-- nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+map('n', '<leader>fh', [[:lua require('telescope.builtin').help_tags()<CR>]], { noremap = true })
+map('n', '<leader>fc', [[:lua require('telescope.builtin').find_files({ prompt_title = '[ config ]', cwd = '~/.dotfiles/dots-and-scripts/.config/' })<CR>]], { noremap = true, silent = true })
+-- map('', '', [[]], {})
+
+-- nnoremap <leader>y "+y
+map('n', '<leader>y', [["+y]], { noremap = true })
+-- vnoremap <leader>y "+y
+map('v', '<leader>y', [["+y]], { noremap = true })
+-- nnoremap <leader>Y gg"+yG
+map('n', '<leader>Y', [[gg"+yG]], { noremap = true })
+-- map('', '', [[]], {})
+
+
 
 -- The following list was made with a macro that employed the following:
 -- "let @z = char2nr(matchstr(getline('.'), '%'.col('.').'c.'))"
