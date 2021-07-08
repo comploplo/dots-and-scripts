@@ -1,10 +1,17 @@
 require 'paq-nvim' {
+	'onsails/lspkind-nvim';
   'savq/paq-nvim';
   'Th3Whit3Wolf/spacebuddy';
   'ericjuma/neowal';
   'folke/which-key.nvim';
+  'glepnir/lspsaga.nvim';
   'godlygeek/tabular';
-  'humanoid-colors/vim-humanoid-colorscheme';
+	-- 'honza/vim-snippets';
+	-- 'hrsh7th/nvim-compe';
+	'hrsh7th/vim-vsnip';
+  'hrsh7th/vim-vsnip-integ';
+  -- 'humanoid-colors/vim-humanoid-colorscheme';
+	'jubnzv/virtual-types.nvim';
   'junegunn/goyo.vim';
   'junegunn/limelight.vim';
   'justinmk/vim-dirvish';
@@ -26,9 +33,10 @@ require 'paq-nvim' {
   'nvim-treesitter/nvim-treesitter';
   'tpope/vim-surround';
   -- 'preservim/nerdtree';
-  'rhysd/clever-f.vim';
+  -- 'rhysd/clever-f.vim';
   'ryanoasis/vim-devicons';
-  'saihoooooooo/vim-textobj-space';
+  -- 'saihoooooooo/vim-textobj-space';
+	'sirver/ultisnips';
   'sheerun/vim-polyglot';
   'skanehira/translate.vim';
   'tjdevries/colorbuddy.nvim';

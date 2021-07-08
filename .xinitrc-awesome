@@ -1,0 +1,20 @@
+#!/bin/bash
+
+picom &
+xset b off
+xset s off
+setxkbmap -option ctrl:nocaps
+theme set gruvbox
+xrdb -load ~/.Xresources
+
+# Run prime-offload if optimus manager is installed
+if [[ -f /usr/bin/prime-offload ]]; then
+	/usr/bin/prime-offload
+fi
+
+exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+
+# Run prime-switch as root if optimus manager is installed
+if [[ -f /usr/bin/prime-switch ]]; then
+	sudo /usr/bin/prime-switch
+fi

@@ -44,7 +44,7 @@ define_augroups({
   	-- {'User', 'GoyoLeave', 'nested call <SID>goyo_leave'},
   	{'BufNewFile,BufRead', '*.md', 'set filetype=markdown'},
   	{'StdinReadPre', '*', 'let s:std_in=1'},
-  	{'VimEnter', '*', [[if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif]]},
+  	-- {'VimEnter', '*', [[if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif]]},
   	{'Filetype', 'html,css', 'EmmetInstall'},
 	},
 	markdown = {
@@ -55,9 +55,9 @@ define_augroups({
   	{'FileType', 'markdown,text', 'nmap gr <Plug>(Translate)'},
   	{'FileType', 'markdown,text', 'vmap T <Plug>(VTranslate)'},
 	},
-	lua = {
-  	{'FileType', 'lua', 'set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2'},
-	},
+	-- lua = {
+  -- 	{'FileType', 'lua', 'set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2'},
+	-- },
 	-- augroup vimrc     " Source vim configuration upon save
 	--     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
 	--     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw

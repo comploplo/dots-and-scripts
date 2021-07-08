@@ -96,7 +96,7 @@ awful.layout.layouts = {
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 
 -- Keyboard map indicator and switcher
--- local mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- }}}
 
@@ -183,7 +183,7 @@ awful.screen.connect_for_each_screen(function(s)
     { -- right widgets
       -- volume_widget{ widget_type = 'vertical_bar' },
       layout = wibox.layout.fixed.horizontal,
-      -- mykeyboardlayout,
+      mykeyboardlayout,
       wibox.widget.textclock(),
       battery_widget(),
       s.mylayoutbox,
@@ -345,6 +345,7 @@ awful.rules.rules = {
                    screen = awful.screen.preferred,
                    placement = awful.placement.no_overlap+awful.placement.no_offscreen } },
   { rule_any = { name = { "Picture-in-picture" } }, properties = { floating = true, ontop = true }},
+  { rule_any = { name = { "OpenGL*" } }, properties = { floating = true, ontop = true } },
   { rule_any = { class = { "chatterino" } }, properties = { floating = true } },
   { rule_any = { class = { "zoom" }, name = { "chat" }, }, properties = { floating = true, ontop = true } },
   { rule_any = { class = { "zoom", "Praat" } }, properties = { floating = true } },
