@@ -71,9 +71,9 @@ local ddbigterm = lain.util.quake { app = terminal, argname = "--name=%s",
 local ddpavu = lain.util.quake { app = "pavucontrol", argname = "--name=%s",
                                  height = .6, width = .3, vert = "top",
                                  horiz = "left", border = 0, name = "pavuDD" }
-local ddwal = lain.util.quake { app = terminal, argname = "--name=%s ~/.scripts/ranger-bg",
-                                height = .4, width = .5, vert = "center",
-                                horiz = "center", border = 3, name = "bgDD" }
+-- local ddwal = lain.util.quake { app = terminal, argname = "--name=%s ~/.scripts/ranger-bg",
+--                                 height = .4, width = .5, vert = "center",
+--                                 horiz = "center", border = 3, name = "bgDD" }
 -- local ddchat = lain.util.quake { app = "chatterino", argname = " ",
 --                                  height = 1, width = .2, vert = "center",
 --                                  horiz = "right", border = 3, name = "Chatterino 2.3.2 - comploplo" }
@@ -230,7 +230,9 @@ local globalkeys = gears.table.join(
   awful.key({ modkey, shift }, "d", function () awful.spawn("flatpak run com.discordapp.Discord") end, { }),
   awful.key({ modkey, shift }, "f", function () awful.spawn(browser) end, { }),
   awful.key({ modkey, shift }, "g", function ()
-    awful.spawn("steam -silent >> ~/.cache/awesome/steamout 2>> ~/.cache/awesome/steamerr") end, { }),
+    awful.spawn("steam -silent") end, { }),
+  awful.key({ modkey, shift }, "v", function () awful.spawn("neovide") end, { }),
+  awful.key({ modkey, shift, ctrl }, "b", function () awful.spawn("blueman-applet") end, { }),
   awful.key({ modkey, shift, ctrl }, "z", function () awful.spawn("flatpak run us.zoom.Zoom") end, {  }),
   awful.key({ modkey, shift }, "t", function () awful.spawn('/home/gabe/.scripts/theme set best-dark') end, { }),
   awful.key({ modkey, shift, ctrl }, "t", function () awful.spawn('/home/gabe/.scripts/theme set best-light') end, { }),
@@ -239,7 +241,7 @@ local globalkeys = gears.table.join(
   awful.key({ modkey, }, "z", function () ddterm:toggle() end, { }),
   awful.key({ modkey, shift }, "z", function () ddbigterm:toggle() end, { }),
   awful.key({ modkey, shift }, "p", function () ddpavu:toggle() end, { }),
-  awful.key({ modkey }, "\\", function () ddwal:toggle() end, { }),
+  -- awful.key({ modkey }, "\\", function () ddwal:toggle() end, { }),
   -- awful.key({ modkey, shift }, "c", function () ddchat:toggle() end, { }),
 
   -- restart and quit

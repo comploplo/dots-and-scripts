@@ -1,3 +1,5 @@
+local cmd = vim.cmd
+
 local function define_augroups(definitions) -- {{{1
   	-- Create autocommand groups based on the passed definitions
   	--
@@ -8,19 +10,19 @@ local function define_augroups(definitions) -- {{{1
     --    3. Text
     -- just like how they would normally be defined from Vim itself
     for group_name, definition in pairs(definitions) do
-        vim.cmd('augroup ' .. group_name)
-        vim.cmd('autocmd!')
+        cmd('augroup ' .. group_name)
+        cmd('autocmd!')
 
         for _, def in pairs(definition) do
             local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
-            vim.cmd(command)
+            cmd(command)
         end
 
-        vim.cmd('augroup END')
+        cmd('augroup END')
     end
 end
 
-vim.cmd([[
+cmd([[
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -48,8 +50,9 @@ define_augroups({
   	{'Filetype', 'html,css', 'EmmetInstall'},
 	},
 	markdown = {
-  	{'FileType', 'markdown', 'set conceallevel=2'},
-  	{'FileType', 'markdown', 'setlocal spell spelllang=en_us'},
+  	-- {'FileType', 'markdown', 'set conceallevel=2'},
+  	-- {'FileType', 'markdown', 'setlocal spell spelllang=en_us'},
+  	{'FileType', 'markdown', 'set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2'},
   	{'FileType', 'markdown', 'map <M-b> :call g:PandocSmartExport()<CR>'},
   	{'FileType', 'markdown', 'nmap <Leader>c :call g:PandocSmartExport()<CR>'},
   	{'FileType', 'markdown,text', 'nmap gr <Plug>(Translate)'},

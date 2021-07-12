@@ -7,14 +7,14 @@ require 'paq-nvim' {
   'glepnir/lspsaga.nvim';
   'godlygeek/tabular';
 	-- 'honza/vim-snippets';
-	-- 'hrsh7th/nvim-compe';
+	'hrsh7th/nvim-compe';
 	'hrsh7th/vim-vsnip';
   'hrsh7th/vim-vsnip-integ';
   -- 'humanoid-colors/vim-humanoid-colorscheme';
 	'jubnzv/virtual-types.nvim';
   'junegunn/goyo.vim';
   'junegunn/limelight.vim';
-  'justinmk/vim-dirvish';
+  -- 'justinmk/vim-dirvish';
   'kana/vim-textobj-user';
   -- 'kevinhwang91/rnvimr';
   'kovetskiy/sxhkd-vim';
@@ -25,7 +25,7 @@ require 'paq-nvim' {
   'mbbill/undotree';
   'morhetz/gruvbox';
   'neovim/nvim-lspconfig';
-  'nvim-lua/completion-nvim';
+  -- 'nvim-lua/completion-nvim';
   'nvim-lua/plenary.nvim';
   'nvim-lua/popup.nvim';
   'nvim-telescope/telescope.nvim';
@@ -39,6 +39,7 @@ require 'paq-nvim' {
 	'sirver/ultisnips';
   'sheerun/vim-polyglot';
   'skanehira/translate.vim';
+  'tamago324/lir.nvim';
   'tjdevries/colorbuddy.nvim';
   'tomtom/tcomment_vim';
   'vim-pandoc/vim-pandoc-syntax';

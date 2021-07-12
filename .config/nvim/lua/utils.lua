@@ -1,5 +1,5 @@
 local cmd = vim.cmd
-local g = vim.g
+-- local g = vim.g
 require('lspkind').init()
 require('which-key').setup { }
 require('lspsaga').init_lsp_saga()
@@ -29,7 +29,7 @@ require('telescope').setup {
 }
 
 
-function ToggleNums ()
+function _G.ToggleNums ()
   vim.cmd([[set number! relativenumber!]])
 end
 

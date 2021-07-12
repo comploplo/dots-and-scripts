@@ -47,7 +47,7 @@ local on_attach = function(client, bufnr)
   bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
   print("LSP started.");
-  require'completion'.on_attach(client)
+  -- require'completion'.on_attach(client)
 
 end
 
