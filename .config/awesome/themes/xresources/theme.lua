@@ -74,12 +74,19 @@ theme.layout_centerworkh = theme.lain_icons .. "centerworkh.png" -- centerwork.h
 
 -- Recolor Layout icons:
 
-theme.icon_theme = "/usr/share/icons/Arc/*.png" ..
-                   "/usr/share/icons/Arc/status/symbolic/*.png" ..
-                   "/home/gabe/.config/awesome/awesome-wm-widgets/volume-widget/icons/*.png" ..
-                   "/home/gabe/.config/awesome/awesome-wm-widgets/battery-widget/*.png" ..
-                   "/home/gabe/.config/awesome/lain/icons/layout/default/*.png" --..
-                   -- theme.layout_centerwork
+-- theme.icon_theme = "/usr/share/icons/Arc/*.png" ..
+--                    "/usr/share/icons/Arc/status/symbolic/*.png" ..
+--                    "/home/gabe/.config/awesome/awesome-wm-widgets/volume-widget/icons/*.png" ..
+--                    "/home/gabe/.config/awesome/awesome-wm-widgets/battery-widget/*.png" ..
+--                    "/home/gabe/.config/awesome/lain/icons/layout/default/*.png" --..
+--                    -- theme.layout_centerwork
+
+theme.icon_theme = { "/usr/share/icons/Arc/*.png",
+                   "/usr/share/icons/Arc/status/symbolic/*.png",
+                   "/home/gabe/.config/awesome/awesome-wm-widgets/volume-widget/icons/*.png",
+                   "/home/gabe/.config/awesome/awesome-wm-widgets/battery-widget/*.png",
+                   "/home/gabe/.config/awesome/lain/icons/layout/default/*.png",
+                   theme.layout_centerwork }
 
 theme = theme_assets.recolor_layout(theme, theme.fg_normal)
 

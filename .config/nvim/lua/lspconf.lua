@@ -2,7 +2,7 @@
 
 local nvim_lsp = require'lspconfig'
 local sumneko_root_path = '/home/gabe/programming/repos/lua-language-server'
-local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
 local sign_define = vim.fn.sign_define
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -44,40 +44,40 @@ local on_attach = function(client, bufnr)
   bmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   bmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   bmap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  bmap('n', '<Leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-  print("LSP started.");
+  print('LSP started.');
   -- require'completion'.on_attach(client)
 
 end
 
-local lua_globals = { "vim" }
+local lua_globals = { 'vim' }
 local lua_libs = {
-    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
 }
 
-if vim.fn.filereadable("/usr/share/xsessions/awesome.desktop") then
+if vim.fn.filereadable('/usr/share/xsessions/awesome.desktop') then
   -- awesome wm globals
-  table.insert(lua_globals, "awesome")
-  table.insert(lua_globals, "client")
-  table.insert(lua_globals, "root")
-  table.insert(lua_globals, "screen")
+  table.insert(lua_globals, 'awesome')
+  table.insert(lua_globals, 'client')
+  table.insert(lua_globals, 'root')
+  table.insert(lua_globals, 'screen')
   -- awesome wm libs
-  lua_libs["/usr/share/awesome/lib"] = true
+  lua_libs['/usr/share/awesome/lib'] = true
 end
 
 nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
-	capabilities = capabilities,
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  capabilities = capabilities,
+  cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'};
   settings = {
     Lua = {
-    runtime = {
-      -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-      version = 'LuaJIT',
-      -- Setup your lua path
-        path = vim.split(package.path, ";")
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = vim.split(package.path, ';')
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
@@ -94,50 +94,50 @@ nvim_lsp.sumneko_lua.setup {
 }
 
 nvim_lsp.pyls.setup{
-    on_attach=on_attach,
-    settings = {
-        python = {
-            formatting = {
-                provider = { "black" },
-                blackPath = { "black" }
-            },
-            linting = {
-                enabled = { true },
-                pylint = {
-                    pylintEnabled = { true },
-                },
-                flake8 = {
-                    flake8Enabled = { true },
-                    flake8Path = { "flake8" }
-                }
-            },
-            analysis = {
-                warnings = { "unknown-parameter-name" },
-                disabled = { "too-many-function-arguments", "parameter-missing" },
-                errors = { "undefined-variable"  },
-                info = { "unresolved-import" }
-            }
+  on_attach=on_attach,
+  settings = {
+    python = {
+      formatting = {
+        provider = { 'black' },
+        blackPath = { 'black' }
+      },
+      linting = {
+        enabled = { true },
+        pylint = {
+          pylintEnabled = { true },
+        },
+        flake8 = {
+          flake8Enabled = { true },
+          flake8Path = { 'flake8' }
         }
+      },
+      analysis = {
+        warnings = { 'unknown-parameter-name' },
+        disabled = { 'too-many-function-arguments', 'parameter-missing' },
+        errors = { 'undefined-variable'  },
+        info = { 'unresolved-import' }
+      }
     }
+  }
 }
 
 nvim_lsp.html.setup{
-    on_attach = on_attach,
-	capabilities = capabilities,
-    init_options = {
-        configurationSection = { "html", "css", "javascript" },
-        embeddedLanguages = {
-            css = true,
-            javascript = true
-        }
+  on_attach = on_attach,
+  capabilities = capabilities,
+  init_options = {
+    configurationSection = { 'html', 'css', 'javascript' },
+    embeddedLanguages = {
+      css = true,
+      javascript = true
     }
+  }
 }
 
-nvim_lsp.ccls.setup{ filetypes = { "c", "cc", "cpp", "objc", "objcpp" } }
+nvim_lsp.ccls.setup{ filetypes = { 'c', 'cc', 'cpp', 'objc', 'objcpp' } }
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "hls", "tsserver", "cssls", "texlab", "bashls", "vimls", "jdtls", "gopls", "jsonls" }
+local servers = { 'bashls', 'cssls', 'dockerls', 'gopls', 'hls', 'jdtls', 'jsonls', 'rls', 'texlab', 'tsserver', 'vimls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, capabilities = capabilities }
 end

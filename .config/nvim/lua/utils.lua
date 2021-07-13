@@ -3,6 +3,7 @@ local cmd = vim.cmd
 require('lspkind').init()
 require('which-key').setup { }
 require('lspsaga').init_lsp_saga()
+require('nvim_comment').setup()
 
 -- This makes dirvish replace netrw
 cmd([[
@@ -27,7 +28,6 @@ require('telescope').setup {
 	  }
 	}
 }
-
 
 function _G.ToggleNums ()
   vim.cmd([[set number! relativenumber!]])

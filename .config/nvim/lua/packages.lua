@@ -1,47 +1,49 @@
-require 'paq-nvim' {
-	'onsails/lspkind-nvim';
-  'savq/paq-nvim';
-  'Th3Whit3Wolf/spacebuddy';
-  'ericjuma/neowal';
-  'folke/which-key.nvim';
-  'glepnir/lspsaga.nvim';
-  'godlygeek/tabular';
-	-- 'honza/vim-snippets';
-	'hrsh7th/nvim-compe';
-	'hrsh7th/vim-vsnip';
-  'hrsh7th/vim-vsnip-integ';
-  -- 'humanoid-colors/vim-humanoid-colorscheme';
-	'jubnzv/virtual-types.nvim';
-  'junegunn/goyo.vim';
-  'junegunn/limelight.vim';
-  -- 'justinmk/vim-dirvish';
-  'kana/vim-textobj-user';
-  -- 'kevinhwang91/rnvimr';
-  'kovetskiy/sxhkd-vim';
-  'kyazdani42/nvim-web-devicons';
-  -- 'lambdalisue/fern.vim';
-  -- 'lambdalisue/fern-hijack.vim';
-  'mattn/emmet-vim';
-  'mbbill/undotree';
-  'morhetz/gruvbox';
-  'neovim/nvim-lspconfig';
-  -- 'nvim-lua/completion-nvim';
-  'nvim-lua/plenary.nvim';
-  'nvim-lua/popup.nvim';
-  'nvim-telescope/telescope.nvim';
-  'nvim-telescope/telescope-fzy-native.nvim';
-  'nvim-treesitter/nvim-treesitter';
-  'tpope/vim-surround';
-  -- 'preservim/nerdtree';
-  -- 'rhysd/clever-f.vim';
-  'ryanoasis/vim-devicons';
-  -- 'saihoooooooo/vim-textobj-space';
-	'sirver/ultisnips';
-  'sheerun/vim-polyglot';
-  'skanehira/translate.vim';
-  'tamago324/lir.nvim';
-  'tjdevries/colorbuddy.nvim';
-  'tomtom/tcomment_vim';
-  'vim-pandoc/vim-pandoc-syntax';
-  'wbthomason/packer.nvim';
+require('paq-nvim') {
+	'onsails/lspkind-nvim',
+  'savq/paq-nvim',
+  'Th3Whit3Wolf/spacebuddy',
+  'ericjuma/neowal',
+  'folke/which-key.nvim',
+  'glepnir/lspsaga.nvim',
+  'godlygeek/tabular',
+	-- 'honza/vim-snippets',
+	'hrsh7th/nvim-compe',
+	'hrsh7th/vim-vsnip',
+  'hrsh7th/vim-vsnip-integ',
+  -- 'humanoid-colors/vim-humanoid-colorscheme',
+	'jubnzv/virtual-types.nvim',
+  'junegunn/goyo.vim',
+  'junegunn/limelight.vim',
+  -- 'justinmk/vim-dirvish',
+  'kana/vim-textobj-user',
+  -- 'kevinhwang91/rnvimr',
+  'kovetskiy/sxhkd-vim',
+  'kyazdani42/nvim-web-devicons',
+  -- 'lambdalisue/fern.vim',
+  -- 'lambdalisue/fern-hijack.vim',
+  'mattn/emmet-vim',
+  'mbbill/undotree',
+  'morhetz/gruvbox',
+  'neovim/nvim-lspconfig',
+  -- 'nvim-lua/completion-nvim',
+  'nvim-lua/plenary.nvim',
+  { 'nvim-lua/popup.nvim', run = ':TSUpdate' },
+  'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-fzy-native.nvim',
+  'nvim-treesitter/nvim-treesitter',
+  'tpope/vim-surround',
+  -- 'preservim/nerdtree',
+  -- 'rhysd/clever-f.vim',
+  'ryanoasis/vim-devicons',
+  -- 'saihoooooooo/vim-textobj-space',
+	'sirver/ultisnips',
+  'sheerun/vim-polyglot',
+  'skanehira/translate.vim',
+  'tamago324/lir.nvim',
+  'terrortylor/nvim-comment',
+  'tjdevries/colorbuddy.nvim',
+  -- 'tomtom/tcomment_vim',
+  'vim-pandoc/vim-pandoc-syntax',
+  'wbthomason/packer.nvim',
+  'windwp/nvim-autopairs',
 }

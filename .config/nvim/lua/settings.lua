@@ -6,7 +6,7 @@ local hi = vim.highlight
 hi.create('WhichKeyFloat', { ctermbg = 0, guibg = 'background' }, false)
 
 opt.smartindent                   = true
-opt.shell                         = 'sh'                                  -- shell to use for `!`, `:!`, `system()` etc.
+opt.shell                         = 'bash'                                -- shell to use for `!`, `:!`, `system()` etc.
 opt.shiftround                    = false                                 -- don't always indent by multiple of shiftwidth
 opt.shiftwidth                    = 2                                     -- spaces per tab (when shifting)
 opt.shortmess                     = opt.shortmess + 'A'                   -- ignore annoying swapfile messages
@@ -61,7 +61,7 @@ opt.foldexpr                      = 'nvim_treesitter#foldexpr()'
 opt.belloff                       = 'all'                                 -- never ring the bell for any reason
 opt.completeopt                   = 'menuone'                             -- show menu even if there is only one candidate (for nvim-compe)
 opt.completeopt                   = vim.opt.completeopt + 'noselect'      -- don't automatically select canditate (for nvim-compe)
-opt.cursorline                    = true                                  -- highlight current line
+opt.cursorline                    = true                                 -- highlight current line
 opt.diffopt                       = vim.opt.diffopt + 'foldcolumn:0'      -- don't show fold column in diff view
 opt.emoji                         = false                                 -- don't assume all emoji are double width
 opt.expandtab                     = true                                  -- always use spaces instead of tabs
@@ -69,7 +69,8 @@ opt.fillchars                     = {
   diff                            = '∙',                                  -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
   eob                             = ' ',                                  -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
   fold                            = '·',                                  -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-  vert                            = '┃',                                  -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+  vert                            = '|',                                  -- just an or, |
+  -- vert                            = '┃',                                  -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83), actual letter: '┃'
 }
 
 opt.foldlevelstart                = 99                                    -- start unfolded
@@ -77,7 +78,7 @@ opt.formatoptions                 = opt.formatoptions + 'j'               -- rem
 opt.formatoptions                 = opt.formatoptions + 'n'               -- smart auto-indenting inside numbered lists
 
 opt.spellcapcheck                 = ''                                    -- don't check for capital letters at start of sentence
-opt.splitbelow                    = true                                  -- open horizontal splits below current window
+opt.splitbelow                    = false                                 -- open horizontal splits below current window
 opt.splitright                    = true                                  -- open vertical splits to the right of the current window
 opt.textwidth                     = 80                                    -- automatically hard wrap at 80 columns
 
