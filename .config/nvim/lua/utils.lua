@@ -15,71 +15,65 @@ require('dap').defaults.fallback.terminal_win_cmd = '35vsplit new'
 
 require('nvim-treesitter.configs').setup {
 	highlight = { enable = true, },
-	indent = { enable = true, },
+	indent    = { enable = true, },
 }
 
 require('compe').setup {
   source = {
-    path = true,
-    spell = {filetypes = {'markdown', 'tex'}},
-    buffer = true,
-    calc = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    vsnip = true,
+    path      = true,
+    spell     = {filetypes = {'markdown', 'tex'}},
+    buffer    = true,
+    calc      = true,
+    nvim_lsp  = true,
+    nvim_lua  = true,
+    vsnip     = true,
     ultisnips = false,
-    luasnip = false,
+    luasnip   = false,
   },
 }
 
 require('zen-mode').setup {
-  window = {
-    backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-    width = 0.6, -- width of the Zen window
-    height = 1, -- height of the Zen window
+  window      = {
+    backdrop  = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+    width     = 0.6, -- width of the Zen window
+    height    = 1, -- height of the Zen window
   },
-  plugins = {
-    options = {
+  plugins     = {
+    options   = {
       enabled = true,
-      ruler = false, -- disables the ruler text in the cmd line area
+      ruler   = false, -- disables the ruler text in the cmd line area
       showcmd = false, -- disables the command in the last line of the screen
     },
-    twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-    gitsigns = { enabled = false }, -- disables git signs
-    tmux = { enabled = false }, -- disables the tmux statusline
+    twilight  = { enabled = true }, -- enable to start Twilight when zen mode opens
+    gitsigns  = { enabled = false }, -- disables git signs
+    tmux      = { enabled = false }, -- disables the tmux statusline
     -- this will change the font size on kitty when in zen mode
     -- to make this work, you need to set the following kitty options:
     -- - allow_remote_control socket-only
     -- - listen_on unix:/tmp/kitty
-    kitty = {
+    kitty     = {
       enabled = true,
-      font = "+4", -- font size increment
+      font    = "+4", -- font size increment
     },
   },
-  -- callback where you can add custom code when the Zen window opens
-  on_open = function(win)
-  end,
-  -- callback where you can add custom code when the Zen window closes
-  on_close = function()
-  end,
 }
 
 require('gitsigns').setup {
-  numhl = false,
-  linehl = false,
-  watch_index = {
-    interval = 1000,
-    follow_files = true
+  numhl                       = false,
+  linehl                      = false,
+  watch_index                 = {
+    interval                  = 1000,
+    follow_files              = true
   },
-  current_line_blame = false,
-  current_line_blame_delay = 1000,
+  current_line_blame          = false,
+  current_line_blame_delay    = 1000,
   current_line_blame_position = 'eol',
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil, -- Use default
-  word_diff = false,
-  use_decoration_api = true,
-  use_internal_diff = true,  -- If luajit is present
+  sign_priority               = 6,
+  update_debounce             = 100,
+  status_formatter            = nil, -- Use default
+  word_diff                   = false,
+  use_decoration_api          = true,
+  use_internal_diff           = true,  -- If luajit is present
 }
 
 -- function _G.ToggleNums ()

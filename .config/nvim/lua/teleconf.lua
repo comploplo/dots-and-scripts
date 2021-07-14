@@ -20,16 +20,16 @@ end
 local _ = pcall(require, "nvim-nonicons")
 
 require("telescope").setup {
-  defaults = {
-    prompt_prefix = "❯ ",
-    selection_caret = "❯ ",
+  defaults              = {
+    prompt_prefix       = "❯ ",
+    selection_caret     = "❯ ",
 
-    winblend = 0,
+    winblend            = 0,
 
-    layout_strategy = "horizontal",
-    layout_config = {
-      width = 0.95,
-      height = 0.85,
+    layout_strategy     = "horizontal",
+    layout_config       = {
+      width             = 0.95,
+      height            = 0.85,
       -- preview_cutoff = 120,
       prompt_position = "top",
 
