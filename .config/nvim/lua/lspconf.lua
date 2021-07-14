@@ -21,6 +21,11 @@ local on_attach = function(client, bufnr)
   local function bmap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function bopt(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
+  sign_define( "LspDiagnosticsSignError", {text = "E", texthl = "LspDiagnosticsError"})
+  sign_define( "LspDiagnosticsSignWarning", {text = "W", texthl = "LspDiagnosticsWarning"})
+  sign_define( "LspDiagnosticsSignInformation", {text = "I", texthl = "LspDiagnosticsInformation"})
+  sign_define( "LspDiagnosticsSignHint", {text = "?", texthl = "LspDiagnosticsHint"})
+
   --Enable completion triggered by <c-x><c-o>
   bopt('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -141,8 +146,3 @@ local servers = { 'bashls', 'cssls', 'dockerls', 'gopls', 'hls', 'jdtls', 'jsonl
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, capabilities = capabilities }
 end
-
-sign_define( "LspDiagnosticsSignError", {text = "E", texthl = "LspDiagnosticsError"})
-sign_define( "LspDiagnosticsSignWarning", {text = "W", texthl = "LspDiagnosticsWarning"})
-sign_define( "LspDiagnosticsSignInformation", {text = "I", texthl = "LspDiagnosticsInformation"})
-sign_define( "LspDiagnosticsSignHint", {text = "?", texthl = "LspDiagnosticsHint"})

@@ -3,7 +3,7 @@
 -- vim.cmd('source ~/.config/nvim/settings.vim')
 -- vim.cmd('source ~/.config/nvim/keys.vim')
 require('packages')
-require('completion-three')
+require('completion')
 require('binds')
 require('utils')
 require('settings')

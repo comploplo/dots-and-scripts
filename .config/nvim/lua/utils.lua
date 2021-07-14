@@ -5,12 +5,12 @@ require('which-key').setup { }
 require('lspsaga').init_lsp_saga()
 require('nvim_comment').setup()
 
--- This makes dirvish replace netrw
-cmd([[
-command! -nargs=? -complete=dir Explore Dirvish <args>
-command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
-command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
-]])
+-- -- This makes dirvish replace netrw
+-- cmd([[
+-- command! -nargs=? -complete=dir Explore Dirvish <args>
+-- command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+-- command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
+-- ]])
 
 -- require('colorbuddy').colorscheme('neowal')
 -- cmd[[colorscheme neowal]]
@@ -39,7 +39,7 @@ fun! g:PandocSmartExport()
     write
     if 'Ling' =~ expand('%:p:h:t')
         let l:pandoccall = 'pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --template homework-ling.tex'
-    else 
+    else
         let l:pandoccall = 'pandoc ' . expand('%') . ' -o ' . expand('%:p:h') . '/' . expand('%:t:r') . '.pdf --template homework.tex --pdf-engine xelatex'
     endif
     echo l:pandoccall

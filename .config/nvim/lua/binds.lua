@@ -1,36 +1,19 @@
 vim.g.mapleader = ' '
 local map = vim.api.nvim_set_keymap
 local cmd = vim.cmd
--- local g = vim.g
+local g = vim.g
 -- local bufmap = vim.api.nvim_buf_set_keyma
 
 local opts = { silent = true, noremap = true }
 local optsexpr = { silent = false, noremap = true, expr = true }
 -- local optsexpr = { silent = true, noremap = true, expr = true }
 
-map('o', 'ib',            [[:<c-u>normal! mzggVG<cr>`z]],                                                  opts )
+-- map('', '<leader><S-w>',  [[:luafile ~/.local/share/nvim/site/pack/paqs/start/neowal/lua/neowal.lua<CR>]], opts )
 
-map('t', '<esc>',         [[<C-\><C-n>]],                                                                 opts )
+map('', '<leader>w',      [[<C-w>]],                                                                       { noremap = true } )
+map('', '-',              [[:e %:p:h<CR>]],                                                                opts )
+map('', '<C-s>',          [[:w<CR>]],                                                                      opts )
 
-map('i', 'jk',            [[<esc>]],                                                                       opts )
-map('i', 'kj',            [[<esc>]],                                                                       opts )
-map('i', 'jj',            [[<C-o>]],                                                                       opts )
-
-map('v', '<',             [[<gv]],                                                                         opts )
-map('v', '>',             [[>gv]],                                                                         opts )
-map('v', 'J',             [[:m '>+1<CR>gv=gv]],                                                            opts )
-map('v', 'K',             [[:m '<-2<CR>gv=gv]],                                                            opts )
-
-map('n', '-',             [[:e %:h<CR>]],                                                                  opts )
-map('n', 'n',             [[nzzzv]],                                                                       opts )
-map('n', 'N',             [[Nzzzv]],                                                                       opts )
-
-map('n', '<M-s>',         [[:setlocal spell! spelllang=en_us<CR>]],                                        { noremap = true } )
-map('n', '<M-S-s>',       [[:setlocal spell! spelllang=es_es<CR>]],                                        { noremap = true } )
-map('n', '<M-t>',         [[:Translate! ]],                                                                { noremap = true } )
-map('n', '<S-M-t>',       [[:Translate ]],                                                                 { noremap = true } )
-
-map('', 'C-s>',           [[:w<CR>]],                                                                      opts )
 map('', '<C-j>',          [[<C-w>j]],                                                                      opts )
 map('', '<C-k>',          [[<C-w>k]],                                                                      opts )
 map('', '<C-l>',          [[<C-w>l]],                                                                      opts )
@@ -40,63 +23,59 @@ map('', '<leader>tz',     [[:Goyo<CR>]],                                        
 map('', '<leader>tn',     [[:lua ToggleNums()<CR>]],                                                       opts )
 map('', '<leader>tu',     [[:UndotreeToggle<CR>]],                                                         opts )
 
-map('', '<C-s>',          [[:w<CR>]],                                                                      opts )
-
 map('', '<leader>bb',     [[:buffers<CR>]],                                                                opts )
 map('', '<leader>bn',     [[:bnext<CR>]],                                                                  opts )
 map('', '<leader>bp',     [[:bprev<CR>]],                                                                  opts )
 map('', '<leader>be',     [[:bprev<CR>]],                                                                  opts )
 
-map('', '<leader><S-w>',  [[:luafile ~/.local/share/nvim/site/pack/paqs/start/neowal/lua/neowal.lua<CR>]], opts )
+map('o', 'ib',            [[:<c-u>normal! mzggVG<cr>`z]],                                                  opts )
 
-map('n', '<leader>y',     [["+y]],                                                                         { noremap = true } )
-map('v', '<leader>y',     [["+y]],                                                                         { noremap = true } )
+map('t', '<esc>',         [[<C-\><C-n>]],                                                                  opts )
+
+map('v', '<',             [[<gv]],                                                                         opts )
+map('v', '>',             [[>gv]],                                                                         opts )
+map('v', 'J',             [[:m '>+1<CR>gv=gv]],                                                            opts )
+map('v', 'K',             [[:m '<-2<CR>gv=gv]],                                                            opts )
+
 map('v', '<S-y>',         [["+y]],                                                                         { noremap = true } )
+map('v', '<leader>y',     [["+y]],                                                                         { noremap = true } )
+map('n', '<leader>y',     [["+y]],                                                                         { noremap = true } )
 map('n', '<leader>Y',     [[gg"+yG]],                                                                      { noremap = true } )
+
+map('n', 'n',             [[nzzzv]],                                                                       opts )
+map('n', 'N',             [[Nzzzv]],                                                                       opts )
+
+map('n', '<M-s>',         [[:setlocal spell! spelllang=en_us<CR>]],                                        { noremap = true } )
+map('n', '<M-S-s>',       [[:setlocal spell! spelllang=es_es<CR>]],                                        { noremap = true } )
+map('n', '<M-t>',         [[:Translate! ]],                                                                { noremap = true } )
+map('n', '<S-M-t>',       [[:Translate ]],                                                                 { noremap = true } )
 
 map('n', '<leader>ff',    [[:lua require('telescope.builtin').find_files()<CR>]],                          opts )
 map('n', '<leader>fg',    [[:lua require('telescope.builtin').live_grep()<CR>]],                           opts )
 map('n', '<leader>fh',    [[:lua require('telescope.builtin').help_tags()<CR>]],                           opts )
 map('n', '<leader>fc',    [[:lua require('telescope.builtin').find_files({ prompt_title = '[ config ]', cwd = '~/.dotfiles/dots-and-scripts/.config/' })<CR>]], opts)
 
-map('n', '<leader>w',     [[<C-w>]],                                                                        { noremap = true } )
+map('i', 'jk',            [[<esc>]],                                                                       opts )
+map('i', 'kj',            [[<esc>]],                                                                       opts )
+map('i', 'jj',            [[<C-o>]],                                                                       opts )
 
-cmd[[inoremap <expr> <Tab>   pumvisible() ? "<C-n>" : "<Tab>"]]
-cmd[[inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"]]
+map('i', '<c-y>', 'compe#confirm("<c-y>")', optsexpr )
+map('i', '<CR>', 'compe#confirm("<CR>")', optsexpr )
+map('i', '<c-e>', 'compe#close("<c-e>")', optsexpr )
+map('i', '<c-space>', 'compe#complete()', optsexpr )
 
--- map('i', '<c-y>', 'compe#confirm("<c-y>")', optsexpr )
--- map('i', '<c-e>', 'compe#close("<c-e>")', optsexpr )
--- map('i', '<c-space>', 'compe#complete()', optsexpr )
+g.UltiSnipsExpandTrigger = '<C-f>'
+g.UltiSnipsJumpForwardTrigger = '<C-tab>'
+g.UltiSnipsJumpBackwardTrigger = '<C-S-tab>'
 
--- map('s', '<Tab>', 'v:lua.completion_tab()', optsexpr )
--- map('i', '<Tab>', 'v:lua.completion_tab()', optsexpr )
--- map('s', '<S-Tab>', 'v:lua.completion_s_tab()', optsexpr )
--- map('i', '<S-Tab>', 'v:lua.completion_s_tab()', optsexpr )
--- map('i', '<CR>', 'v:lua.completion_cr()', optsexpr )
-
--- map('i', '<Tab>',         [[pumvisible() ? "\<C-n>" : "\<Tab>"]],                                           optsexpr )
--- map('i', '<S-Tab>',       [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],                                         optsexpr )
-
--- map('i', '<Tab>',         [[:lua tab_complete()<CR>]],                                                      optsexpr )
--- map('s', '<Tab>',         [[:lua tab_complete()<CR>]],                                                      optsexpr )
--- map('i', '<S-Tab>',       [[:lua s_tab_complete()<CR>]],                                                    optsexpr )
--- map('s', '<S-Tab>',       [[:lua s_tab_complete()<CR>]],                                                    optsexpr )
-
--- map('n', '<leader>bb', [[:lua require('telescope.builtin').buffers()<CR>]], opts)
-
--- Use <Tab> and <S-Tab> to navigate through popup menu
--- inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
--- map('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], optsexpr)
--- inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
--- map('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], optsexpr)
--- map('', '', [[]], {})
-
--- -- Use <Tab> and <S-Tab> to navigate through popup menu
--- map('i', '<Tab>',   [[pumvisible() ? "<C-n>" : "<Tab>"]], { noremap = true, expr = true })
--- map('i', '<S-Tab>', [[pumvisible() ? "<C-p>" : "<S-Tab>"]], { noremap = true, expr = true })
--- g.UltiSnipsExpandTrigger = '<C-l>'
--- g.UltiSnipsJumpForwardTrigger = '<tab>'
--- g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
+cmd[[
+augroup tab_completition
+    autocmd!
+    "use <Tab> to go through list of completitions
+    au VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    au VimEnter * inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+augroup END
+]]
 
 -- The following list was made with a macro that employed the following:
 -- "let @z = char2nr(matchstr(getline('.'), '%'.col('.').'c.'))"
