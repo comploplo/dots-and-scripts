@@ -38,15 +38,25 @@ require'lir'.setup {
   hide_cursor = true,
 }
 
--- use visual mode
-function _G.LirSettings()
-  -- vim.api.nvim_buf_set_keymap(0, 'x', 'J', ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>', {noremap = true, silent = true})
+-- custom folder icon
+require'nvim-web-devicons'.setup({
+  override = {
+    lir_folder_icon = {
+      icon = "",
+      color = "#7ebae4",
+      name = "LirFolderNode"
+    },
+  }
+})
 
-  -- echo cwd
-  vim.api.nvim_echo({{vim.fn.expand('%:p'), 'Normal'}}, false, {})
-end
+-- -- use visual mode
+-- function _G.LirSettings()
+--   vim.api.nvim_buf_set_keymap(0, 'x', 'J', ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>', {noremap = true, silent = true})
+--   echo cwd
+--   vim.api.nvim_echo({{vim.fn.expand('%:p'), 'Normal'}}, false, {})
+-- end
 
-cmd([[augroup lir-settings]])
-cmd([[  autocmd!]])
-cmd([[  autocmd Filetype lir :lua LirSettings()]])
-cmd([[augroup END]])
+-- cmd([[augroup lir-settings]])
+-- cmd([[  autocmd!]])
+-- cmd([[  autocmd Filetype lir :lua LirSettings()]])
+-- cmd([[augroup END]])

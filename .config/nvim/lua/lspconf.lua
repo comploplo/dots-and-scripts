@@ -4,6 +4,7 @@ local nvim_lsp = require'lspconfig'
 local sumneko_root_path = '/home/gabe/programming/repos/lua-language-server'
 local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
 local sign_define = vim.fn.sign_define
+local on_attach = require('binds').on_attach
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -14,47 +15,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   }
 }
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function bmap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function bopt(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  sign_define( "LspDiagnosticsSignError", {text = "E", texthl = "LspDiagnosticsError"})
-  sign_define( "LspDiagnosticsSignWarning", {text = "W", texthl = "LspDiagnosticsWarning"})
-  sign_define( "LspDiagnosticsSignInformation", {text = "I", texthl = "LspDiagnosticsInformation"})
-  sign_define( "LspDiagnosticsSignHint", {text = "?", texthl = "LspDiagnosticsHint"})
-
-  --Enable completion triggered by <c-x><c-o>
-  bopt('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  bmap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  bmap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  bmap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  bmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  bmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  bmap('n', '<Leader>pa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  bmap('n', '<Leader>pr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  bmap('n', '<Leader>pl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  bmap('n', '<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  bmap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  bmap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  bmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  bmap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  bmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  bmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  bmap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  bmap('n', '<Leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
-  print('LSP started.');
-  -- require'completion'.on_attach(client)
-
-end
 
 local lua_globals = { 'vim' }
 local lua_libs = {
@@ -146,3 +106,9 @@ local servers = { 'bashls', 'cssls', 'dockerls', 'gopls', 'hls', 'jdtls', 'jsonl
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, capabilities = capabilities }
 end
+
+sign_define( "LspDiagnosticsSignError", {text = "E", texthl = "LspDiagnosticsError"})
+sign_define( "LspDiagnosticsSignWarning", {text = "W", texthl = "LspDiagnosticsWarning"})
+sign_define( "LspDiagnosticsSignInformation", {text = "I", texthl = "LspDiagnosticsInformation"})
+sign_define( "LspDiagnosticsSignHint", {text = "?", texthl = "LspDiagnosticsHint"})
+

@@ -1,6 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 local env = vim.env
+local cmd = vim.cmd
 local hi = vim.highlight
 
 hi.create('WhichKeyFloat', { ctermbg = 0, guibg = 'background' }, false)
@@ -45,7 +46,7 @@ opt.digraph                       = false
 opt.encoding                      = 'UTF-8'
 opt.inccommand                    = 'nosplit'
 opt.incsearch                     = true
-opt.listchars                     = 'tab:| ,trail:.,extends:>,precedes:<'
+opt.listchars                     = 'tab:» ,trail:.,extends:>,precedes:<,eol:↲'
 opt.mouse                         = 'a'
 opt.errorbells                    = false
 opt.showmode                      = false
@@ -69,8 +70,8 @@ opt.fillchars                     = {
   diff                            = '∙',                                  -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
   eob                             = ' ',                                  -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
   fold                            = '·',                                  -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-  vert                            = '|',                                  -- just an or, |
-  -- vert                            = '┃',                                  -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83), actual letter: '┃'
+  -- vert                            = '|',                                  -- just an or, |
+  vert                            = '┃',                                  -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83), actual letter: '┃'
 }
 
 opt.foldlevelstart                = 99                                    -- start unfolded
@@ -82,14 +83,17 @@ opt.splitbelow                    = false                                 -- ope
 opt.splitright                    = true                                  -- open vertical splits to the right of the current window
 opt.textwidth                     = 80                                    -- automatically hard wrap at 80 columns
 
+opt.statusline = [[%f %y %m %= %p%% %l:%c %{get(b:,'gitsigns_status','')}]]
+-- opt.statusline = opt.statusline + [[%{get(b:,'gitsigns_status','')}]]
+
+opt.signcolumn = 'auto:1'
+
+
 g.netrw_banner                    = 0
 g.netrw_liststyle                 = 3
 g.netrw_browse_split              = 4
 g.netrw_altv                      = 1
 g.netrw_winsize                   = 25
-
-g.limelight_conceal_ctermfg       = 'gray'                                -- used with goyo
-g.limelight_conceal_guifg         = 'DarkGray'
 
 g.diagnostic_enable_virtual_text  = 1
 g.diagnostic_insert_delay         = 1
@@ -105,10 +109,17 @@ g.translate_winsize               = 1                                     -- set
 
 g.user_emmet_install_global       = 0
 
+-- require('colorbuddy').colorscheme('neowal')
+-- cmd[[colorscheme neowal]]
+cmd[[colorscheme gruvbox]]
+
 -- opt.tabstop                                                               = 4  -- tap options
 -- opt.softtabstop                                                           = 4
 -- opt.shiftwidth                                                            = 4
 -- opt.expandtab                                                             = true
+
+-- g.limelight_conceal_ctermfg       = 'gray'                                -- used with goyo
+-- g.limelight_conceal_guifg         = 'DarkGray'
 
 -- for ranger
 -- g.rnvimr_ex_enable                                                        = 0
@@ -128,4 +139,5 @@ g.user_emmet_install_global       = 0
 -- set cc                                                                    = 80
 -- set wildmenu
 -- set digraph
+
 
