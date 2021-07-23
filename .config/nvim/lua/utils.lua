@@ -6,19 +6,14 @@ require('which-key').setup { }
 require('nvim_comment').setup()
 require('dap').defaults.fallback.terminal_win_cmd = '35vsplit new'
 
--- -- This makes dirvish replace netrw
--- cmd([[
--- command! -nargs=? -complete=dir Explore Dirvish <args>
--- command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
--- command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
--- ]])
-
-require('nvim-treesitter.configs').setup {
-	highlight = { enable = true, },
-	indent    = { enable = true, },
-}
+-- local textsubjects = require('binds').textsubjects
+local textobjects = require('binds').textobjects
+local playground = require('binds').playground
 
 require('compe').setup {
+  -- documentation = {
+  --   border = "rounded",
+  -- },
   source = {
     path      = true,
     spell     = {filetypes = {'markdown', 'tex'}},
@@ -30,6 +25,17 @@ require('compe').setup {
     ultisnips = false,
     luasnip   = false,
   },
+}
+
+require('nvim-treesitter.configs').setup {
+  highlight = { enable = true, },
+  indent    = { enable = true, },
+  incremental_selection = {
+    enable = true,
+  },
+  -- textsubjects = textsubjects,
+  textobjects = textobjects,
+  playground = playground,
 }
 
 require('zen-mode').setup {
@@ -58,6 +64,10 @@ require('zen-mode').setup {
   },
 }
 
+require'treesitter-context.config'.setup{
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+}
+
 require('gitsigns').setup {
   numhl                       = false,
   linehl                      = false,
@@ -81,11 +91,6 @@ require('gitsigns').setup {
 --   require('gitsigns').signcolumn = not require('gitsigns').signcolumn
 -- end
 
-function _G.ToggleNums ()
-  cmd([[set number! relativenumber!]])
-  cmd([[Gitsigns toggle_signs]])
-end
-
 cmd([[
 fun! g:PandocSmartExport()
   if expand('%:e') == 'md'
@@ -108,8 +113,8 @@ local t = function(str)
 end
 
 local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+  local col = vim.fn.col('.') - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
 -- Use (s-)tab to:
@@ -126,6 +131,7 @@ _G.tab_complete = function()
     return vim.fn['compe#complete']()
   end
 end
+
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
@@ -136,5 +142,32 @@ _G.s_tab_complete = function()
     return t "<S-Tab>"
   end
 end
+
+function _G.ToggleNums ()
+  cmd([[set number! relativenumber!]])
+  -- cmd([[Gitsigns toggle_signs]])
+end
+
+function _G.Lsp_Info()
+    local warnings = vim.lsp.diagnostic.get_count(0, "Warning")
+    local errors = vim.lsp.diagnostic.get_count(0, "Error")
+    local hints = vim.lsp.diagnostic.get_count(0, "Hint")
+    return string.format("H %d W %d E %d", hints, warnings, errors)
+end
+
+-- -- This makes dirvish replace netrw
+-- cmd([[
+-- command! -nargs=? -complete=dir Explore Dirvish <args>
+-- command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+-- command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
+-- ]])
+
+-- require'colorizer'.setup {
+--   '*',
+--   {
+--     rgb_fn   = true,
+--     hsl_fn   = true,
+--   },
+-- }
 
 

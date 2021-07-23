@@ -5,3 +5,5 @@ require('settings')
 require('autocmds')
 require('lirconf')
 require('lspconf')
+-- require('statusline')
+

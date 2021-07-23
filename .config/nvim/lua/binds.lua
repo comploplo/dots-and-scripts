@@ -13,11 +13,14 @@ local optsloud = { noremap = true }
 
 map('', '-',           [[:e %:p:h<CR>]],                                opts )
 map('', '<C-s>',       [[:w<CR>]],                                      opts )
-map('', '<leader>w',   [[<C-w>]],                                       opts )
 
-map('', '<leader>tz',  [[:ZenMode<CR>]],                                opts )
+map('', '<leader>tz',  [[:ZenMode<CR>]],                                opts ) -- toggle block
 map('', '<leader>tn',  [[:lua ToggleNums()<CR>]],                       opts )
 map('', '<leader>tu',  [[:UndotreeToggle<CR>]],                         opts )
+map('', '<leader>ts',  [[:SymbolsOutline<CR>]],                         opts )
+map('', '<leader>tg',  [[:Gitsigns toggle_signs<CR>]],                  opts )
+map('', '<leader>tt',  [[:TSPlaygroundToggle<CR>]],                     opts )
+map('', '<leader>tc',  [[:TSContextToggle<CR>]],                         opts )
 
 map('', '<leader>bb',  [[:buffers<CR>]],                                opts )
 map('', '<leader>bn',  [[:bnext<CR>]],                                  opts )
@@ -36,13 +39,17 @@ map('v', 'K',          [[:m '<-2<CR>gv=gv]],                            opts )
 map('v', '<S-y>',      [["+y]],                                         optsloud )
 map('v', '<leader>y',  [["+y]],                                         optsloud )
 map('n', '<leader>y',  [["+y]],                                         optsloud )
-map('n', '<leader>Y',  [[ gg"+yG]],                                      optsloud )
+map('n', '<leader>Y',  [[ gg"+yG]],                                     optsloud )
 
-map('n', '<C-j>',       [[:cnext<CR>]],                                  opts )
-map('n', '<C-k>',       [[:cprev<CR>]],                                  opts )
+map('n', '<leader>w',   [[<C-w>]],                                      opts )
+-- map('n', '<leader>sc',  [[z=]],                                         opts )
+map('n', '<C-j>',       [[:cnext<CR>]],                                 opts )
+map('n', '<C-k>',       [[:cprev<CR>]],                                 opts )
 
 map('n', 'n',          [[nzzzv]],                                       opts )
 map('n', 'N',          [[Nzzzv]],                                       opts )
+map('n', '<C-u>',      [[<C-u>zzzv]],                                   opts )
+map('n', '<C-d>',      [[<C-d>zzzv]],                                   opts )
 
 map('n', '<M-s>',      [[:setlocal spell! spelllang=en_us<CR>]],        optsloud )
 map('n', '<M-S-s>',    [[:setlocal spell! spelllang=es_es<CR>]],        optsloud )
@@ -55,13 +62,11 @@ map('n', '<leader>fh', [[:lua require('teleconf').help_tags()<CR>]],    opts )
 map('n', '<leader>fc', [[:lua require('teleconf').find_conf()<CR>]],    opts )
 map('n', '<leader>fb', [[:lua require('teleconf').local_browse()<CR>]], opts )
 
-
 map('i', 'jk',         [[<esc>]],                                       opts )
 map('i', 'kj',         [[<esc>]],                                       opts )
 map('i', 'jj',         [[<esc>]],                                       opts )
 
--- completion block
-map('i', '<c-y>',      [[compe#confirm("<c-y>")]],                      optsexpr )
+map('i', '<c-y>',      [[compe#confirm("<c-y>")]],                      optsexpr ) -- completion block
 map('i', '<CR>',       [[compe#confirm("<CR>")]],                       optsexpr )
 map('i', '<c-e>',      [[compe#close("<c-e>")]],                        optsexpr )
 map('i', '<c-space>',  [[compe#complete()]],                            optsexpr )
@@ -75,13 +80,11 @@ map('n', '<M-d>',      [[:lua require'dap'.continue()<CR>]],            opts )
 map('n', '<leader>do', [[:lua require'dap'.step_over()<CR>]],           opts )
 map('n', '<leader>di', [[:lua require'dap'.step_into()<CR>]],           opts )
 map('n', '<leader>dO', [[:lua require'dap'.step_out()<CR>]],            opts )
-map('n', '<leader>b',  [[:lua require'dap'.toggle_breakpoint()<CR>]],   opts )
-map('n', '<leader>B',  [[:lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], opts )
+map('n', '<leader>db', [[:lua require'dap'.toggle_breakpoint()<CR>]],   opts )
+map('n', '<leader>dB', [[:lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], opts )
 map('n', '<leader>dp', [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]], opts )
 map('n', '<leader>dr', [[:lua require'dap'.repl.open()<CR>]],           opts )
 map('n', '<leader>dl', [[:lua require'dap'.run_last()<CR>]],            opts )
-
--- map('', '', [[]], opts )
 
 -- map('', '<C-j>',          [[<C-w>j]],                                                                      opts )
 -- map('', '<C-k>',          [[<C-w>k]],                                                                      opts )
@@ -137,4 +140,53 @@ M.on_attach = function(client, bufnr)
   bmap('n', '<Leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   print('LSP started.');
 end
+
+-- M.textsubjects = {
+--   enable = true,
+--   keymaps = {
+--     ['gtt'] = 'textsubjects-smart',
+--     ['gto'] = 'textsubjects-container-outer',
+--   }
+-- }
+
+M.textobjects = {
+  swap = {
+    enable = true,
+    swap_next = { ["<leader>a"] = "@parameter.inner", },
+    swap_previous = { ["<leader>A"] = "@parameter.inner", },
+  },
+  move = {
+    enable = true,
+    set_jumps = true, -- whether to set jumps in the jumplist
+    goto_next_start = { ["]m"] = "@function.outer", },
+    goto_next_end = { ["]M"] = "@function.outer", },
+    goto_previous_start = { ["[m"] = "@function.outer", },
+    goto_previous_end = { ["[M"] = "@function.outer", },
+  },
+  lsp_interop = {
+    enable = true,
+    -- border = 'none',
+    peek_definition_code = {
+      ["<leader>df"] = "@function.outer",
+      ["<leader>dF"] = "@class.outer",
+    },
+  },
+}
+
+M.playground = { -- Treesitter playground config
+    enable = true,
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
+
 return M

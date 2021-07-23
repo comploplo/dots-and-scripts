@@ -1,5 +1,3 @@
--- python setup https://github.com/torcor-dev/.dotfiles/blob/883eeb0e07ef0e2d4fe069235f6c7bda7ef6d041/.config/nvim/lua/lsp_config.lua
-
 local nvim_lsp = require'lspconfig'
 local sumneko_root_path = '/home/gabe/programming/repos/lua-language-server'
 local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
@@ -58,34 +56,6 @@ nvim_lsp.sumneko_lua.setup {
   }
 }
 
-nvim_lsp.pyls.setup{
-  on_attach=on_attach,
-  settings = {
-    python = {
-      formatting = {
-        provider = { 'black' },
-        blackPath = { 'black' }
-      },
-      linting = {
-        enabled = { true },
-        pylint = {
-          pylintEnabled = { true },
-        },
-        flake8 = {
-          flake8Enabled = { true },
-          flake8Path = { 'flake8' }
-        }
-      },
-      analysis = {
-        warnings = { 'unknown-parameter-name' },
-        disabled = { 'too-many-function-arguments', 'parameter-missing' },
-        errors = { 'undefined-variable'  },
-        info = { 'unresolved-import' }
-      }
-    }
-  }
-}
-
 nvim_lsp.html.setup{
   on_attach = on_attach,
   capabilities = capabilities,
@@ -94,6 +64,20 @@ nvim_lsp.html.setup{
     embeddedLanguages = {
       css = true,
       javascript = true
+    }
+  }
+}
+
+nvim_lsp.pylsp.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    pylsp = {
+      plugins = {
+        pylsp_black = {
+          line_length = 120,
+        },
+      }
     }
   }
 }
