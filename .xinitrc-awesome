@@ -4,6 +4,7 @@ picom &
 xset b off
 xset s off
 setxkbmap -option ctrl:nocaps
+setxkbmap -option compose:ralt
 theme set gruvbox
 xrdb -load ~/.Xresources
 exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr

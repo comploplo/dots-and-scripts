@@ -88,8 +88,6 @@ opt.splitbelow                    = false                                 -- ope
 opt.splitright                    = true                                  -- open vertical splits to the right of the current window
 opt.textwidth                     = 80                                    -- automatically hard wrap at 80 columns
 
-opt.statusline =  [[%{v:lua.write_count} %f %y %m %= %p%% %l:%c %{get(b:,'gitsigns_status','')} %{v:lua.Lsp_Info()}]]
-
 g.netrw_banner                    = 0
 g.netrw_liststyle                 = 3
 g.netrw_browse_split              = 4

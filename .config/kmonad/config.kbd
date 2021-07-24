@@ -1,0 +1,45 @@
+;; US
+(defcfg
+  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  output (uinput-sink "kmonad")
+  cmp-seq ralt
+  fallthrough true
+)
+
+(defalias
+  ctlspc (tap-hold 200 spc lctl)
+  ctlesc (tap-hold 200 esc lctl)
+  la     (tap-hold 200 bspc lalt) ;; alts
+  ra     (tap-hold 200 ret lmet)
+  sft/   (tap-next     /   lsft)
+  sym    (layer-toggle symbols)
+  sym;   (tap-next     ;   @sym)
+)
+
+(defsrc
+  tab  q    w    e    r    t    y    u    i    o    p    [     ]
+  caps a    s    d    f    g    h    j    k    l    ;    '     \
+  lsft      z    x    c    v    b    n    m    ,    .    /
+  lctl lmet lalt           spc            ralt rctl
+)
+
+(deflayer the
+  tab  q    w    e    r    t    y    u    i    o    p    [     ]
+  @ctlesc a    s    d    f    g    h    j    k    l    @sym;    '     \
+  lsft      z    x    c    v    b    n    m    ,    .    @sft/
+  lctl lmet @la           @ctlspc              @ra rctl
+)
+
+(deflayer symbols
+  _   _   _   _    _    _    _    _    _    _    _    _     _
+  _   +'   _   _    _    _    left    down    up    right    _    _     _
+  _       _   _    _    _    _    +~    _    _    _    _
+  _   _   _           _            _    _
+)
+
+(deflayer huh
+  _   _   _   _    _    _    _    _    _    _    _    _     _
+  _   _   _   _    _    _    _    _    _    _    _    _     _
+  _       _   _    _    _    _    _    _    _    _    _
+  _   _   _           _            _    _
+)

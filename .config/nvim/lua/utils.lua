@@ -21,9 +21,9 @@ require('compe').setup {
     calc      = true,
     nvim_lsp  = true,
     nvim_lua  = true,
-    vsnip     = true,
+    vsnip     = false,
     ultisnips = false,
-    luasnip   = false,
+    luasnip   = true,
   },
 }
 
@@ -120,28 +120,28 @@ end
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn['vsnip#available'](1) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
+-- _G.tab_complete = function()
+--   if vim.fn.pumvisible() == 1 then
+--     return t "<C-n>"
+--   elseif vim.fn['vsnip#available'](1) == 1 then
+--     return t "<Plug>(vsnip-expand-or-jump)"
+--   elseif check_back_space() then
+--     return t "<Tab>"
+--   else
+--     return vim.fn['compe#complete']()
+--   end
+-- end
 
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
-    return t "<S-Tab>"
-  end
-end
+-- _G.s_tab_complete = function()
+--   if vim.fn.pumvisible() == 1 then
+--     return t "<C-p>"
+--   elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+--     return t "<Plug>(vsnip-jump-prev)"
+--   else
+--     -- If <S-Tab> is not working in your terminal, change it to <C-h>
+--     return t "<S-Tab>"
+--   end
+-- end
 
 function _G.ToggleNums ()
   cmd([[set number! relativenumber!]])
@@ -153,6 +153,28 @@ function _G.Lsp_Info()
     local errors = vim.lsp.diagnostic.get_count(0, "Error")
     local hints = vim.lsp.diagnostic.get_count(0, "Hint")
     return string.format("H %d W %d E %d", hints, warnings, errors)
+end
+
+_G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+        return t "<C-n>"
+    elseif require("luasnip").expand_or_jumpable() then
+        return t "<cmd>lua require'luasnip'.jump(1)<Cr>"
+    elseif check_back_space() then
+        return t "<Tab>"
+    else
+        return vim.fn["compe#complete"]()
+    end
+end
+
+_G.s_tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+        return t "<C-p>"
+    elseif require("luasnip").jumpable(-1) then
+        return t "<cmd>lua require'luasnip'.jump(-1)<CR>"
+    else
+        return t "<S-Tab>"
+    end
 end
 
 -- -- This makes dirvish replace netrw
