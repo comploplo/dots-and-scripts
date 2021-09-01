@@ -50,7 +50,7 @@ define_augroups({
       -- {'VimEnter', '*', [[highlight SignColumn ctermbg=NONE guibg=NONE]]},
       -- {'ColorScheme', '*', [[highlight VertSplit ctermbg=none guibg=NONE]]},
       {'VimEnter', '*', [[Gitsigns toggle_signs]]},
-      {'Filetype', 'html,css', 'EmmetInstall'},
+      -- {'Filetype', 'html,css', 'EmmetInstall'},
     },
     markdown = {
       -- {'FileType', 'markdown', 'set conceallevel=2'},
