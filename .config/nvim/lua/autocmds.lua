@@ -41,7 +41,7 @@ define_augroups({
       {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
       {'BufRead', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
       {'BufNewFile', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-      {'VimLeavePre', '*', 'set title set titleold='},
+      -- {'VimLeavePre', '*', 'set title set titleold='},
       -- {'User', 'GoyoEnter', 'nested call <SID>goyo_enter'},
       -- {'User', 'GoyoLeave', 'nested call <SID>goyo_leave'},
       {'BufNewFile,BufRead', '*.md', 'set filetype=markdown'},
@@ -50,7 +50,7 @@ define_augroups({
       -- {'VimEnter', '*', [[highlight SignColumn ctermbg=NONE guibg=NONE]]},
       -- {'ColorScheme', '*', [[highlight VertSplit ctermbg=none guibg=NONE]]},
       {'VimEnter', '*', [[Gitsigns toggle_signs]]},
-      {'Filetype', 'html,css', 'EmmetInstall'},
+      -- {'Filetype', 'html,css', 'EmmetInstall'},
     },
     markdown = {
       -- {'FileType', 'markdown', 'set conceallevel=2'},

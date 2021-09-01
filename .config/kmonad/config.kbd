@@ -1,19 +1,21 @@
 ;; US
 (defcfg
   input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
-  output (uinput-sink "kmonad")
+  output (uinput-sink "kmonad"
+      "/usr/bin/sleep 1 && /usr/bin/setxkbmap -option compose:ralt")
   cmp-seq ralt
   fallthrough true
 )
 
 (defalias
-  ctlspc (tap-hold 200 spc lctl)
-  ctlesc (tap-hold 200 esc lctl)
-  la     (tap-hold 200 bspc lalt) ;; alts
-  ra     (tap-hold 200 ret lmet)
   sft/   (tap-next     /   lsft)
   sym    (layer-toggle symbols)
-  sym;   (tap-next     ;   @sym)
+  sym;   (tap-hold 200 ;   @sym)
+
+  ctlesc (tap-hold 200 esc lctl)
+  la     (tap-hold 200 ret lalt) ;; alts
+  ra     (tap-hold 200 bspc lalt)
+  modspc (tap-hold 200 spc lmet)
 )
 
 (defsrc
@@ -24,10 +26,10 @@
 )
 
 (deflayer the
-  tab  q    w    e    r    t    y    u    i    o    p    [     ]
+  tab     q    w    e    r    t    y    u    i    o    p    [     ]
   @ctlesc a    s    d    f    g    h    j    k    l    @sym;    '     \
-  lsft      z    x    c    v    b    n    m    ,    .    @sft/
-  lctl lmet @la           @ctlspc              @ra rctl
+  lsft         z    x    c    v    b    n    m    ,    .    @sft/
+  lctl         lmet @la       @modspc             @ra rctl
 )
 
 (deflayer symbols

@@ -5,8 +5,8 @@ local cmd = vim.cmd
 local hi = vim.highlight
 
 g.gruvbox_italic_functions = true
-g.gruvbox_colors = { hint = "orange", error = "#ff0000" }
-g.gruvbox_flat_style = "dark"
+g.gruvbox_colors = { hint = 'orange', error = '#ff0000' }
+g.gruvbox_flat_style = 'dark'
 g.gruvbox_transparent = true
 cmd[[colorscheme gruvbox-flat]]
 hi.create('WhichKeyFloat', { ctermbg = 0, guibg = 'background' }, false)
@@ -19,7 +19,7 @@ opt.shortmess                     = opt.shortmess + 'A'                   -- ign
 -- opt.shortmess                     = opt.shortmess + 'I'                   -- no splash screen
 opt.shortmess                     = opt.shortmess + 'O'                   -- file-read message overwrites previous
 opt.shortmess                     = opt.shortmess + 'T'                   -- truncate non-file messages in middle
-opt.shortmess                     = opt.shortmess + 'W'                   -- don't echo "[w]"/"[written]" when writing
+opt.shortmess                     = opt.shortmess + 'W'                   -- don't echo '[w]'/'[written]' when writing
 opt.shortmess                     = opt.shortmess + 'a'                   -- use abbreviations in messages eg. `[RO]` instead of `[readonly]`
 opt.shortmess                     = opt.shortmess + 'c'                   -- completion messages
 opt.shortmess                     = opt.shortmess + 'o'                   -- overwrite file-written messages
@@ -88,21 +88,22 @@ opt.splitbelow                    = false                                 -- ope
 opt.splitright                    = true                                  -- open vertical splits to the right of the current window
 opt.textwidth                     = 80                                    -- automatically hard wrap at 80 columns
 
-g.netrw_banner                    = 0
-g.netrw_liststyle                 = 3
-g.netrw_browse_split              = 4
-g.netrw_altv                      = 1
-g.netrw_winsize                   = 25
+-- g.netrw_banner                    = 0
+-- g.netrw_liststyle                 = 3
+-- g.netrw_browse_split              = 4
+-- g.netrw_altv                      = 1
+-- g.netrw_winsize                   = 25
+g.loaded_netrwPlugin = false
 
-g.diagnostic_enable_virtual_text  = 1
-g.diagnostic_insert_delay         = 1
-g.diagnostic_show_sign            = 0
-g.diagnostic_virtual_text_prefix  = ' '
-g.space_before_virtual_text       = 5
-g.diagnostic_trimmed_virtual_text = '20'
+-- g.diagnostic_enable_virtual_text  = 1
+-- g.diagnostic_insert_delay         = 1
+-- g.diagnostic_show_sign            = 0
+-- g.diagnostic_virtual_text_prefix  = ' '
+-- g.space_before_virtual_text       = 5
+-- g.diagnostic_trimmed_virtual_text = '20'
 
-g.translate_source                = "en"
-g.translate_target                = "es"
+g.translate_source                = 'en'
+g.translate_target                = 'es'
 g.translate_popup_window          = 0                                     -- if you want use popup window, set value 1
 g.translate_winsize               = 1                                     -- set buffer window height size if you doesn't use popup window
 
