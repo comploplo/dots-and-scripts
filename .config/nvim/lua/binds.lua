@@ -64,7 +64,6 @@ map("n", "<M-S-s>", [[:setlocal spell! spelllang=es_es<CR>]], optsloud)
 map("n", "<S-M-t>", [[:Translate! ]], optsloud)
 map("n", "<M-t>", [[:Translate ]], optsloud)
 
-<<<<<<< HEAD
 map("n", "<leader>xx", "<cmd>Trouble<cr>", opts)
 map("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", opts)
 map("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", opts)
@@ -72,8 +71,6 @@ map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
 map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
 map("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
 
-=======
->>>>>>> refs/remotes/origin/master
 map("i", ",", [[,<C-g>u]], opts)
 map("i", ".", [[.<C-g>u]], opts)
 map("i", "!", [[!<C-g>u]], opts)
