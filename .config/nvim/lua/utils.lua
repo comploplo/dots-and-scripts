@@ -58,7 +58,7 @@ require('luasnip/loaders/from_vscode').load()
 require('nvim_comment').setup()
 require('refactoring').setup()
 require('treesitter-context.config').setup()
-require('spellsitter').setup()
+-- require('spellsitter').setup()
 
 require('which-key').setup({
   plugins = {
@@ -88,6 +88,7 @@ require('cmp').setup({
     { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
+    { name = 'treesitter' },
     { name = 'tmux' },
   },
 
@@ -96,10 +97,8 @@ require('cmp').setup({
 
 require('nvim-treesitter.configs').setup({
   highlight = { enable = true },
+  incremental_selection = { enable = true, },
   indent = { enable = true },
-  incremental_selection = {
-    enable = true,
-  },
   -- textsubjects = textsubjects,
   textobjects = textobjects,
   playground = playground,
@@ -147,7 +146,7 @@ require('gitsigns').setup({
   update_debounce = 100,
   status_formatter = nil, -- Use default
   word_diff = false,
-  use_internal_diff = true, -- If luajit is present
+  diff_opts = { internal = true }, -- If luajit is present
 })
 
 require('nvim-web-devicons').setup({ -- custom folder icon
@@ -231,7 +230,6 @@ function _G.Lsp_Info()
   local hints = vim.lsp.diagnostic.get_count(0, 'Hint')
   return string.format('H %d W %d E %d', hints, warnings, errors)
 end
-
 
 function _G.P(v)
   print(vim.inspect(v))

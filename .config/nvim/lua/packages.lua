@@ -14,6 +14,7 @@ require('paq-nvim')({
   'l3mon4d3/luasnip',
   'onsails/lspkind-nvim',
   'rafamadriz/friendly-snippets',
+  'ray-x/cmp-treesitter',
   'saadparwaiz1/cmp_luasnip',
 
   -- 'hrsh7th/nvim-compe',
@@ -49,7 +50,6 @@ require('paq-nvim')({
   --information
   'folke/trouble.nvim',
   'folke/which-key.nvim',
-  'lewis6991/spellsitter.nvim',
   'nvim-treesitter/playground',
   'simrat39/symbols-outline.nvim',
   'mbbill/undotree',
@@ -80,8 +80,9 @@ require('paq-nvim')({
   -- 'kana/vim-textobj-user',
   -- 'kevinhwang91/rnvimr',
   -- 'kovetskiy/sxhkd-vim',
-  -- 'lambdalisue/fern-hijack.vim',
   -- 'lambdalisue/fern.vim',
+  -- 'lambdalisue/fern-hijack.vim',
+  -- 'lewis6991/spellsitter.nvim',
   -- 'mattn/emmet-vim',
   -- 'mfussenegger/nvim-lint',
   -- 'norcalli/nvim-colorizer.lua',
