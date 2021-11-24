@@ -129,160 +129,160 @@ local M = {}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 M.on_attach_binds = function(bufnr)
-	local function bmap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
-	local function bopt(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
+  local function bmap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
+  local function bopt(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
 
-	--Enable completion triggered by <c-x><c-o>
-	bopt("omnifunc", "v:lua.vim.lsp.omnifunc")
+  --Enable completion triggered by <c-x><c-o>
+  bopt("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	bmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	bmap("n", "<C-S-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	bmap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	bmap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	bmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	bmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	bmap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-	bmap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-	bmap("n", "<Leader>pa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-	bmap("n", "<Leader>pr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	bmap("n", "<Leader>pl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-	bmap("n", "<Leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	bmap("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	bmap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	bmap("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-	bmap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-	bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  bmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  bmap("n", "<C-S-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  bmap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  bmap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  bmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  bmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  bmap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  bmap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  bmap("n", "<Leader>pa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  bmap("n", "<Leader>pr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+  bmap("n", "<Leader>pl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+  bmap("n", "<Leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  bmap("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  bmap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  bmap("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+  bmap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+  bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 M.textobjects = {
-	swap = {
-		enable = true,
-		swap_next = { ["<leader>a"] = "@parameter.inner" },
-		swap_previous = { ["<leader>A"] = "@parameter.inner" },
-	},
-	move = {
-		enable = true,
-		set_jumps = true, -- whether to set jumps in the jumplist
-		goto_next_start = { ["]m"] = "@function.outer" },
-		goto_next_end = { ["]M"] = "@function.outer" },
-		goto_previous_start = { ["[m"] = "@function.outer" },
-		goto_previous_end = { ["[M"] = "@function.outer" },
-	},
-	lsp_interop = {
-		enable = true,
-		-- border = 'none',
-		peek_definition_code = {
-			["<leader>df"] = "@function.outer",
-			["<leader>dF"] = "@class.outer",
-		},
-	},
-	select = {
-		enable = true,
+  swap = {
+    enable = true,
+    swap_next = { ["<leader>a"] = "@parameter.inner" },
+    swap_previous = { ["<leader>A"] = "@parameter.inner" },
+  },
+  move = {
+    enable = true,
+    set_jumps = true, -- whether to set jumps in the jumplist
+    goto_next_start = { ["]m"] = "@function.outer" },
+    goto_next_end = { ["]M"] = "@function.outer" },
+    goto_previous_start = { ["[m"] = "@function.outer" },
+    goto_previous_end = { ["[M"] = "@function.outer" },
+  },
+  lsp_interop = {
+    enable = true,
+    -- border = 'none',
+    peek_definition_code = {
+      ["<leader>df"] = "@function.outer",
+      ["<leader>dF"] = "@class.outer",
+    },
+  },
+  select = {
+    enable = true,
 
-		-- Automatically jump forward to textobj, similar to targets.vim
-		lookahead = true,
+    -- Automatically jump forward to textobj, similar to targets.vim
+    lookahead = true,
 
-		keymaps = {
-			-- You can use the capture groups defined in textobjects.scm
-			["af"] = "@function.outer",
-			["if"] = "@function.inner",
-			["ac"] = "@class.outer",
-			["ic"] = "@class.inner",
+    keymaps = {
+      -- You can use the capture groups defined in textobjects.scm
+      ["af"] = "@function.outer",
+      ["if"] = "@function.inner",
+      ["ac"] = "@class.outer",
+      ["ic"] = "@class.inner",
 
-			-- Or you can define your own textobjects like this
-			["iF"] = {
-				python = "(function_definition) @function",
-				cpp = "(function_definition) @function",
-				c = "(function_definition) @function",
-				java = "(method_declaration) @function",
-			},
-		},
-	},
+      -- Or you can define your own textobjects like this
+      ["iF"] = {
+        python = "(function_definition) @function",
+        cpp = "(function_definition) @function",
+        c = "(function_definition) @function",
+        java = "(method_declaration) @function",
+      },
+    },
+  },
 }
 
 M.playground = { -- Treesitter playground config
-	enable = true,
-	keybindings = {
-		toggle_query_editor = "o",
-		toggle_hl_groups = "i",
-		toggle_injected_languages = "t",
-		toggle_anonymous_nodes = "a",
-		toggle_language_display = "I",
-		focus_language = "f",
-		unfocus_language = "F",
-		update = "R",
-		goto_node = "<cr>",
-		show_help = "?",
-	},
+  enable = true,
+  keybindings = {
+    toggle_query_editor = "o",
+    toggle_hl_groups = "i",
+    toggle_injected_languages = "t",
+    toggle_anonymous_nodes = "a",
+    toggle_language_display = "I",
+    focus_language = "f",
+    unfocus_language = "F",
+    update = "R",
+    goto_node = "<cr>",
+    show_help = "?",
+  },
 }
 
 local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 M.cmp_binds = {
-	["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-	["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-	["<c-y>"] = cmp.mapping(
-		cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
-		}),
-		{ "i", "c" }
-	),
-	["<c-space>"] = cmp.mapping({
-		i = cmp.mapping.complete(),
-		c = function(
-			_ --[[fallback]]
-		)
-			if cmp.visible() then
-				if not cmp.confirm({ select = true }) then
-					return
-				end
-			else
-				cmp.complete()
-			end
-		end,
-	}),
-	["<C-e>"] = cmp.mapping({
-		i = cmp.mapping.abort(),
-		c = cmp.mapping.close(),
-	}),
-	["<CR>"] = cmp.mapping.confirm({ select = true }),
-	-- super-tab experience
-	["<Tab>"] = cmp.mapping(function(fallback)
-		if cmp.visible() then
-			cmp.select_next_item()
-		elseif luasnip.expand_or_jumpable() then
-			luasnip.expand_or_jump()
-		elseif has_words_before() then
-			cmp.complete()
-		else
-			fallback()
-		end
-	end, {
-		"i",
-		"s",
-	}),
-	["<S-Tab>"] = cmp.mapping(function(fallback)
-		if cmp.visible() then
-			cmp.select_prev_item()
-		elseif luasnip.jumpable(-1) then
-			luasnip.jump(-1)
-		else
-			fallback()
-		end
-	end, {
-		"i",
-		"s",
-	}),
+  ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+  ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+  ["<c-y>"] = cmp.mapping(
+    cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
+    { "i", "c" }
+  ),
+  ["<c-space>"] = cmp.mapping({
+    i = cmp.mapping.complete(),
+    c = function(
+      _ --[[fallback]]
+    )
+      if cmp.visible() then
+        if not cmp.confirm({ select = true }) then
+          return
+        end
+      else
+        cmp.complete()
+      end
+    end,
+  }),
+  ["<C-e>"] = cmp.mapping({
+    i = cmp.mapping.abort(),
+    c = cmp.mapping.close(),
+  }),
+  ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  -- super-tab experience
+  ["<Tab>"] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_next_item()
+    elseif luasnip.expand_or_jumpable() then
+      luasnip.expand_or_jump()
+    elseif has_words_before() then
+      cmp.complete()
+    else
+      fallback()
+    end
+  end, {
+    "i",
+    "c",
+  }),
+  ["<S-Tab>"] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_prev_item()
+    elseif luasnip.jumpable(-1) then
+      luasnip.jump(-1)
+    else
+      fallback()
+    end
+  end, {
+    "i",
+    "c",
+  }),
 }
 
 return M
