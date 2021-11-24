@@ -46,7 +46,7 @@ opt.hidden = true -- keeps unsaved files open in background
 
 opt.autoindent = true
 opt.cmdheight = 2
-opt.completeopt = "menuone,noselect"
+opt.completeopt = { "menu", "menuone", "noselect" }
 opt.digraph = false
 opt.encoding = "UTF-8"
 opt.inccommand = "nosplit"
@@ -103,20 +103,6 @@ g.translate_winsize = 1 -- set buffer window height size if you doesn't use popu
 g.user_emmet_install_global = 0
 
 g.did_load_filetypes = 1
-
-g.coq_settings = {
-	-- ["auto_start"] = true,
-	["display.icons.mode"] = "short",
-	["clients.lsp.weight_adjust"] = 1.5,
-	["clients.buffers.enabled"] = true,
-	["clients.buffers.weight_adjust"] = 0.3,
-	-- ["clients.tree_sitter.enabled"] = false,
-	-- ["clients.snippets.enabled"] = false,
-	["clients.lsp.resolve_timeout"] = 3,
-	["clients.tabnine.enabled"] = true,
-	["clients.tabnine.weight_adjust"] = 1,
-	["display.pum.fast_close"] = false,
-}
 
 -- opt.tabstop                                                               = 4  -- tap options
 -- opt.softtabstop                                                           = 4
