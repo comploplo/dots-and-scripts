@@ -1,6 +1,6 @@
 local cmd = vim.cmd
 
-local function define_augroups(definitions) -- {{{1
+local function define_augroups(definitions) -- {{{
   -- Create autocommand groups based on the passed definitions
   --
   -- The key will be the name of the group, and each definition
@@ -55,7 +55,8 @@ define_augroups({
     markdown = {
       -- {'FileType', 'markdown', 'set conceallevel=2'},
       -- {'FileType', 'markdown', 'setlocal spell spelllang=en_us'},
-      {'FileType', 'markdown', 'set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2'},
+      -- {'FileType', 'markdown', 'set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2'},
+      {'FileType', 'go', 'set noexpandtab cindent preserveindent softtabstop=8 shiftwidth=8 tabstop=8'},
       {'FileType', 'markdown', 'map <M-b> :call g:PandocSmartExport()<CR>'},
       {'FileType', 'markdown', 'nmap <Leader>c :call g:PandocSmartExport()<CR>'},
       {'FileType', 'markdown,text', 'nmap gr <Plug>(Translate)'},

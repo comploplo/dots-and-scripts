@@ -1,5 +1,5 @@
 local cmd = vim.cmd
-local in_gui = not (vim.fn.environ().TERM == 'linux')
+-- local in_gui = not (vim.fn.environ().TERM == 'linux')
 local actions = require('lir.actions')
 -- local mark_actions = require('lir.mark.actions')
 -- local clipboard_actions = require'lir.clipboard.actions'
@@ -7,54 +7,14 @@ local actions = require('lir.actions')
 -- local textsubjects = require('binds').textsubjects
 local textobjects = require('binds').textobjects
 local playground = require('binds').playground
-local cmp_binds = require('binds').cmp_binds
+-- local cmp_binds = require('binds').cmp_binds
 
-local cmp_formatting = {}
-if in_gui then
-  cmp_formatting =
-    { format = function(entry, vim_item)
-      vim_item.kind = require('lspkind').presets.default[vim_item.kind]
-      vim_item.menu = ({
-        spell = '',
-        buffer = '',
-        calc = '',
-        emoji = '',
-        path = '/',
-        latex_symbols = 'λ',
-        luasnip = '',
-        nvim_lua = '',
-        nvim_lsp = '',
-      })[entry.source.name]
-      return vim_item
-    end,
-    }
-else --in tty
-  cmp_formatting = { format = function(entry, vim_item)
-    -- fancy icons and a name of kind
-    -- vim_item.kind = require('lspkind').presets.default[vim_item.kind]
-    -- .. ' '
-    -- .. vim_item.kind
-    -- set a name for each source
-    vim_item.menu = ({
-      spell = '[Sp]',
-      buffer = '[Bu]',
-      calc = '[Ca]',
-      emoji = '[Em]',
-      path = '[Pa]',
-      latex_symbols = '[La]',
-      luasnip = '[Sn]',
-      nvim_lua = '[Lu]',
-      nvim_lsp = '[Ls]',
-    })[entry.source.name]
-    return vim_item
-  end,
-  }
-end
+require("coq_3p") { { src = "nvimlua", short_name = "nLUA" }, }
 
 -- local g = vim.g
 -- require('lspsaga').init_lsp_saga()
 require('dap').defaults.fallback.terminal_win_cmd = '35vsplit new'
-require('luasnip/loaders/from_vscode').load()
+-- require('luasnip/loaders/from_vscode').load()
 require('nvim_comment').setup()
 require('refactoring').setup()
 require('treesitter-context.config').setup()
@@ -67,32 +27,6 @@ require('which-key').setup({
       suggestions = 20, -- how many suggestions should be shown in the list?
     }
   }
-})
-
-require('cmp').setup({
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-
-  mapping = cmp_binds,
-
-  sources = {
-    { name = 'spell' },
-    { name = 'buffer' },
-    { name = 'calc' },
-    { name = 'emoji' },
-    { name = 'path' },
-    { name = 'latex_symbols' },
-    { name = 'luasnip' },
-    { name = 'nvim_lua' },
-    { name = 'nvim_lsp' },
-    { name = 'treesitter' },
-    { name = 'tmux' },
-  },
-
-  formatting = cmp_formatting,
 })
 
 require('nvim-treesitter.configs').setup({

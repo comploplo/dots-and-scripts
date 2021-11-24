@@ -5,88 +5,88 @@ local cmd = vim.cmd
 local hi = vim.highlight
 
 g.gruvbox_italic_functions = true
-g.gruvbox_colors = { hint = 'orange', error = '#ff0000' }
-g.gruvbox_flat_style = 'dark'
+g.gruvbox_colors = { hint = "orange", error = "#ff0000" }
+g.gruvbox_flat_style = "dark"
 g.gruvbox_transparent = true
-cmd[[colorscheme gruvbox-flat]]
-hi.create('WhichKeyFloat', { ctermbg = 0, guibg = 'background' }, false)
+cmd([[colorscheme gruvbox-flat]])
+hi.create("WhichKeyFloat", { ctermbg = 0, guibg = "background" }, false)
 
-opt.smartindent                   = true
-opt.shell                         = 'bash'                                -- shell to use for `!`, `:!`, `system()` etc.
-opt.shiftround                    = false                                 -- don't always indent by multiple of shiftwidth
-opt.shiftwidth                    = 2                                     -- spaces per tab (when shifting)
-opt.shortmess                     = opt.shortmess + 'A'                   -- ignore annoying swapfile messages
+opt.smartindent = true
+opt.shell = "bash" -- shell to use for `!`, `:!`, `system()` etc.
+opt.shiftround = false -- don't always indent by multiple of shiftwidth
+opt.shiftwidth = 2 -- spaces per tab (when shifting)
+opt.shortmess = opt.shortmess + "A" -- ignore annoying swapfile messages
 -- opt.shortmess                     = opt.shortmess + 'I'                   -- no splash screen
-opt.shortmess                     = opt.shortmess + 'O'                   -- file-read message overwrites previous
-opt.shortmess                     = opt.shortmess + 'T'                   -- truncate non-file messages in middle
-opt.shortmess                     = opt.shortmess + 'W'                   -- don't echo '[w]'/'[written]' when writing
-opt.shortmess                     = opt.shortmess + 'a'                   -- use abbreviations in messages eg. `[RO]` instead of `[readonly]`
-opt.shortmess                     = opt.shortmess + 'c'                   -- completion messages
-opt.shortmess                     = opt.shortmess + 'o'                   -- overwrite file-written messages
-opt.shortmess                     = opt.shortmess + 't'                   -- truncate file messages at start
-opt.showbreak                     = '↳ '                                  -- DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
-opt.showcmd                       = false                                 -- don't show extra info at end of command line
-opt.sidescroll                    = 0                                     -- sidescroll in jumps because terminals are slow
-opt.sidescrolloff                 = 3                                     -- same as scrolloff, but for columns
-opt.smarttab                      = true                                  -- <tab>/<BS> indent/dedent in leading whitespace
+opt.shortmess = opt.shortmess + "O" -- file-read message overwrites previous
+opt.shortmess = opt.shortmess + "T" -- truncate non-file messages in middle
+opt.shortmess = opt.shortmess + "W" -- don't echo '[w]'/'[written]' when writing
+opt.shortmess = opt.shortmess + "a" -- use abbreviations in messages eg. `[RO]` instead of `[readonly]`
+opt.shortmess = opt.shortmess + "c" -- completion messages
+opt.shortmess = opt.shortmess + "o" -- overwrite file-written messages
+opt.shortmess = opt.shortmess + "t" -- truncate file messages at start
+opt.showbreak = "↳ " -- DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
+opt.showcmd = false -- don't show extra info at end of command line
+opt.sidescroll = 0 -- sidescroll in jumps because terminals are slow
+opt.sidescrolloff = 3 -- same as scrolloff, but for columns
+opt.smarttab = true -- <tab>/<BS> indent/dedent in leading whitespace
 
-opt.swapfile                      = false                                 -- undotree settings
-opt.backup                        = false
-opt.undodir                       = env.HOME .. [[/.config/nvim/undo]]
-opt.undofile                      = true
+opt.swapfile = false -- undotree settings
+opt.backup = false
+opt.undodir = env.HOME .. [[/.config/nvim/undo]]
+opt.undofile = true
 
-opt.exrc                          = true                                  -- auto source .vimrc in file when 'vim .' in that file
+opt.exrc = true -- auto source .vimrc in file when 'vim .' in that file
 
-opt.hlsearch                      = false                                 -- search settings
-opt.ignorecase                    = true
-opt.smartcase                     = true
-opt.incsearch                     = true
+opt.hlsearch = false -- search settings
+opt.ignorecase = true
+opt.smartcase = true
+opt.incsearch = true
 
-opt.hidden                        = true                                  -- keeps unsaved files open in background
+opt.hidden = true -- keeps unsaved files open in background
 
-opt.autoindent                    = true
-opt.cmdheight                     = 2
-opt.completeopt                   = 'menuone,noselect'
-opt.digraph                       = false
-opt.encoding                      = 'UTF-8'
-opt.inccommand                    = 'nosplit'
-opt.incsearch                     = true
-opt.listchars                     = 'tab:» ,trail:.,extends:>,precedes:<,eol:↲'
-opt.mouse                         = 'a'
-opt.errorbells                    = false
-opt.showmode                      = false
-opt.wrap                          = false
-opt.scrolloff                     = 8
-opt.sidescrolloff                 = 1
-opt.tabpagemax                    = 6
-opt.termguicolors                 = true
-opt.updatetime                    = 50
-opt.foldmethod                    = 'expr'
-opt.foldexpr                      = 'nvim_treesitter#foldexpr()'
+opt.autoindent = true
+opt.cmdheight = 2
+opt.completeopt = "menuone,noselect"
+opt.digraph = false
+opt.encoding = "UTF-8"
+opt.inccommand = "nosplit"
+opt.incsearch = true
+opt.listchars = "tab:» ,trail:.,extends:>,precedes:<,eol:↲"
+opt.mouse = "a"
+opt.errorbells = false
+opt.showmode = false
+opt.wrap = false
+opt.scrolloff = 8
+opt.sidescrolloff = 1
+opt.tabpagemax = 6
+opt.termguicolors = true
+opt.updatetime = 50
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-opt.belloff                       = 'all'                                 -- never ring the bell for any reason
-opt.completeopt                   = 'menuone'                             -- show menu even if there is only one candidate (for nvim-compe)
-opt.completeopt                   = vim.opt.completeopt + 'noselect'      -- don't automatically select canditate (for nvim-compe)
-opt.cursorline                    = true                                 -- highlight current line
-opt.diffopt                       = vim.opt.diffopt + 'foldcolumn:0'      -- don't show fold column in diff view
-opt.emoji                         = false                                 -- don't assume all emoji are double width
-opt.expandtab                     = true                                  -- always use spaces instead of tabs
-opt.fillchars                     = {
-  diff                            = '∙',                                  -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-  eob                             = ' ',                                  -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
-  fold                            = '·',                                  -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-  vert                            = '┃',                                  -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83), actual letter: '┃'
-  -- vert                            = '|',                                  -- just an or, |
+opt.belloff = "all" -- never ring the bell for any reason
+opt.completeopt = "menuone" -- show menu even if there is only one candidate (for nvim-compe)
+opt.completeopt = vim.opt.completeopt + "noselect" -- don't automatically select canditate (for nvim-compe)
+opt.cursorline = true -- highlight current line
+opt.diffopt = vim.opt.diffopt + "foldcolumn:0" -- don't show fold column in diff view
+opt.emoji = false -- don't assume all emoji are double width
+opt.expandtab = true -- always use spaces instead of tabs
+opt.fillchars = {
+	diff = "∙", -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
+	eob = " ", -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
+	fold = "·", -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
+	vert = "┃", -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83), actual letter: '┃'
+	-- vert                            = '|',                                  -- just an or, |
 }
 
-opt.foldlevelstart                = 99                                    -- start unfolded
-opt.formatoptions                 = opt.formatoptions + 'j'               -- remove comment leader when joining comment lines
-opt.formatoptions                 = opt.formatoptions + 'n'               -- smart auto-indenting inside numbered lists
+opt.foldlevelstart = 99 -- start unfolded
+opt.formatoptions = opt.formatoptions + "j" -- remove comment leader when joining comment lines
+opt.formatoptions = opt.formatoptions + "n" -- smart auto-indenting inside numbered lists
 
-opt.spellcapcheck                 = ''                                    -- don't check for capital letters at start of sentence
-opt.splitbelow                    = false                                 -- open horizontal splits below current window
-opt.splitright                    = true                                  -- open vertical splits to the right of the current window
-opt.textwidth                     = 80                                    -- automatically hard wrap at 80 columns
+opt.spellcapcheck = "" -- don't check for capital letters at start of sentence
+opt.splitbelow = false -- open horizontal splits below current window
+opt.splitright = true -- open vertical splits to the right of the current window
+opt.textwidth = 80 -- automatically hard wrap at 80 columns
 
 -- g.netrw_banner                    = 0
 -- g.netrw_liststyle                 = 3
@@ -95,24 +95,40 @@ opt.textwidth                     = 80                                    -- aut
 -- g.netrw_winsize                   = 25
 g.loaded_netrwPlugin = false
 
+g.translate_source = "en"
+g.translate_target = "es"
+g.translate_popup_window = 0 -- if you want use popup window, set value 1
+g.translate_winsize = 1 -- set buffer window height size if you doesn't use popup window
+
+g.user_emmet_install_global = 0
+
+g.did_load_filetypes = 1
+
+g.coq_settings = {
+	-- ["auto_start"] = true,
+	["display.icons.mode"] = "short",
+	["clients.lsp.weight_adjust"] = 1.5,
+	["clients.buffers.enabled"] = true,
+	["clients.buffers.weight_adjust"] = 0.3,
+	-- ["clients.tree_sitter.enabled"] = false,
+	-- ["clients.snippets.enabled"] = false,
+	["clients.lsp.resolve_timeout"] = 3,
+	["clients.tabnine.enabled"] = true,
+	["clients.tabnine.weight_adjust"] = 1,
+	["display.pum.fast_close"] = false,
+}
+
+-- opt.tabstop                                                               = 4  -- tap options
+-- opt.softtabstop                                                           = 4
+-- opt.shiftwidth                                                            = 4
+-- opt.expandtab                                                             = true
+
 -- g.diagnostic_enable_virtual_text  = 1
 -- g.diagnostic_insert_delay         = 1
 -- g.diagnostic_show_sign            = 0
 -- g.diagnostic_virtual_text_prefix  = ' '
 -- g.space_before_virtual_text       = 5
 -- g.diagnostic_trimmed_virtual_text = '20'
-
-g.translate_source                = 'en'
-g.translate_target                = 'es'
-g.translate_popup_window          = 0                                     -- if you want use popup window, set value 1
-g.translate_winsize               = 1                                     -- set buffer window height size if you doesn't use popup window
-
-g.user_emmet_install_global       = 0
-
--- opt.tabstop                                                               = 4  -- tap options
--- opt.softtabstop                                                           = 4
--- opt.shiftwidth                                                            = 4
--- opt.expandtab                                                             = true
 
 -- g.limelight_conceal_ctermfg       = 'gray'                                -- used with goyo
 -- g.limelight_conceal_guifg         = 'DarkGray'

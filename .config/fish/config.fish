@@ -11,9 +11,11 @@ alias 'vi=nvim'
 alias 'ra=ranger'
 alias 'tm=tmux'
 alias 'sup=sudo pacman -S'
+alias 'ssh=kitty +kitten ssh'
 
 set PATH /home/gabe/.scripts/:$PATH
 set PATH /home/gabe/bin/:$PATH
 set PATH /home/gabe/.local/bin/:$PATH
 set XDG_DATA_DIRS /var/lib/flatpak/exports/share:$XDG_DATA_DIRS
 set XDG_DATA_DIRS /home/gabe/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
+
