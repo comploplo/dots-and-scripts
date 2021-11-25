@@ -38,7 +38,6 @@ cmp.setup({
     { name = "buffer", keyword_length = 5 },
     { name = "emoji", keyword_length = 5 },
   }),
-
   -- str8 copied from tj's config thanks tj
   sorting = {
     comparators = {
@@ -64,7 +63,6 @@ cmp.setup({
       cmp.config.compare.order,
     },
   },
-
   experimental = {
     native_menu = false,
     ghost_text = true,
@@ -86,7 +84,6 @@ cmp.setup.cmdline(":", {
   completion = {
     autocomplete = false,
   },
-
   sources = cmp.config.sources({
     {
       name = "path",
@@ -100,10 +97,88 @@ cmp.setup.cmdline(":", {
   }),
 })
 
+require('formatter').setup({
+  filetype = {
+    terraform = {
+      function()
+        return {
+          exe = "terraform",
+          args = { "fmt", "-" },
+          stdin = true
+        }
+      end
+    },
+    python = {
+      -- Configuration for psf/black
+      function()
+        return {
+          exe = "black", -- this should be available on your $PATH
+          args = { '-' },
+          stdin = true,
+        }
+      end
+    },
+    lua = {
+      function()
+        return {
+          exe = "stylua",
+          args = {
+            "--config-path "
+              .. os.getenv("XDG_CONFIG_HOME")
+              .. "/stylua/stylua.toml",
+            "-",
+          },
+          stdin = true,
+        }
+      end,
+    },
+    sh = {
+        -- Shell Script Formatter
+       function()
+         return {
+           exe = "shfmt",
+           args = { "-i", 2 },
+           stdin = true,
+         }
+       end,
+   },
+   javascript = {
+      -- prettier
+      function()
+        return {
+          exe = "prettier",
+          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
+          stdin = true
+        }
+      end
+    },
+  }
+})
+
+require('nvim-biscuits').setup({
+  default_config = {
+    max_length = 12,
+    min_distance = 5,
+    prefix_string = " 📎 "
+  },
+  language_config = {
+    html = {
+      prefix_string = " 🌐 "
+    },
+    javascript = {
+      prefix_string = " ✨ ",
+      max_length = 80
+    },
+    python = {
+      disabled = true
+    }
+  }
+})
+
 require("which-key").setup({
   plugins = {
     spelling = {
-      enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
       suggestions = 20, -- how many suggestions should be shown in the list?
     },
   },

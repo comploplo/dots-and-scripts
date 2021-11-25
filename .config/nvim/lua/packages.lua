@@ -53,7 +53,9 @@ require("paq")({
   "nvim-treesitter/playground",
   "simrat39/symbols-outline.nvim",
   "mbbill/undotree",
+  "code-biscuits/nvim-biscuits",
 
+  "mhartington/formatter.nvim",
   "mfussenegger/nvim-dap",
   "nathom/filetype.nvim",
   "nvim-lua/plenary.nvim",

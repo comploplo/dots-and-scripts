@@ -95,11 +95,6 @@ map("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Func
 map("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], opts)
 map("v", "<Leader>rt", [[ <Cmd>lua refactors()<CR>]], opts)
 
--- map('', '<C-j>',          [[<C-w>j]],                                                                      opts )
--- map('', '<C-k>',          [[<C-w>k]],                                                                      opts )
--- map('', '<C-l>',          [[<C-w>l]],                                                                      opts )
--- map('', '<C-h>',          [[<C-w>h]],                                                                      opts )
-
 -- map('', '<leader><S-w>',  [[:luafile ~/.local/share/nvim/site/pack/paqs/start/neowal/lua/neowal.lua<CR>]], opts )
 
 -- map('n', '<leader>ff', [[:lua require('teleconf').find_files()<CR>]],   opts ) -- not using telescope right now bcause i have no need.
@@ -155,7 +150,7 @@ M.on_attach_binds = function(bufnr)
   bmap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   bmap("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
   bmap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-  bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  -- bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 M.textobjects = {
