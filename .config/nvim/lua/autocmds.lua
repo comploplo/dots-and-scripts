@@ -52,6 +52,7 @@ define_augroups({
     { "VimEnter", "*", [[Gitsigns toggle_signs]] },
     -- {'Filetype', 'html,css', 'EmmetInstall'},
     { "CursorMoved", "*", "if (expand('<cword>') =~ @/) | set hlsearch | else | set nohlsearch | endif" },
+    -- { "User", "DiagnosticsChanged", "lua vim.diagnostic.setqflist({open = false })" }, -- this would be for if i used qflist more
   },
   markdown = {
     -- {'FileType', 'markdown', 'set conceallevel=2'},
@@ -62,10 +63,11 @@ define_augroups({
     { "FileType", "markdown", "nmap <Leader>c :call g:PandocSmartExport()<CR>" },
     { "FileType", "markdown,text", "nmap gr <Plug>(Translate)" },
     { "FileType", "markdown,text", "vmap T <Plug>(VTranslate)" },
+    { "BufWritePost", "*.js,*.lua,*.py", "FormatWrite" },
   },
-  -- lua = {
-  -- 	{'FileType', 'lua', 'set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2'},
-  -- },
+  lua = {
+    { "FileType", "lua", "set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2" },
+  },
   -- augroup vimrc     " Source vim configuration upon save
   --     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
   --     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw

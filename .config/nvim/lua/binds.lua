@@ -41,11 +41,24 @@ map("v", ">", [[>gv]], opts)
 map("v", "J", [[:m '>+1<CR>gv=gv]], opts)
 map("v", "K", [[:m '<-2<CR>gv=gv]], opts)
 
-map("n", "<leader>k", [[:m.-2<CR>==]], optsloud)
-map("n", "<leader>j", [[:m.+1<CR>==]], optsloud)
+-- map("n", "<leader>k", [[:m.-2<CR>==]], optsloud)
+-- map("n", "<leader>j", [[:m.+1<CR>==]], optsloud)
 
 map("v", "<S-y>", [["+y]], optsloud)
 map("v", "<leader>y", [["+y]], optsloud)
+
+map("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], opts)
+map("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], opts)
+map("v", "<Leader>rt", [[ <Cmd>lua refactors()<CR>]], opts)
+
+map("i", ",", [[,<C-g>u]], opts)
+map("i", ".", [[.<C-g>u]], opts)
+map("i", "!", [[!<C-g>u]], opts)
+map("i", "?", [[?<C-g>u]], opts)
+
+map("i", "jk", [[<esc>]], opts)
+map("i", "kj", [[<esc>]], opts)
+map("i", "jj", [[<esc>]], opts)
 
 map("n", "<leader>y", [["+y]], optsloud)
 map("n", "<leader>Y", [[ gg"+yG]], optsloud)
@@ -64,21 +77,14 @@ map("n", "<M-S-s>", [[:setlocal spell! spelllang=es_es<CR>]], optsloud)
 map("n", "<S-M-t>", [[:Translate! ]], optsloud)
 map("n", "<M-t>", [[:Translate ]], optsloud)
 
-map("n", "<leader>xx", "<cmd>Trouble<cr>", opts)
-map("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", opts)
-map("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", opts)
-map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
-map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
-map("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
+-- map("n", "<leader>xx", "<cmd>Trouble<cr>", opts)
+-- map("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", opts)
+-- map("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", opts)
+-- map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
+-- map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
+-- map("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
 
-map("i", ",", [[,<C-g>u]], opts)
-map("i", ".", [[.<C-g>u]], opts)
-map("i", "!", [[!<C-g>u]], opts)
-map("i", "?", [[?<C-g>u]], opts)
-
-map("i", "jk", [[<esc>]], opts)
-map("i", "kj", [[<esc>]], opts)
-map("i", "jj", [[<esc>]], opts)
+map("n", "<leader>fo", ":Format<CR>", opts)
 
 map("n", "<leader>dc", [[:lua require'dap'.continue()<CR>]], opts)
 map("n", "<M-d>", [[:lua require'dap'.continue()<CR>]], opts)
@@ -87,13 +93,15 @@ map("n", "<leader>di", [[:lua require'dap'.step_into()<CR>]], opts)
 map("n", "<leader>dO", [[:lua require'dap'.step_out()<CR>]], opts)
 map("n", "<leader>db", [[:lua require'dap'.toggle_breakpoint()<CR>]], opts)
 map("n", "<leader>dB", [[:lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], opts)
-map("n", "<leader>dp", [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]], opts)
+map("n", "<leader>dP", [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]], opts)
 map("n", "<leader>dr", [[:lua require'dap'.repl.open()<CR>]], opts)
 map("n", "<leader>dl", [[:lua require'dap'.run_last()<CR>]], opts)
 
-map("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], opts)
-map("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], opts)
-map("v", "<Leader>rt", [[ <Cmd>lua refactors()<CR>]], opts)
+-- diagnostics
+-- local goto_opts = { wrap = true, float = true }
+map("n", "]d", [[:lua vim.diagnostic.goto_next({ wrap = true, float = true })<CR>]], opts)
+map("n", "[d", [[:lua vim.diagnostic.goto_prev({ wrap = true, float = true })<CR>]], opts)
+map("n", "<space>td", [[:lua vim.diagnostic.open_float(0, { scope = "line", })<CR>]], opts)
 
 -- map('', '<leader><S-w>',  [[:luafile ~/.local/share/nvim/site/pack/paqs/start/neowal/lua/neowal.lua<CR>]], opts )
 
@@ -140,16 +148,16 @@ M.on_attach_binds = function(bufnr)
   bmap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   bmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   bmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  bmap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  bmap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
   bmap("n", "<Leader>pa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
   bmap("n", "<Leader>pr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
   bmap("n", "<Leader>pl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
   bmap("n", "<Leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   bmap("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   bmap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  bmap("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-  bmap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+  -- bmap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  -- bmap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  -- bmap("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+  -- bmap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
   -- bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
@@ -279,5 +287,7 @@ M.cmp_binds = {
     "c",
   }),
 }
+
+M.biscuits_bind = "<leader>tb"
 
 return M

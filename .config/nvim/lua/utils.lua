@@ -8,6 +8,7 @@ local actions = require("lir.actions")
 local textobjects = require("binds").textobjects
 local playground = require("binds").playground
 local cmp_binds = require("binds").cmp_binds
+local biscuits_bind = require("binds").biscuits_bind
 
 -- local g = vim.g
 -- require('lspsaga').init_lsp_saga()
@@ -97,35 +98,42 @@ cmp.setup.cmdline(":", {
   }),
 })
 
-require('formatter').setup({
+require("formatter").setup({
   filetype = {
     terraform = {
       function()
         return {
           exe = "terraform",
           args = { "fmt", "-" },
-          stdin = true
+          stdin = true,
         }
-      end
+      end,
+    },
+    go = {
+      function()
+        return {
+          exe = "gofmt",
+          args = {},
+          stdin = true,
+        }
+      end,
     },
     python = {
       -- Configuration for psf/black
       function()
         return {
           exe = "black", -- this should be available on your $PATH
-          args = { '-' },
+          args = { "-" },
           stdin = true,
         }
-      end
+      end,
     },
     lua = {
       function()
         return {
           exe = "stylua",
           args = {
-            "--config-path "
-              .. os.getenv("XDG_CONFIG_HOME")
-              .. "/stylua/stylua.toml",
+            "--config-path " .. os.getenv("HOME") .. "/.config/stylua/stylua.toml",
             "-",
           },
           stdin = true,
@@ -133,46 +141,48 @@ require('formatter').setup({
       end,
     },
     sh = {
-        -- Shell Script Formatter
-       function()
-         return {
-           exe = "shfmt",
-           args = { "-i", 2 },
-           stdin = true,
-         }
-       end,
-   },
-   javascript = {
+      -- Shell Script Formatter
+      function()
+        return {
+          exe = "shfmt",
+          args = { "-i", 2 },
+          stdin = true,
+        }
+      end,
+    },
+    javascript = {
       -- prettier
       function()
         return {
           exe = "prettier",
-          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-          stdin = true
+          args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), "--double-quote" },
+          stdin = true,
         }
-      end
+      end,
     },
-  }
+  },
 })
 
-require('nvim-biscuits').setup({
+-- defaults to off, <leader>cb to start
+require("nvim-biscuits").setup({
+  toggle_keybind = biscuits_bind,
   default_config = {
     max_length = 12,
     min_distance = 5,
-    prefix_string = " 📎 "
+    prefix_string = " ⓘ ",
   },
   language_config = {
     html = {
-      prefix_string = " 🌐 "
+      prefix_string = " 🌐 ",
     },
     javascript = {
       prefix_string = " ✨ ",
-      max_length = 80
+      max_length = 80,
     },
     python = {
-      disabled = true
-    }
-  }
+      disabled = true,
+    },
+  },
 })
 
 require("which-key").setup({

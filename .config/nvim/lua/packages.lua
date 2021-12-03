@@ -45,10 +45,10 @@ require("paq")({
   "nvim-lua/popup.nvim",
   "ray-x/lsp_signature.nvim",
   "theprimeagen/harpoon",
-  "rrethy/vim-illuminate",
+  -- "rrethy/vim-illuminate",
 
   --information
-  "folke/trouble.nvim",
+  -- "folke/trouble.nvim",
   "folke/which-key.nvim",
   "nvim-treesitter/playground",
   "simrat39/symbols-outline.nvim",

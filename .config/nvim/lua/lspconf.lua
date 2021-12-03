@@ -4,25 +4,40 @@ local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
 local sign_define = vim.fn.sign_define
 local on_attach_binds = require("binds").on_attach_binds
 
--- Diagnostics
-sign_define("LspDiagnosticsSignError", { text = "E", texthl = "LspDiagnosticsError" })
-sign_define("LspDiagnosticsSignWarning", { text = "W", texthl = "LspDiagnosticsWarning" })
-sign_define("LspDiagnosticsSignInformation", { text = "I", texthl = "LspDiagnosticsInformation" })
-sign_define("LspDiagnosticsSignHint", { text = "?", texthl = "LspDiagnosticsHint" })
-local function setup_diagnostics()
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
+-- Configure diagnostic display
+sign_define("DiagnosticSignError", { text = "E", texthl = "DiagnosticError" })
+sign_define("DiagnosticSignWarn", { text = "W", texthl = "DiagnosticWarn" })
+sign_define("DiagnosticSignInfo", { text = "I", texthl = "DiagnosticInfo" })
+sign_define("DiagnosticSignHint", { text = "?", texthl = "DiagnosticHint" })
+vim.diagnostic.config({
+  virtual_text = {
+    severity = vim.diagnostic.severity.ERROR,
+    source = "if_many",
+  },
+  float = {
     severity_sort = true,
-  })
-end
+    source = "if_many",
+    border = "rounded",
+    header = {
+      "",
+      "LspDiagnosticsDefaultWarning",
+    },
+    prefix = function(diagnostic)
+      local diag_to_format = {
+        [vim.diagnostic.severity.ERROR] = { "Error", "LspDiagnosticsDefaultError" },
+        [vim.diagnostic.severity.WARN] = { "Warning", "LspDiagnosticsDefaultWarning" },
+        [vim.diagnostic.severity.INFO] = { "Info", "LspDiagnosticsDefaultInfo" },
+        [vim.diagnostic.severity.HINT] = { "Hint", "LspDiagnosticsDefaultHint" },
+      }
+      local res = diag_to_format[diagnostic.severity]
+      return string.format("%s: ", res[1]), res[2]
+    end,
+  },
+  severity_sort = true,
+})
 
 local on_attach = function(client, bufnr)
   on_attach_binds(bufnr)
-  setup_diagnostics()
-  require 'illuminate'.on_attach(client)
   print("LSP started.")
 end
 
@@ -82,34 +97,28 @@ nvim_lsp.html.setup({
   },
 })
 
-nvim_lsp.pylsp.setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        pylsp_black = {
-          line_length = 120,
-        },
-      },
-    },
-  },
-})
-
 nvim_lsp.ccls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { "c", "cc", "cpp", "objc", "objcpp" },
 })
 
+-- -- I had to install this myself from https://github.com/artempyanykh/zeta-note/releases
+-- -- markdown ls
+-- nvim_lsp.zeta_note.setup({
+--   cmd = { os.getenv("HOME") .. "/.local/bin/zeta-note" },
+-- })
+
 local servers = {
   "bashls",
   "cssls",
   "dockerls",
+  "emmet_ls",
   "gopls",
   "hls",
   "jdtls",
   "jsonls",
+  "pylsp",
   "rls",
   "svelte",
   "texlab",
