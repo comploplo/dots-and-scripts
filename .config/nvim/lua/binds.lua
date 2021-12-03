@@ -131,7 +131,7 @@ cmd("digraph th 952") -- θ
 local M = {}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-M.on_attach_binds = function(bufnr)
+M.lsp_binds = function(bufnr)
   local function bmap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end

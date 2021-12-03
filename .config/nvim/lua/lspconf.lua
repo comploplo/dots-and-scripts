@@ -1,43 +1,48 @@
 local nvim_lsp = require("lspconfig")
 local sumneko_root_path = "/home/gabe/programming/repos/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
-local sign_define = vim.fn.sign_define
-local on_attach_binds = require("binds").on_attach_binds
+local lsp_binds = require("binds").lsp_binds
 
--- Configure diagnostic display
-sign_define("DiagnosticSignError", { text = "E", texthl = "DiagnosticError" })
-sign_define("DiagnosticSignWarn", { text = "W", texthl = "DiagnosticWarn" })
-sign_define("DiagnosticSignInfo", { text = "I", texthl = "DiagnosticInfo" })
-sign_define("DiagnosticSignHint", { text = "?", texthl = "DiagnosticHint" })
+-- I would use this if i used virtual text 😄
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+--   virtual_text = {
+--     prefix = "●", -- Could be '●', '▎', 'x', '■'
+--   },
+-- })
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 vim.diagnostic.config({
-  virtual_text = {
-    severity = vim.diagnostic.severity.ERROR,
-    source = "if_many",
-  },
+  -- virtual_text = {
+  --   severity = vim.diagnostic.severity.ERROR,
+  --   source = "if_many",
+  -- },
+  virtual_text = false,
   float = {
     severity_sort = true,
     source = "if_many",
-    border = "rounded",
-    header = {
-      "",
-      "LspDiagnosticsDefaultWarning",
-    },
-    prefix = function(diagnostic)
-      local diag_to_format = {
-        [vim.diagnostic.severity.ERROR] = { "Error", "LspDiagnosticsDefaultError" },
-        [vim.diagnostic.severity.WARN] = { "Warning", "LspDiagnosticsDefaultWarning" },
-        [vim.diagnostic.severity.INFO] = { "Info", "LspDiagnosticsDefaultInfo" },
-        [vim.diagnostic.severity.HINT] = { "Hint", "LspDiagnosticsDefaultHint" },
-      }
-      local res = diag_to_format[diagnostic.severity]
-      return string.format("%s: ", res[1]), res[2]
-    end,
+    border = vim.g.border,
+    focusable = false,
   },
   severity_sort = true,
 })
 
-local on_attach = function(client, bufnr)
-  on_attach_binds(bufnr)
+local on_attach = function(_, bufnr)
+  lsp_binds(bufnr)
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = vim.g.border, focusable = false }
+  )
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = vim.g.border, focusable = false }
+  )
+
   print("LSP started.")
 end
 

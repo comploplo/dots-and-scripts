@@ -53,6 +53,7 @@ define_augroups({
     -- {'Filetype', 'html,css', 'EmmetInstall'},
     { "CursorMoved", "*", "if (expand('<cword>') =~ @/) | set hlsearch | else | set nohlsearch | endif" },
     -- { "User", "DiagnosticsChanged", "lua vim.diagnostic.setqflist({open = false })" }, -- this would be for if i used qflist more
+    { "CursorHold,CursorHoldI", "*", "lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})" },
   },
   markdown = {
     -- {'FileType', 'markdown', 'set conceallevel=2'},
