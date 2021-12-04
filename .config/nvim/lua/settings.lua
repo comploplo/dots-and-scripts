@@ -107,4 +107,3 @@ opt.sidescrolloff = 1
 opt.tabpagemax = 6
 opt.termguicolors = true
 opt.updatetime = 50
-

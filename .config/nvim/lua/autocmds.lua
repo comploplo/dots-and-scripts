@@ -49,7 +49,7 @@ define_augroups({
     -- {'VimEnter', '*', [[if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif]]},
     -- {'VimEnter', '*', [[highlight SignColumn ctermbg=NONE guibg=NONE]]},
     -- {'ColorScheme', '*', [[highlight VertSplit ctermbg=none guibg=NONE]]},
-    { "VimEnter", "*", [[Gitsigns toggle_signs]] },
+    -- { "VimEnter", "*", [[Gitsigns toggle_signs]] },
     -- {'Filetype', 'html,css', 'EmmetInstall'},
     { "CursorMoved", "*", "if (expand('<cword>') =~ @/) | set hlsearch | else | set nohlsearch | endif" },
     -- { "User", "DiagnosticsChanged", "lua vim.diagnostic.setqflist({open = false })" }, -- this would be for if i used qflist more

@@ -11,8 +11,16 @@ local optsloud = { noremap = true }
 
 -- map('', '', [[]], opts )
 
+map("", "]b", [[:bnext<CR>]], opts)
+map("", "[b", [[:bprev<CR>]], opts)
+map("", "]t", [[:tabnext<CR>]], opts)
+map("", "[t", [[:tabprev<CR>]], opts)
+
 map("", "-", [[:lua require'lir.float'.init()<CR>]], opts)
 map("", "<C-s>", [[:w<CR>]], opts)
+
+map("n", "<leader>y", [["+y]], optsloud)
+map("n", "<leader>Y", [[ gg"+yG]], optsloud)
 
 map("", "<leader>tz", [[:ZenMode<CR>]], opts) -- toggle block
 map("", "<leader>tn", [[:lua ToggleNums()<CR>]], opts)
@@ -26,6 +34,17 @@ map("", "<leader>bb", [[:buffers<CR>]], opts)
 map("", "<leader>bn", [[:bnext<CR>]], opts)
 map("", "<leader>bp", [[:bprev<CR>]], opts)
 map("", "<leader>be", [[:bprev<CR>]], opts)
+
+map("", "<leader>dc", [[:lua require'dap'.continue()<CR>]], opts)
+map("", "<M-d>", [[:lua require'dap'.continue()<CR>]], opts)
+map("", "<leader>do", [[:lua require'dap'.step_over()<CR>]], opts)
+map("", "<leader>di", [[:lua require'dap'.step_into()<CR>]], opts)
+map("", "<leader>dO", [[:lua require'dap'.step_out()<CR>]], opts)
+map("", "<leader>db", [[:lua require'dap'.toggle_breakpoint()<CR>]], opts)
+map("", "<leader>dB", [[:lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], opts)
+map("", "<leader>dP", [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]], opts)
+map("", "<leader>dr", [[:lua require'dap'.repl.open()<CR>]], opts)
+map("", "<leader>dl", [[:lua require'dap'.run_last()<CR>]], opts)
 
 map("", "Y", [[y$]], opts)
 map("", "n", [[nzzzv]], opts)
@@ -60,9 +79,6 @@ map("i", "jk", [[<esc>]], opts)
 map("i", "kj", [[<esc>]], opts)
 map("i", "jj", [[<esc>]], opts)
 
-map("n", "<leader>y", [["+y]], optsloud)
-map("n", "<leader>Y", [[ gg"+yG]], optsloud)
-
 map("n", "<leader>w", [[<C-w>]], opts)
 map("n", "<C-j>", [[:cnext<CR>zzzv]], opts)
 map("n", "<C-k>", [[:cprev<CR>zzzv]], opts)
@@ -77,31 +93,7 @@ map("n", "<M-S-s>", [[:setlocal spell! spelllang=es_es<CR>]], optsloud)
 map("n", "<S-M-t>", [[:Translate! ]], optsloud)
 map("n", "<M-t>", [[:Translate ]], optsloud)
 
--- map("n", "<leader>xx", "<cmd>Trouble<cr>", opts)
--- map("n", "<leader>xw", "<cmd>Trouble lsp_workspace_diagnostics<cr>", opts)
--- map("n", "<leader>xd", "<cmd>Trouble lsp_document_diagnostics<cr>", opts)
--- map("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
--- map("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
--- map("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
-
 map("n", "<leader>fo", ":Format<CR>", opts)
-
-map("n", "<leader>dc", [[:lua require'dap'.continue()<CR>]], opts)
-map("n", "<M-d>", [[:lua require'dap'.continue()<CR>]], opts)
-map("n", "<leader>do", [[:lua require'dap'.step_over()<CR>]], opts)
-map("n", "<leader>di", [[:lua require'dap'.step_into()<CR>]], opts)
-map("n", "<leader>dO", [[:lua require'dap'.step_out()<CR>]], opts)
-map("n", "<leader>db", [[:lua require'dap'.toggle_breakpoint()<CR>]], opts)
-map("n", "<leader>dB", [[:lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>]], opts)
-map("n", "<leader>dP", [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]], opts)
-map("n", "<leader>dr", [[:lua require'dap'.repl.open()<CR>]], opts)
-map("n", "<leader>dl", [[:lua require'dap'.run_last()<CR>]], opts)
-
--- diagnostics
--- local goto_opts = { wrap = true, float = true }
-map("n", "]d", [[:lua vim.diagnostic.goto_next({ wrap = true, float = true })<CR>]], opts)
-map("n", "[d", [[:lua vim.diagnostic.goto_prev({ wrap = true, float = true })<CR>]], opts)
-map("n", "<space>td", [[:lua vim.diagnostic.open_float(0, { scope = "line", })<CR>]], opts)
 
 -- map('', '<leader><S-w>',  [[:luafile ~/.local/share/nvim/site/pack/paqs/start/neowal/lua/neowal.lua<CR>]], opts )
 
@@ -135,12 +127,12 @@ M.lsp_binds = function(bufnr)
   local function bmap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
-  local function bopt(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
 
-  --Enable completion triggered by <c-x><c-o>
-  bopt("omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- diagnostics
+  -- local goto_opts = { wrap = true, float = true }
+  bmap("n", "]d", [[:lua vim.diagnostic.goto_next({ wrap = true, float = true })<CR>]], opts)
+  bmap("n", "[d", [[:lua vim.diagnostic.goto_prev({ wrap = true, float = true })<CR>]], opts)
+  bmap("n", "<space>td", [[:lua vim.diagnostic.open_float(0, { scope = "line", })<CR>]], opts)
 
   bmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
   bmap("n", "<C-S-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)

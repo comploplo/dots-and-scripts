@@ -10,28 +10,13 @@ local lsp_binds = require("binds").lsp_binds
 --   },
 -- })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-vim.diagnostic.config({
-  -- virtual_text = {
-  --   severity = vim.diagnostic.severity.ERROR,
-  --   source = "if_many",
-  -- },
-  virtual_text = false,
-  float = {
-    severity_sort = true,
-    source = "if_many",
-    border = vim.g.border,
-    focusable = false,
-  },
-  severity_sort = true,
-})
-
 local on_attach = function(_, bufnr)
+  --Enable completion triggered by <c-x><c-o>
+  vim.cmd([[setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
+
+  -- enable gq based on lsp formatting
+  vim.cmd([[setlocal formatexpr=v:lua.vim.lsp.formatexpr()]])
+
   lsp_binds(bufnr)
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
