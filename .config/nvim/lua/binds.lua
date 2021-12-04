@@ -19,21 +19,18 @@ map("", "[t", [[:tabprev<CR>]], opts)
 map("", "-", [[:lua require'lir.float'.init()<CR>]], opts)
 map("", "<C-s>", [[:w<CR>]], opts)
 
-map("n", "<leader>y", [["+y]], optsloud)
-map("n", "<leader>Y", [[ gg"+yG]], optsloud)
+map("n", "<S-M-t>", [[:Translate! ]], optsloud)
+map("n", "<M-t>", [[:Translate ]], optsloud)
+map("", "<leader>ts", [[:setlocal spell! spelllang=en_us<CR>]], optsloud)
+map("", "<leader>tS", [[:setlocal spell! spelllang=es_es<CR>]], optsloud)
 
 map("", "<leader>tz", [[:ZenMode<CR>]], opts) -- toggle block
 map("", "<leader>tn", [[:lua ToggleNums()<CR>]], opts)
 map("", "<leader>tu", [[:UndotreeToggle<CR>]], opts)
-map("", "<leader>ts", [[:SymbolsOutline<CR>]], opts)
+map("", "<leader>to", [[:SymbolsOutline<CR>]], opts)
 map("", "<leader>tg", [[:Gitsigns toggle_signs<CR>]], opts)
 map("", "<leader>tt", [[:TSPlaygroundToggle<CR>]], opts)
 map("", "<leader>tc", [[:TSContextToggle<CR>]], opts)
-
-map("", "<leader>bb", [[:buffers<CR>]], opts)
-map("", "<leader>bn", [[:bnext<CR>]], opts)
-map("", "<leader>bp", [[:bprev<CR>]], opts)
-map("", "<leader>be", [[:bprev<CR>]], opts)
 
 map("", "<leader>dc", [[:lua require'dap'.continue()<CR>]], opts)
 map("", "<M-d>", [[:lua require'dap'.continue()<CR>]], opts)
@@ -46,12 +43,16 @@ map("", "<leader>dP", [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input(
 map("", "<leader>dr", [[:lua require'dap'.repl.open()<CR>]], opts)
 map("", "<leader>dl", [[:lua require'dap'.run_last()<CR>]], opts)
 
+map("n", "<leader>y", [["+y]], optsloud)
+map("n", "<leader>Y", [[ gg"+yG]], optsloud)
+
 map("", "Y", [[y$]], opts)
 map("", "n", [[nzzzv]], opts)
 map("", "N", [[Nzzzv]], opts)
 map("", "J", [[mzJ'z]], opts)
 
-map("o", "ib", [[:<c-u>normal! mzggVG<cr>`z]], opts)
+-- map("", "{", [[{zzzv]], opts)
+-- map("", "}", [[}zzzv]], opts)
 
 map("t", "<esc>", [[<C-\><C-n>]], opts)
 
@@ -87,11 +88,6 @@ map("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], optsexpr)
 
 map("n", "<C-u>", [[<C-u>zzzv]], opts)
 map("n", "<C-d>", [[<C-d>zzzv]], opts)
-
-map("n", "<M-s>", [[:setlocal spell! spelllang=en_us<CR>]], optsloud)
-map("n", "<M-S-s>", [[:setlocal spell! spelllang=es_es<CR>]], optsloud)
-map("n", "<S-M-t>", [[:Translate! ]], optsloud)
-map("n", "<M-t>", [[:Translate ]], optsloud)
 
 map("n", "<leader>fo", ":Format<CR>", opts)
 

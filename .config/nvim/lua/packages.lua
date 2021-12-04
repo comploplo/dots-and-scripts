@@ -157,6 +157,7 @@ return require("packer").startup(function(use)
         status_formatter = nil, -- Use default
         word_diff = false,
         diff_opts = { internal = true }, -- If luajit is present
+        signcolumn = false,
       })
       -- vim.cmd([[autocmd VimEnter * Gitsigns toggle_signs]]) -- here instead of in autocmds.lua
       -- because it has to happen after the other setuff is (lazily) loaded
