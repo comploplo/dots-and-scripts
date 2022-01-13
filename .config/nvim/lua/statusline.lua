@@ -1,6 +1,6 @@
 local write_count = 0
 
-function Lsp_Info()
+function _G.Lsp_Info()
   local warnings = #vim.diagnostic.get(vim.g.bufnr, { severity = vim.diagnostic.severity.WARN })
   local errors = #vim.diagnostic.get(vim.g.bufnr, { severity = vim.diagnostic.severity.ERROR })
   local hints = #vim.diagnostic.get(vim.g.bufnr, { severity = vim.diagnostic.severity.ERROR })

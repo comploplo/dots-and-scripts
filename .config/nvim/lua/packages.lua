@@ -4,10 +4,49 @@
 -- })
 
 return require("packer").startup(function(use)
-  -- use({
-  --   "",
-  --   config = function() end,
-  -- })
+  use({
+    "nvim-orgmode/orgmode",
+    ft = { "org" },
+    requires = { "nvim-treesitter/nvim-treesitter", "milisims/tree-sitter-org" },
+    config = function()
+      require("orgmode").setup({
+        org_agenda_files = { "~/docs/org" },
+        org_default_notes_file = "~/docs/org/refile.org",
+      })
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.org = {
+        install_info = {
+          url = "https://github.com/milisims/tree-sitter-org",
+          revision = "main",
+          files = { "src/parser.c", "src/scanner.cc" },
+        },
+        filetype = "org",
+      }
+    end,
+  })
+
+  use({
+    "filipdutescu/renamer.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("renamer").setup({
+        -- Whether or not to shown a border around the popup
+        border = false,
+        -- Whether or not to highlight the current word references through LSP
+        show_refs = true,
+        -- Whether or not to add resulting changes to the quickfix list
+        with_qf_list = false,
+      })
+    end,
+  })
+
+  use({
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    config = function()
+      require("lualine").setup()
+    end,
+  })
 
   use({
     "tamago324/lir.nvim",
@@ -16,37 +55,25 @@ return require("packer").startup(function(use)
       "kyazdani42/nvim-web-devicons",
     },
     config = function()
-      local actions = require("lir.actions")
       require("lir").setup({
         show_hidden_files = false,
         devicons_enable = true,
-        mappings = {
-          ["l"] = actions.edit,
-          ["<CR>"] = actions.edit,
-          ["<C-s>"] = actions.split,
-          ["<C-v>"] = actions.vsplit,
-          ["<C-t>"] = actions.tabedit,
-          ["h"] = actions.up,
-          ["-"] = actions.up,
-          ["q"] = actions.quit,
-          ["<ESC>"] = actions.quit,
-          ["K"] = actions.mkdir,
-          ["N"] = actions.newfile,
-          ["R"] = actions.rename,
-          -- ['@']     = actions.cd,
-          ["Y"] = actions.yank_path,
-          ["."] = actions.toggle_show_hidden,
-          ["z"] = actions.toggle_show_hidden,
-          -- ['D']     = actions.delete,
-          -- ['J'] = function()
-          --   mark_actions.toggle_mark()
-          --   vim.cmd('normal! j')
-          -- end,
-          -- ['C'] = clipboard_actions.copy,
-          -- ['X'] = clipboard_actions.cut,
-          -- ['P'] = clipboard_actions.paste,
-        },
+        mappings = require("binds").lir_binds,
         hide_cursor = false,
+        -- You can define a function that returns a table to be passed as the third
+        -- argument of nvim_open_win().
+        float = {
+          winblend = 20,
+          curdir_window = {
+            enable = false,
+            highlight_dirname = true,
+          },
+          win_opts = function()
+            return {
+              border = "none",
+            }
+          end,
+        },
       })
 
       require("nvim-web-devicons").setup({ -- custom folder icon
@@ -83,7 +110,7 @@ return require("packer").startup(function(use)
           python = {
             -- Configuration for psf/black
             function()
-              return { exe = "black" }
+              return { exe = "black", stdin = false }
             end,
           },
           lua = {
@@ -126,7 +153,11 @@ return require("packer").startup(function(use)
     },
     config = function()
       require("nvim-treesitter.configs").setup({
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          disable = { "org" }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+          additional_vim_regex_highlighting = { "org" }, -- Required since TS highlighter doesn't support all syntax features (conceal)
+        },
         incremental_selection = { enable = true },
         indent = { enable = true },
         textobjects = require("binds").textobjects,
@@ -221,6 +252,7 @@ return require("packer").startup(function(use)
     end,
   })
 
+  --completion
   use({
     "hrsh7th/nvim-cmp",
     requires = {
@@ -228,6 +260,7 @@ return require("packer").startup(function(use)
       "honza/vim-snippets",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
@@ -279,11 +312,17 @@ return require("packer").startup(function(use)
     end,
   })
 
+  -- colorscheme
+  use({
+    "nekonako/xresources-nvim",
+    config = function()
+      require("xresources")
+    end,
+  })
+
   use({
     --lsp
-    -- 'github/copilot.vim',
-
-    --completion
+    -- "github/copilot.vim",
 
     --git
     "tpope/vim-fugitive",
@@ -296,11 +335,10 @@ return require("packer").startup(function(use)
     "blackCauldron7/surround.nvim",
 
     --cosmetics
-    "eddyekofo94/gruvbox-flat.nvim",
+    -- "eddyekofo94/gruvbox-flat.nvim",
     "folke/twilight.nvim",
-    "glepnir/lspsaga.nvim",
     "jubnzv/virtual-types.nvim",
-    "morhetz/gruvbox",
+    -- "morhetz/gruvbox",
     "nvim-lua/popup.nvim",
     "ray-x/lsp_signature.nvim",
     "theprimeagen/harpoon",
@@ -308,14 +346,53 @@ return require("packer").startup(function(use)
 
     --information
     -- "folke/trouble.nvim",
-    "simrat39/symbols-outline.nvim",
+    -- "simrat39/symbols-outline.nvim",
     "mbbill/undotree",
+    "stevearc/aerial.nvim",
 
     "nathom/filetype.nvim",
     "skanehira/translate.vim",
     "wbthomason/packer.nvim",
   })
 end)
+
+-- use({
+--   "glepnir/lspsaga.nvim",
+--   config = function()
+--     require("lspsaga").init_lsp_saga({ border_style = "none" })
+--   end,
+-- })
+
+-- -- this plugin didnt work 12/6/21
+-- use({
+--   "stevearc/dressing.nvim",
+--   config = function()
+--     require("dressing").setup({
+--       select = {
+--         -- Options for built-in selector
+--         builtin = {
+--           -- These are passed to nvim_open_win
+--           anchor = "NW",
+--           relative = "cursor",
+--           row = 0,
+--           col = 0,
+--           border = "none",
+--           -- Window options
+--           winblend = 10,
+--           -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+--           width = nil,
+--           max_width = 0.8,
+--           min_width = 40,
+--           height = nil,
+--           max_height = 0.9,
+--           min_height = 10,
+--         },
+--         -- see :help dressing_get_config
+--         get_config = nil,
+--       },
+--     })
+--   end,
+-- })
 
 -- 'junegunn/gv.vim',
 -- 'theprimeagen/refactoring.nvim',

@@ -9,6 +9,34 @@ local optsexpr = { silent = false, noremap = true, expr = true }
 local optsloud = { noremap = true }
 -- local optsexpr = { silent = true, noremap = true, expr = true }
 
+require("which-key").register({
+  ["<leader>t"] = "+toggle",
+  ["<leader>d"] = "+debug",
+  ["<leader>f"] = "+format",
+  ["<leader>h"] = "+git signs",
+  ["<leader>tz"] = "toggle zen mode",
+  ["<leader>tn"] = "toggle numbers",
+  ["<leader>tu"] = "toggle undo",
+  ["<leader>ta"] = "toggle aerial, symbol outline",
+  ["<leader>tg"] = "toggle gitsigns",
+  ["<leader>tp"] = "toggle tsplayground",
+  ["<leader>tc"] = "toggle tscontext top bar",
+  ["<leader>tb"] = "toggle codebiscuits",
+  ["<leader>ts"] = "toggle english spelling",
+  ["<leader>tS"] = "toggle spanish spelling",
+  ["<leader>dc"] = "debug continue",
+  ["<leader>do"] = "debug step over",
+  ["<leader>di"] = "debug step into",
+  ["<leader>dO"] = "debug step out",
+  ["<leader>db"] = "debug toggle breakpoint",
+  ["<leader>dB"] = "debug breakpoint with condition",
+  ["<leader>dP"] = "debug breakpoint with log",
+  ["<leader>dr"] = "debug open repl",
+  ["<leader>dl"] = "debug debig run last section",
+  ["<leader>y"] = "yank full buffer or visual selection to \"+",
+  ["<leader>w"] = "<C-w>",
+})
+
 -- map('', '', [[]], opts )
 
 map("", "]b", [[:bnext<CR>]], opts)
@@ -19,19 +47,24 @@ map("", "[t", [[:tabprev<CR>]], opts)
 map("", "-", [[:lua require'lir.float'.init()<CR>]], opts)
 map("", "<C-s>", [[:w<CR>]], opts)
 
+-- map("n", "<leader>fo", ":Format<CR>", opts)
+
 map("n", "<S-M-t>", [[:Translate! ]], optsloud)
 map("n", "<M-t>", [[:Translate ]], optsloud)
 map("", "<leader>ts", [[:setlocal spell! spelllang=en_us<CR>]], optsloud)
 map("", "<leader>tS", [[:setlocal spell! spelllang=es_es<CR>]], optsloud)
 
-map("", "<leader>tz", [[:ZenMode<CR>]], opts) -- toggle block
+-- toggle block
+map("", "<leader>tz", [[:ZenMode<CR>]], opts)
 map("", "<leader>tn", [[:lua ToggleNums()<CR>]], opts)
 map("", "<leader>tu", [[:UndotreeToggle<CR>]], opts)
-map("", "<leader>to", [[:SymbolsOutline<CR>]], opts)
+map("", "<leader>ta", [[:AerialToggle<CR>]], opts)
 map("", "<leader>tg", [[:Gitsigns toggle_signs<CR>]], opts)
-map("", "<leader>tt", [[:TSPlaygroundToggle<CR>]], opts)
+map("", "<leader>tp", [[:TSPlaygroundToggle<CR>]], opts)
 map("", "<leader>tc", [[:TSContextToggle<CR>]], opts)
+-- map("", "<leader>to", [[:SymbolsOutline<CR>]], opts)
 
+-- debug block
 map("", "<leader>dc", [[:lua require'dap'.continue()<CR>]], opts)
 map("", "<M-d>", [[:lua require'dap'.continue()<CR>]], opts)
 map("", "<leader>do", [[:lua require'dap'.step_over()<CR>]], opts)
@@ -43,16 +76,21 @@ map("", "<leader>dP", [[:lua require'dap'.set_breakpoint(nil, nil, vim.fn.input(
 map("", "<leader>dr", [[:lua require'dap'.repl.open()<CR>]], opts)
 map("", "<leader>dl", [[:lua require'dap'.run_last()<CR>]], opts)
 
-map("n", "<leader>y", [["+y]], optsloud)
-map("n", "<leader>Y", [[ gg"+yG]], optsloud)
+map("v", "<leader>y", [["+y]], optsloud)
+map("n", "<leader>y", [[ gg"+yG]], optsloud)
+
+map("n", "<leader>w", [[<C-w>]], opts)
+
+map("n", "<C-j>", [[:cnext<CR>zzzv]], opts)
+map("n", "<C-k>", [[:cprev<CR>zzzv]], opts)
+
+map("n", "<C-u>", [[<C-u>zzzv]], opts)
+map("n", "<C-d>", [[<C-d>zzzv]], opts)
 
 map("", "Y", [[y$]], opts)
 map("", "n", [[nzzzv]], opts)
 map("", "N", [[Nzzzv]], opts)
 map("", "J", [[mzJ'z]], opts)
-
--- map("", "{", [[{zzzv]], opts)
--- map("", "}", [[}zzzv]], opts)
 
 map("t", "<esc>", [[<C-\><C-n>]], opts)
 
@@ -61,35 +99,28 @@ map("v", ">", [[>gv]], opts)
 map("v", "J", [[:m '>+1<CR>gv=gv]], opts)
 map("v", "K", [[:m '<-2<CR>gv=gv]], opts)
 
--- map("n", "<leader>k", [[:m.-2<CR>==]], optsloud)
--- map("n", "<leader>j", [[:m.+1<CR>==]], optsloud)
-
 map("v", "<S-y>", [["+y]], optsloud)
 map("v", "<leader>y", [["+y]], optsloud)
 
-map("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], opts)
-map("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], opts)
-map("v", "<Leader>rt", [[ <Cmd>lua refactors()<CR>]], opts)
-
+-- create undo points in inserted text at ,.!? symbols
 map("i", ",", [[,<C-g>u]], opts)
 map("i", ".", [[.<C-g>u]], opts)
 map("i", "!", [[!<C-g>u]], opts)
 map("i", "?", [[?<C-g>u]], opts)
-
-map("i", "jk", [[<esc>]], opts)
-map("i", "kj", [[<esc>]], opts)
-map("i", "jj", [[<esc>]], opts)
-
-map("n", "<leader>w", [[<C-w>]], opts)
-map("n", "<C-j>", [[:cnext<CR>zzzv]], opts)
-map("n", "<C-k>", [[:cprev<CR>zzzv]], opts)
+-- jump list for jumos over 5
 map("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], optsexpr)
 map("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], optsexpr)
 
-map("n", "<C-u>", [[<C-u>zzzv]], opts)
-map("n", "<C-d>", [[<C-d>zzzv]], opts)
+map("i", "jk", [[<esc>]], opts)
+-- map("i", "kj", [[<esc>]], opts)
+-- map("i", "jj", [[<esc>]], opts)
 
-map("n", "<leader>fo", ":Format<CR>", opts)
+-- map("n", "<leader>k", [[:m.-2<CR>==]], optsloud)
+-- map("n", "<leader>j", [[:m.+1<CR>==]], optsloud)
+
+-- map("v", "<Leader>re", [[ <Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], opts)
+-- map("v", "<Leader>rf", [[ <Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], opts)
+-- map("v", "<Leader>rt", [[ <Cmd>lua refactors()<CR>]], opts)
 
 -- map('', '<leader><S-w>',  [[:luafile ~/.local/share/nvim/site/pack/paqs/start/neowal/lua/neowal.lua<CR>]], opts )
 
@@ -98,6 +129,9 @@ map("n", "<leader>fo", ":Format<CR>", opts)
 -- map('n', '<leader>fh', [[:lua require('teleconf').help_tags()<CR>]],    opts )
 -- map('n', '<leader>fc', [[:lua require('teleconf').find_conf()<CR>]],    opts )
 -- map('n', '<leader>fb', [[:lua require('teleconf').local_browse()<CR>]], opts )
+
+-- map("", "{", [[{zzzv]], opts)
+-- map("", "}", [[}zzzv]], opts)
 
 -- The following list was made with a macro that employed the following:
 -- "let @z = char2nr(matchstr(getline('.'), '%'.col('.').'c.'))"
@@ -119,34 +153,54 @@ cmd("digraph th 952") -- θ
 local M = {}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-M.lsp_binds = function(bufnr)
+M.lsp_binds = function(client, bufnr)
   local function bmap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
+
+  if client.resolved_capabilities.implementation then
+    bmap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opts)
+  end
+
+  if client.resolved_capabilities.type_definition then
+    bmap("n", "gd", ":lua vim.lsp.buf.type_definition()<CR>", opts)
+  end
+
+  if client.supports_method("textDocument/rename") then
+    bmap("n", "<leader>lr", ":lua require('renamer').rename()<CR>", opts)
   end
 
   -- diagnostics
   -- local goto_opts = { wrap = true, float = true }
   bmap("n", "]d", [[:lua vim.diagnostic.goto_next({ wrap = true, float = true })<CR>]], opts)
   bmap("n", "[d", [[:lua vim.diagnostic.goto_prev({ wrap = true, float = true })<CR>]], opts)
-  bmap("n", "<space>td", [[:lua vim.diagnostic.open_float(0, { scope = "line", })<CR>]], opts)
+  bmap("n", "<leader>te", [[:lua vim.diagnostic.open_float(0, { scope = "line", })<CR>]], opts)
+  bmap("n", "<leader>td", [[:lua ToggleDiagnostics()<CR>]], opts)
 
-  bmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  bmap("n", "<C-S-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  bmap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  bmap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  bmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  bmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  bmap("n", "<Leader>pa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  bmap("n", "<Leader>pr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  bmap("n", "<Leader>pl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  bmap("n", "<Leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  bmap("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  bmap("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  -- bmap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  -- bmap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  -- bmap("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-  -- bmap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-  -- bmap("n", "<Leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  bmap("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
+  bmap("n", "<leader>ls", ":lua vim.lsp.buf.signature_help()<CR>", opts)
+  bmap("n", "gr", ":lua vim.lsp.buf.references()<CR>", opts)
+  bmap("n", "<leader>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
+  bmap("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>", opts)
+  -- bmap("n", "<Leader>pa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  -- bmap("n", "<Leader>pr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+  -- bmap("n", "<Leader>pl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+  -- bmap("n", "<Leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+
+  require("which-key").register({
+    ["<leader>l"] = "+lsp",
+    ["<leader>lf"] = "lsp: format buffer",
+    ["<leader>ls"] = "lsp: signiture helper",
+    ["<leader>la"] = "lsp: code action",
+    ["<leader>lr"] = "lsp: rename",
+    ["<leader>te"] = "toggle lsp error pane",
+    ["<leader>td"] = "toggle lsp diagnostics",
+    ["gd"] = "lsp: go to type definition",
+    ["gr"] = "lsp: references",
+    ["gi"] = "lsp: implementation",
+    ["]d"] = "diagnostics: next",
+    ["[d"] = "diagnostics: prev",
+  })
 end
 
 M.textobjects = {
@@ -209,6 +263,34 @@ M.playground = { -- Treesitter playground config
     goto_node = "<cr>",
     show_help = "?",
   },
+}
+
+local actions = require("lir.actions")
+M.lir_binds = {
+  ["l"] = actions.edit,
+  ["<CR>"] = actions.edit,
+  ["<C-s>"] = actions.split,
+  ["<C-v>"] = actions.vsplit,
+  ["<C-t>"] = actions.tabedit,
+  ["h"] = actions.up,
+  ["-"] = actions.up,
+  ["q"] = actions.quit,
+  ["<ESC>"] = actions.quit,
+  ["K"] = actions.mkdir,
+  ["N"] = actions.newfile,
+  ["R"] = actions.rename,
+  -- ['@']     = actions.cd,
+  ["Y"] = actions.yank_path,
+  ["."] = actions.toggle_show_hidden,
+  ["z"] = actions.toggle_show_hidden,
+  -- ['D']     = actions.delete,
+  -- ['J'] = function()
+  --   mark_actions.toggle_mark()
+  --   vim.cmd('normal! j')
+  -- end,
+  -- ['C'] = clipboard_actions.copy,
+  -- ['X'] = clipboard_actions.cut,
+  -- ['P'] = clipboard_actions.paste,
 }
 
 local has_words_before = function()

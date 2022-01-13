@@ -133,6 +133,17 @@ local ddqute = lain.util.quake({
   border = 0,
 })
 
+local ddmail = lain.util.quake({
+  app = "thunderbird",
+  argname = "",
+  height = 0.85,
+  width = 0.9,
+  vert = "center",
+  horiz = "middle",
+  border = 0,
+  name = "Mail",
+})
+
 -- local ddwal = lain.util.quake { app = terminal, argname = "--name=%s ~/.scripts/ranger-bg",
 --                                 height = .4, width = .5, vert = "center",
 --                                 horiz = "center", border = 3, name = "bgDD" }
@@ -387,6 +398,9 @@ local globalkeys = gears.table.join(
   awful.key({ modkey }, "q", function()
     ddqute:toggle()
   end, {}),
+  awful.key({ modkey }, "t", function()
+    ddmail:toggle()
+  end, {}),
   -- awful.key({ modkey }, "\\", function () ddwal:toggle() end, { }),
   -- awful.key({ modkey, shift }, "c", function () ddchat:toggle() end, { }),
 
@@ -593,6 +607,7 @@ awful.rules.rules = {
   { rule_any = { class = { "chatterino" } }, properties = { floating = true } },
   { rule_any = { class = { "zoom" }, name = { "chat" } }, properties = { floating = true, ontop = true } },
   { rule_any = { class = { "zoom", "Praat" } }, properties = { floating = true } },
+  { rule_any = { name = { "Msgcompose" } }, properties = { floating = true, ontop = true } },
   { rule_any = { name = { "OpenGL*" } }, properties = { floating = true, ontop = true } },
   { rule_any = { name = { "Picture-in-picture" } }, properties = { floating = true, ontop = true } },
   {

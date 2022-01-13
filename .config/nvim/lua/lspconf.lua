@@ -3,28 +3,30 @@ local sumneko_root_path = "/home/gabe/programming/repos/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
 local lsp_binds = require("binds").lsp_binds
 
--- I would use this if i used virtual text 😄
+-- I would use this if i used virtual text
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 --   virtual_text = {
 --     prefix = "●", -- Could be '●', '▎', 'x', '■'
 --   },
 -- })
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   --Enable completion triggered by <c-x><c-o>
   vim.cmd([[setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 
   -- enable gq based on lsp formatting
   vim.cmd([[setlocal formatexpr=v:lua.vim.lsp.formatexpr()]])
 
-  lsp_binds(bufnr)
+  lsp_binds(client, bufnr)
+
+  vim.lsp.handlers["textDocument/rename"] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border })
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover,
     { border = vim.g.border, focusable = false }
   )
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.hover,
+    vim.lsp.handlers.signature_help,
     { border = vim.g.border, focusable = false }
   )
 

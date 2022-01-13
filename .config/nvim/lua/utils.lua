@@ -40,6 +40,17 @@ function _G.P(v)
   return v
 end
 
+local diagnostics_active = true
+function _G.ToggleDiagnostics()
+  if diagnostics_active then
+    vim.diagnostic.disable()
+    diagnostics_active = false
+  else
+    vim.diagnostic.enable()
+    diagnostics_active = true
+  end
+end
+
 vim.cmd([[
 fun! g:PandocSmartExport()
 if expand('%:e') == 'md'

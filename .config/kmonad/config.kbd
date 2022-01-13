@@ -10,7 +10,7 @@
 (defalias
   sft/   (tap-next     /   lsft)
   sym    (layer-toggle symbols)
-  sym;   (tap-hold 200 ;   @sym)
+  sym;   (tap-hold 300 ;   @sym)
 
   ctlesc (tap-hold 200 esc lctl)
   la     (tap-hold 200 ret lalt) ;; alts

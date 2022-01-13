@@ -5,12 +5,12 @@ local cmd = vim.cmd
 local hi = vim.highlight
 
 -- colorscheme
-g.gruvbox_italic_functions = true
-g.gruvbox_colors = { hint = "orange", error = "#ff0000" }
-g.gruvbox_flat_style = "dark"
-g.gruvbox_transparent = true
-cmd([[colorscheme gruvbox-flat]])
-hi.create("WhichKeyFloat", { ctermbg = 0, guibg = "background" }, false)
+-- g.gruvbox_italic_functions = true
+-- g.gruvbox_colors = { hint = "orange", error = "#ff0000" }
+-- g.gruvbox_flat_style = "dark"
+-- g.gruvbox_transparent = true
+-- cmd([[colorscheme gruvbox-flat]])
+-- hi.create("WhichKeyFloat", { ctermbg = 0, guibg = "background" }, false)
 
 opt.shortmess = opt.shortmess + "A" -- ignore annoying swapfile messages
 opt.shortmess = opt.shortmess + "I" -- no splash screen
