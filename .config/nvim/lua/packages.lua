@@ -143,14 +143,35 @@ return require("packer").startup(function(use)
     end,
   })
 
+use({
+      "nvim-treesitter/playground",
+    requires = {
+    "nvim-treesitter/nvim-treesitter",
+    },
+  config = function() end,
+})
+
+use({
+      "romgrk/nvim-treesitter-context",
+    requires = {
+    "nvim-treesitter/nvim-treesitter",
+    },
+  config = function()
+      require("treesitter-context.config").setup()
+  end,
+})
+
+use({
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    requires = {
+    "nvim-treesitter/nvim-treesitter",
+    },
+  config = function() end,
+})
+
   use({
     "nvim-treesitter/nvim-treesitter",
-    cmd = "TSUpdate",
-    requires = {
-      "nvim-treesitter/playground",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "romgrk/nvim-treesitter-context",
-    },
+    run = "TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
         highlight = {
@@ -163,7 +184,6 @@ return require("packer").startup(function(use)
         textobjects = require("binds").textobjects,
         playground = require("binds").playground,
       })
-      require("treesitter-context.config").setup()
     end,
   })
 
@@ -174,7 +194,7 @@ return require("packer").startup(function(use)
       require("gitsigns").setup({
         numhl = false,
         linehl = false,
-        watch_index = {
+        watch_gitdir = {
           interval = 1000,
           follow_files = true,
         },
