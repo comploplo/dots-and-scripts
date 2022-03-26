@@ -1,9 +1,10 @@
--- local cmd = vim.cmd
+local cmd = vim.cmd
 -- local in_gui = not (vim.fn.environ().TERM == 'linux')
 -- local mark_actions = require('lir.mark.actions')
 -- local clipboard_actions = require'lir.clipboard.actions'
 
 -- local textsubjects = require('binds').textsubjects
+cmd([[colorscheme OceanicNext]])
 
 -- local g = vim.g
 -- require('lspsaga').init_lsp_saga()

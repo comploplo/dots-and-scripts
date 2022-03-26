@@ -21,7 +21,7 @@ require("which-key").register({
   ["<leader>tg"] = "toggle gitsigns",
   ["<leader>tp"] = "toggle tsplayground",
   ["<leader>tc"] = "toggle tscontext top bar",
-  ["<leader>tb"] = "toggle codebiscuits",
+  -- ["<leader>tb"] = "toggle codebiscuits",
   ["<leader>ts"] = "toggle english spelling",
   ["<leader>tS"] = "toggle spanish spelling",
   ["<leader>dc"] = "debug continue",
@@ -358,6 +358,6 @@ M.cmp_binds = {
   }),
 }
 
-M.biscuits_bind = "<leader>tb"
+-- M.biscuits_bind = "<leader>tb"
 
 return M

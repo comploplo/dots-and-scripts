@@ -22,36 +22,36 @@ local function define_augroups(definitions) -- {{{
   end
 end
 
-cmd([[
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-augroup trim_on_save
-    autocmd! * <buffer>
-    autocmd BufWritePre <buffer> call TrimWhitespace()
-augroup END
-]])
+-- cmd([[
+-- fun! TrimWhitespace()
+--     let l:save = winsaveview()
+--     keeppatterns %s/\s\+$//e
+--     call winrestview(l:save)
+-- endfun
+-- augroup trim_on_save
+--     autocmd! * <buffer>
+--     autocmd BufWritePre <buffer> call TrimWhitespace()
+-- augroup END
+-- ]])
 
 -- {'', '', [[]]},
 define_augroups({
   general_settings = {
-    { "TextYankPost", "*", [[lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 200})]] },
-    { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
-    { "BufRead", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
-    { "BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
+    -- { "TextYankPost", "*", [[lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 200})]] },
+    -- { "BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
+    -- { "BufRead", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
+    -- { "BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
     -- {'VimLeavePre', '*', 'set title set titleold='},
     -- {'User', 'GoyoEnter', 'nested call <SID>goyo_enter'},
     -- {'User', 'GoyoLeave', 'nested call <SID>goyo_leave'},
-    { "BufNewFile,BufRead", "*.md", "set filetype=markdown" },
-    { "StdinReadPre", "*", "let s:std_in=1" },
+    -- { "BufNewFile,BufRead", "*.md", "set filetype=markdown" },
+    -- { "StdinReadPre", "*", "let s:std_in=1" },
     -- {'VimEnter', '*', [[if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif]]},
     -- {'VimEnter', '*', [[highlight SignColumn ctermbg=NONE guibg=NONE]]},
     -- {'ColorScheme', '*', [[highlight VertSplit ctermbg=none guibg=NONE]]},
     -- { "VimEnter", "*", [[Gitsigns toggle_signs]] },
     -- {'Filetype', 'html,css', 'EmmetInstall'},
-    { "CursorMoved", "*", "if (expand('<cword>') =~ @/) | set hlsearch | else | set nohlsearch | endif" },
+    -- { "CursorMoved", "*", "if (expand('<cword>') =~ @/) | set hlsearch | else | set nohlsearch | endif" },
     -- { "User", "DiagnosticsChanged", "lua vim.diagnostic.setqflist({open = false })" }, -- this would be for if i used qflist more
     { "CursorHold,CursorHoldI", "*", "lua vim.diagnostic.open_float(nil, {focus=false, scope='cursor'})" },
   },
@@ -65,7 +65,7 @@ define_augroups({
     -- { "FileType", "markdown,text", "nmap gr <Plug>(Translate)" },
     -- { "FileType", "markdown,text", "vmap T <Plug>(VTranslate)" },
     -- { "BufWritePost", "*.js,*.lua,*.py", "FormatWrite" },
-    { "BufWritePost", "*.js,*.lua", "FormatWrite" },
+    -- { "BufWritePost", "*.js,*.lua", "FormatWrite" },
   },
   lua = {
     { "FileType", "lua", "set noexpandtab cindent preserveindent softtabstop=0 shiftwidth=2 tabstop=2" },
